@@ -8,7 +8,8 @@ st.title('Programming with GitHub')
 st.text('''tinkter - share program - share without relying on web, fundamental, Hardcore skillset
 Plotly - webbased
 Streamlit - quick start for programming
-thunkeble - mobile for fun''')
+thunkeble - mobile for fun
+Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns''')
 
 
 #Creates THREE.js scene
