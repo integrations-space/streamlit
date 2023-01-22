@@ -9,7 +9,8 @@ st.text('''tinkter - share program - share without relying on web, fundamental, 
 Plotly - webbased
 Streamlit - quick start for programming
 thunkeble - mobile for fun
-Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns''')
+Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns
+http://blog.ifcopenshell.org/''')
 
 
 #Creates THREE.js scene
