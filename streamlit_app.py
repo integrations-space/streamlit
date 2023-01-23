@@ -10,7 +10,8 @@ Plotly - webbased
 Streamlit - quick start for programming
 thunkeble - mobile for fun
 Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns
-http://blog.ifcopenshell.org/''')
+access ifc with Python:http://blog.ifcopenshell.org/
+access group parameter: https://dynamopythonprimer.gitbook.io/dynamo-python-primer/4-revit-specific-topics/working-with-parameters/instance-parameters''')
 
 
 #Creates THREE.js scene
