@@ -5,13 +5,16 @@ import numpy as np
 #import { Scene } from "three";
 st.title('Programming with GitHub')
 #multiline text
-st.text('''tinkter - share program - share without relying on web, fundamental, Hardcore skillset
-Plotly - webbased
-Streamlit - quick start for programming
-thunkeble - mobile for fun
-Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns
-access ifc with Python:http://blog.ifcopenshell.org/
-access group parameter: https://dynamopythonprimer.gitbook.io/dynamo-python-primer/4-revit-specific-topics/working-with-parameters/instance-parameters''')
+st.text('''
++ tinkter - share program - share without relying on web, fundamental, Hardcore skillset
++ Plotly - webbased
++ Streamlit - quick start for programming
++ thunkeble - mobile for fun
++ Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns
++ access ifc with Python:http://blog.ifcopenshell.org/
++ access group parameter: https://dynamopythonprimer.gitbook.io/dynamo-python-primer/4-revit-specific-topics/working-with-parameters/instance-parameters
++ getting started with Visual Studio Code,VS Code, a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS 
+https://code.visualstudio.com/docs/python/python-tutorial''')
 
 
 #Creates THREE.js scene
