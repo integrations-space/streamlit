@@ -16,7 +16,8 @@ st.text('''
 + getting started with Visual Studio Code,VS Code, a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS 
 https://code.visualstudio.com/docs/python/python-tutorial
 + use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html
-+ Guide for blender download: https://blenderbim.org/docs-python/ifcconvert/installation.html''')
++ Guide for blender download: https://blenderbim.org/docs-python/ifcconvert/installation.html
++ Guide for blender-python with ifcopenshell: https://blenderbim.org/docs-python/ifcopenshell/installation.html''')
 
 
 #Creates THREE.js scene
