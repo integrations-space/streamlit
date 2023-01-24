@@ -15,7 +15,8 @@ st.text('''
 + access group parameter: https://dynamopythonprimer.gitbook.io/dynamo-python-primer/4-revit-specific-topics/working-with-parameters/instance-parameters
 + getting started with Visual Studio Code,VS Code, a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS 
 https://code.visualstudio.com/docs/python/python-tutorial
-+ use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html''')
++ use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html
++ Guide for blender download: https://blenderbim.org/docs-python/ifcconvert/installation.html''')
 
 
 #Creates THREE.js scene
