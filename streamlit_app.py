@@ -22,10 +22,10 @@ https://www.wbdg.org/ffc/dha/mhs-space-templates
 https://code.visualstudio.com/docs/python/python-tutorial
 + use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html
 + Guide for blender download: https://blenderbim.org/docs-python/ifcconvert/installation.html
-+ Guide for blender-python with ifcopenshell: https://blenderbim.org/docs-python/ifcopenshell/installation.html
++ Guide for blender-python with ifcopenshell: https://blenderbim.org/docs-python/ifcopenshell/installation.html''')
 
 st.title('Dynamo')
-+ Pushing Shared parameters into family 
+st.text('''+ Pushing Shared parameters into family 
 https://www.youtube.com/watch?v=lvO2_0IQ8vQ
 https://www.youtube.com/watch?v=6Az1G0pla_k
 + access group parameter: https://dynamopythonprimer.gitbook.io/dynamo-python-primer/4-revit-specific-topics/working-with-parameters/instance-parameters
