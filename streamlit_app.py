@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import ifcopenshell
+import os
+
 #import { IfcLoader } from "web-ifc-three";
 #import { Scene } from "three";
 st.title('Programming with GitHub')
@@ -11,14 +14,10 @@ Install anaconda first then goto command prompt
 + Plotly - webbased
 + Streamlit - quick start for programming
 + thunkeble - mobile for fun
-
 Downloadable healthcare models available online
 https://www.wbdg.org/ffc/dha/mhs-space-templates
-
 + Create a BIM application with python in under 60 minutes: https://youtu.be/AfQztEUSQns
-
 + access ifc with Python:http://blog.ifcopenshell.org/
-
 + getting started with Visual Studio Code,VS Code, a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS 
 https://code.visualstudio.com/docs/python/python-tutorial
 + use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html
@@ -33,8 +32,7 @@ https://www.youtube.com/watch?v=6Az1G0pla_k
 Automated modeling by placing models in points set in the model
 https://www.youtube.com/watch?v=bvxeY60VGT8''')
 
-import ifcopenshell
-import os
+st.title('IFC Parse')
 
 file_path = input("Please enter the file path for the IFC file: ")
 
