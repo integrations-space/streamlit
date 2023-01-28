@@ -22,7 +22,8 @@ https://www.wbdg.org/ffc/dha/mhs-space-templates
 https://code.visualstudio.com/docs/python/python-tutorial
 + use of blender for ifc: https://blenderbim.org/docs-python/ifcconvert/installation.html
 + Guide for blender download: https://blenderbim.org/docs-python/ifcconvert/installation.html
-+ Guide for blender-python with ifcopenshell: https://blenderbim.org/docs-python/ifcopenshell/installation.html''')
++ Guide for blender-python with ifcopenshell: https://blenderbim.org/docs-python/ifcopenshell/installation.html
++ Guide to load python interpreter in VSC: https://python.plainenglish.io/how-to-set-default-python-interpreter-in-vs-code-76c38c210dc3''')
 
 st.title('Dynamo')
 st.text('''+ Pushing Shared parameters into family 
