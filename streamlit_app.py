@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import ifcopenshell
 import os
+import plotly.express as px
 
 #import { IfcLoader } from "web-ifc-three";
 #import { Scene } from "three";
@@ -38,31 +39,26 @@ st.title('IFC Parse')
 file_path = input("Please enter the file path for the IFC file: ")
 
 try:
-    ifc_file = open(file_path, "r")
+    ifc = open(file_path, "r")
     print("File opened successfully!")
 except FileNotFoundError:
     print("The file could not be found. Please check the file path and try again.")
 except:
     print("An error occurred while trying to open the file.")
     
-# Open the IFC file
-ifc_file = ifcopenshell.open(file_path)
+# Load the IFC file
+ifc_file = ifcopenshell.open(ifc)
 
-# Get the entities in the file
-entities = ifc_file.by_type("IfcProduct")
+# Get all Pset elements
+psets = ifc_file.by_type("IfcPropertySet")
 
-# Define a recursive function to print the tree
-def print_tree(entity, level=0):
-    # Print the entity's name and type
-    print("    " * level + entity.is_a() + ": " + entity.Name)
+# Initialize an empty DataFrame to store the information
+df = pd.DataFrame(columns=["Pset", "Property", "Value"])
 
-    # Check if the entity has children (contained objects)
-    if hasattr(entity, "IsDecomposedBy"):
-        # If it does, recursively call the function for each child
-        for rel in entity.IsDecomposedBy:
-            for child in rel.RelatedObjects:
-                print_tree(child, level + 1)
+# Loop through the Pset elements and append their properties to the DataFrame
+for pset in psets:
+    for prop in pset.HasProperties:
+        df = pd.concat([df, pd.DataFrame({"Pset": [pset.Name], "Property": [prop.Name], "Value": [prop.NominalValue.wrappedValue]})], ignore_index=True)
 
-# Call the function for each top-level entity in the file
-for e in entities:
-    print_tree(e)
+# Show the DataFrame in a table using Streamlit
+st.write(df)
