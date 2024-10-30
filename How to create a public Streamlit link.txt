@@ -1,0 +1,39 @@
+What:
+Deploy the streamlit_app.py script from GitHub and make it publicly accessible via Streamlit Cloud.
+
+Why:
+Streamlit Cloud is a simple and powerful way to deploy Python scripts (like the one using streamlit) as interactive web applications. It allows public access to the app through a sharable link, which is useful for demonstrations or collaboration.
+
+How:
+Follow these steps to deploy your Streamlit app:
+
+Sign in to Streamlit Cloud:
+
+Go to Streamlit Cloud and sign in using your GitHub account.
+Create a New App:
+
+Once logged in, click on the New App button on your dashboard.
+Connect to the GitHub Repository:
+
+Select the repository that contains your script: integrations-space/streamlit.
+In the Branch section, choose the branch (likely main).
+In the App File section, enter the path to your Streamlit script: streamlit_app.py.
+Deploy the App:
+
+Click Deploy. This will set up the app, install necessary dependencies, and make it publicly available.
+Share the Link:
+
+Once deployed, Streamlit will generate a public URL for your app. You can share this link with others so they can run and interact with the app.
+Impact:
+Your app will be accessible to anyone with the link.
+You can run the app in real-time from any browser, even on mobile devices.
+This approach scales well for lightweight apps that require minimal server configuration.
+Actionable Recommendations:
+Ensure the necessary dependencies (ifcopenshell, pandas, plotly, etc.) are listed in a requirements.txt file in your repository to avoid issues during deployment.
+Use Streamlit Cloud’s free tier for small projects, but for larger apps or frequent access, consider upgrading to a paid plan.
+Test the app thoroughly to ensure it handles all required inputs and dependencies smoothly.
+Example:
+Once deployed, the link would look something like: https://share.streamlit.io/integrations-space/streamlit/main/streamlit_app.py.
+
+Conclusion:
+By following these steps, you can easily make your Python script publicly accessible via Streamlit Cloud, allowing anyone to interact with it through a simple link.
