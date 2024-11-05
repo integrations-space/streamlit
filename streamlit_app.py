@@ -51,9 +51,11 @@ path_to_requirements_parsing_script = r"C:\2024_ABC\ants_streamlit\parsers\Dual_
 
 # Button to run the GCS parsing script
 st.header("Design Intent - Parse, Calculate & Tabulate")
-st.write("""Click the button to allow:
-            AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
-            AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.""")
+st.write("""
+Click the button to allow:
+AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
+AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.
+""")
 if st.button("Run GCS Parsing Script"):
     with st.spinner("Running GCS Parsing..."):
         result = subprocess.run(["python", path_to_gcs_parsing_script], capture_output=True, text=True)
@@ -71,9 +73,11 @@ if st.button("Run GCS Parsing Script"):
 
 # Button to run the requirements parsing script
 st.header("Requirements - Parse & Compare")
-st.write("""Click the button to allow:
-            Agent 3 to analyze compliance-related requirements with the provided pdf documents from Google Buckets.
-            Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.""")
+st.write("""
+Click the button to allow:
+Agent 3 to analyze compliance-related requirements with the provided pdf documents from Google Buckets.
+Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
+""")
 if st.button("Run Requirements Parsing Script"):
     with st.spinner("Running Requirements Parsing..."):
         result = subprocess.run(["python", path_to_requirements_parsing_script], capture_output=True, text=True)
@@ -91,9 +95,11 @@ if st.button("Run Requirements Parsing Script"):
 
 # Button to run the non-compliance checks script
 st.header("Output - Checks and Recommend")
-st.write("""Click the button to allow:
-            Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
-            BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations""")
+st.write("""
+Click the button to allow:
+Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
+BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations
+""")
 if st.button("Run Compliance Check Script"):
     with st.spinner("Running Compliance Check..."):
         result = subprocess.run(["python", path_to_non_compliance_script], capture_output=True, text=True)
@@ -112,9 +118,7 @@ if st.button("Run Compliance Check Script"):
 
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
-
 st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-
 if st.button("Open GPT-4o-Mini Text File Parser"):
     webbrowser.open_new_tab("https://bca-project.streamlit.app/")
     st.success("Opened GPT-4o-Mini Text File Parser in a new browser tab.")
