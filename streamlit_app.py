@@ -56,6 +56,7 @@ Click the button to allow:
 AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
 AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.
 """)
+
 if st.button("Run GCS Parsing Script"):
     with st.spinner("Running GCS Parsing..."):
         result = subprocess.run(["python", path_to_gcs_parsing_script], capture_output=True, text=True)
