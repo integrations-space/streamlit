@@ -177,23 +177,29 @@ if st.button("Run Compliance Check Script"):
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
 # CSS styling for button consistency with hover effects and rounded corners
+import streamlit as st
+
+st.write("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements.")
+
+# CSS styling to match the design with the white text, black background, and mild red on hover
 button_html = f"""
     <style>
         .button {{
-            background-color: black;
+            background-color: #333333;
             color: white;
-            border: 2px solid black; /* Initially matching background */
+            border: 1px solid #444444;
             padding: 10px 20px;
             font-size: 16px;
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 8px; /* Rounded corners */
             text-align: center;
             cursor: pointer;
             display: inline-block;
             text-decoration: none;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }}
         .button:hover {{
-            color: red; /* Red text on hover */
-            border: 2px solid red; /* Red outline on hover */
+            color: #ff6b6b; /* Mild red color on hover */
+            border-color: #ff6b6b; /* Mild red border on hover */
         }}
     </style>
 
