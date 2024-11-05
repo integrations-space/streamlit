@@ -180,7 +180,7 @@ if st.button("Run Compliance Check Script"):
         st.error(f"Error reading Excel file from GCS: {str(e)}")
 
 # New Section: GPT-4o-Mini Text File Parsing
+# New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
-st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-if st.button("Open GPT-4o-Mini Text File Parser"):
-    webbrowser.open_new_tab("https://bca-project.streamlit.app/")
+st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
+st.markdown("[Open GPT-4o-Mini Text File Parser](https://bca-project.streamlit.app/)", unsafe_allow_html=True)
