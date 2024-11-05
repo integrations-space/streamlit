@@ -44,12 +44,13 @@ logging.info("Google Cloud Storage client initialized using credentials from Str
 LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
+# Link to Google Docs
+st.sidebar.title("[Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
 # Sidebar content
 st.sidebar.markdown("Prepared by")
 st.sidebar.markdown("PONG Woon Wei (Lead)")
-st.sidebar.markdown("Unni KRISHNAN")
-# Link to Google Docs
-st.sidebar.markdown("[Page 2 - Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
+st.sidebar.markdown("Unni Krishnan AMBADY")
+
 
 # Main page content
 
