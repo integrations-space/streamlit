@@ -176,35 +176,34 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-# CSS styling for button consistency with hover effects and rounded corners
-import streamlit as st
-
-st.write("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements.")
-
-# CSS styling to match the design with the white text, black background, and mild red on hover
+# CSS styling to set link color to white with dark gray background and mild red on hover
 button_html = f"""
     <style>
+        /* Button style */
         .button {{
-            background-color: #2b2b2b;
-            color: white;
-            border: 1px solid #444444;
-            padding: 10px 5px;
-            font-size: 16px;
+            background-color: #2b2b2b; /* Dark gray background */
+            color: white !important; /* White text, forced with !important */
+            border: 1px solid #444444; /* Dark gray border */
+            padding: 10px 5px; /* Padding for spacing */
+            font-size: 16px; /* Font size */
             border-radius: 8px; /* Rounded corners */
             text-align: center;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-            transition: color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-block; /* Inline-block for styling as button */
+            text-decoration: none; /* No underline */
+            transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
         }}
+        /* Hover effect */
         .button:hover {{
-            color: white; /* Mild red color on hover */
+            color: #ff6b6b !important; /* Mild red color on hover, forced with !important */
             border-color: #ff6b6b; /* Mild red border on hover */
         }}
     </style>
 
+    <!-- Button HTML as a link -->
     <a href="https://bca-project.streamlit.app/" target="_blank" class="button">Open GPT-4o-Mini Text File Parser</a>
 """
 
 # Display the styled button
 st.markdown(button_html, unsafe_allow_html=True)
+
