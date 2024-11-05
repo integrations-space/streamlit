@@ -5,26 +5,50 @@ import webbrowser
 from google.cloud import storage
 import sys
 import logging
+import os
+import importlib.util
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s', encoding='utf-8')
 
+# Initialize Google Cloud Storage client
+storage_client = storage.Client()
+
+# Directory to save downloaded scripts locally
+LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
+os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
+
+# Function to download and save the Python scripts from GCS
+
+def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(gcs_path)
+    local_path = os.path.join(LOCAL_SCRIPT_PATH, local_script_name)
+    blob.download_to_filename(local_path)
+    logging.info(f"Downloaded {gcs_path} to {local_path}")
+    return local_path
+
+# Function to load and run a Python script from the given path
+
+def load_and_run_script(script_path):
+    spec = importlib.util.spec_from_file_location("script_module", script_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
 # Function to read a file from GCS
 def read_file_from_gcs(bucket_name, file_name):
-    client = storage.Client()
-    bucket = client.bucket(bucket_name)
+    bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(file_name)
     return blob.download_as_text()  # Returns the content of the file as text
 
 # Function to read an Excel file from GCS
 def read_excel_from_gcs(bucket_name, file_name):
-    client = storage.Client()
-    bucket = client.bucket(bucket_name)
+    bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(file_name)
 
     # Download the Excel file to a BytesIO object
     excel_data = blob.download_as_bytes()
-    
+
     # Use pandas to read the Excel file from the BytesIO object
     return pd.read_excel(pd.io.common.BytesIO(excel_data))
 
@@ -43,33 +67,39 @@ It organizes user-provided project data and requirements into an accessible tabu
 5. Validations: Cross-checks online data to confirm common practices and compliance requirements using OpenAI 4.0 mini.
 """)
 
-# Define paths to the parser scripts
-path_to_gcs_parsing_script = "Dual_Agents_for_GCS.py"
-path_to_requirements_parsing_script = "Dual_Agents_for_Requirements.py"
-path_to_non_compliance_script = "Agent_for_noncompliances_Checks.py"
+# Define GCS bucket and paths to the parser scripts
+bucket_name = "data_parsing"
+gcs_scripts = {
+    "GCS Parsing": "agents/Dual_Agents_for_GCS.py",
+    "Requirements Parsing": "agents/Dual_Agents_for_Requirements.py",
+    "Non-Compliance Checks": "agents/Agent_for_non-compliances_Checks.py"
+}
 
 # Button to run the GCS parsing script
 st.header("Design Intent - Parse, Calculate & Tabulate")
 st.write("""
 Click the button to allow:
 1. AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
-2. AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.
+2. AI Agent 2 to clean, tabulate and save as Excel output for the next AI Agent to check.
 """)
 
 if st.button("Run GCS Parsing Script"):
-    with st.spinner("Running GCS Parsing..."):
-        result = subprocess.run([sys.executable, path_to_gcs_parsing_script], capture_output=True, text=True)
-    st.write("Output from GCS Parsing Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    with st.spinner("Downloading and Running GCS Parsing Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["GCS Parsing"], "Dual_Agents_for_GCS.py")
+        try:
+            load_and_run_script(local_path)
+            st.success("GCS Parsing Script Completed Successfully")
+        except Exception as e:
+            st.error(f"Error while running GCS Parsing Script: {str(e)}")
 
     # Input for GCS bucket name and file name
-    bucket_name = "data_parsing"
     file_name = "parsed_output/window_schedule.xls"
-    df = read_excel_from_gcs(bucket_name, file_name)
-    st.write("Content of the Excel file:")
-    st.dataframe(df)  # Displaying the DataFrame in the app
+    try:
+        df = read_excel_from_gcs(bucket_name, file_name)
+        st.write("Content of the Excel file:")
+        st.dataframe(df)  # Displaying the DataFrame in the app
+    except Exception as e:
+        st.error(f"Error reading Excel file from GCS: {str(e)}")
 
 # Button to run the requirements parsing script
 st.header("Requirements - Parse & Compare")
@@ -80,42 +110,48 @@ Click the button to allow:
 """)
 
 if st.button("Run Requirements Parsing Script"):
-    with st.spinner("Running Requirements Parsing..."):
-        result = subprocess.run([sys.executable, path_to_requirements_parsing_script], capture_output=True, text=True)
-    st.write("Output from Requirements Parsing Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    with st.spinner("Downloading and Running Requirements Parsing Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")
+        try:
+            load_and_run_script(local_path)
+            st.success("Requirements Parsing Script Completed Successfully")
+        except Exception as e:
+            st.error(f"Error while running Requirements Parsing Script: {str(e)}")
 
     # Input for GCS bucket name and file name
-    bucket_name = "data_parsing"
     file_name = "parsed_output/Requirements.txt"
-    content = read_file_from_gcs(bucket_name, file_name)
-    st.write("Content of the file:")
-    st.text_area("File Content", content, height=300)
+    try:
+        content = read_file_from_gcs(bucket_name, file_name)
+        st.write("Content of the file:")
+        st.text_area("File Content", content, height=300)
+    except Exception as e:
+        st.error(f"Error reading text file from GCS: {str(e)}")
 
 # Button to run the non-compliance checks script
 st.header("Output - Checks and Recommend")
 st.write("""
 Click the button to allow:
-1. Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
+1. Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliance needs.
 2. BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations.
 """)
 
 if st.button("Run Compliance Check Script"):
-    with st.spinner("Running Compliance Check..."):
-        result = subprocess.run([sys.executable, path_to_non_compliance_script], capture_output=True, text=True)
-    st.write("Output from Compliance Check Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    with st.spinner("Downloading and Running Compliance Check Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")
+        try:
+            load_and_run_script(local_path)
+            st.success("Compliance Check Script Completed Successfully")
+        except Exception as e:
+            st.error(f"Error while running Compliance Check Script: {str(e)}")
 
     # Input for GCS bucket name and file name
-    bucket_name = "data_parsing"
     file_name = "parsed_output/check_1.xlsx"
-    df = read_excel_from_gcs(bucket_name, file_name)
-    st.write("Content of the Excel file:")
-    st.dataframe(df)  # Displaying the DataFrame in the app
+    try:
+        df = read_excel_from_gcs(bucket_name, file_name)
+        st.write("Content of the Excel file:")
+        st.dataframe(df)  # Displaying the DataFrame in the app
+    except Exception as e:
+        st.error(f"Error reading Excel file from GCS: {str(e)}")
 
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
