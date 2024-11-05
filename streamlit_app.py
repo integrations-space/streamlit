@@ -185,5 +185,4 @@ st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for top
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
 
 if st.button("Open GPT-4o-Mini Text File Parser"):
-    js = "window.open('https://bca-project.streamlit.app/')"
-    st.components.v1.html(f"<script>{js}</script>", height=0)
+    st.write("Click [here](https://bca-project.streamlit.app/) to open GPT-4o-Mini Text File Parser in a new tab.")
