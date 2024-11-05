@@ -181,10 +181,10 @@ button_html = f"""
     <style>
         /* Button style */
         .button {{
-            background-color: #2b2b2b; /* Dark gray background */
+            background-color: #1a1a1a; /* Dark gray background */
             color: white !important; /* White text, forced with !important */
             border: 1px solid #444444; /* Dark gray border */
-            padding: 10px 5px; /* Padding for spacing */
+            padding: 5px 7px; /* Padding for spacing */
             font-size: 16px; /* Font size */
             border-radius: 8px; /* Rounded corners */
             text-align: center;
