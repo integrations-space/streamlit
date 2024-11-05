@@ -176,12 +176,31 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-# Use markdown to inject JavaScript for a clickable button link
+# CSS styling for button consistency
 button_html = f"""
-    <a href="https://bca-project.streamlit.app/" target="_blank">
-        <button style="padding:10px 20px; font-size:16px;">Open GPT-4o-Mini Text File Parser</button>
-    </a>
+    <style>
+        .button {{
+            background-color: #2b2b2b; /* Match the dark background */
+            color: white;
+            border: 1px solid #444444;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }}
+        .button:hover {{
+            background-color: #3e3e3e; /* Darken on hover */
+        }}
+    </style>
+
+    <a href="https://bca-project.streamlit.app/" target="_blank" class="button">Open GPT-4o-Mini Text File Parser</a>
 """
+
+# Display the styled button
+st.markdown(button_html, unsafe_allow_html=True)
 # Display the HTML button
 st.markdown(button_html, unsafe_allow_html=True)
 
