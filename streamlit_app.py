@@ -176,23 +176,24 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-# CSS styling for button consistency
+# CSS styling for button consistency with hover effects and rounded corners
 button_html = f"""
     <style>
         .button {{
-            background-color: #2b2b2b; /* Match the dark background */
+            background-color: black;
             color: white;
-            border: 1px solid #444444;
+            border: 2px solid black; /* Initially matching background */
             padding: 10px 20px;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 10px; /* Rounded corners */
             text-align: center;
             cursor: pointer;
             display: inline-block;
             text-decoration: none;
         }}
         .button:hover {{
-            background-color: #3e3e3e; /* Darken on hover */
+            color: red; /* Red text on hover */
+            border: 2px solid red; /* Red outline on hover */
         }}
     </style>
 
@@ -201,6 +202,3 @@ button_html = f"""
 
 # Display the styled button
 st.markdown(button_html, unsafe_allow_html=True)
-# Display the HTML button
-st.markdown(button_html, unsafe_allow_html=True)
-
