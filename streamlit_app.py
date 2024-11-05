@@ -176,6 +176,6 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-
-if st.button("Open GPT-4o-Mini Text File Parser"):
-    st.write("Click [here](https://bca-project.streamlit.app/) to open GPT-4o-Mini Text File Parser in a new tab.")
+<button onclick="window.open('URL_to_GPT-4o-Mini_Parser')" title="Opens GPT-4o-Mini Text Parser in a new tab">
+  Open GPT-4o-Mini Parser
+</button>
