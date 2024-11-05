@@ -99,7 +99,7 @@ st.header("Output - Checks and Recommend")
 st.write("""
 Click the button to allow:
 1. Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
-2. BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations
+2. BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations.
 """)
 
 if st.button("Run Compliance Check Script"):
@@ -122,5 +122,3 @@ st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for top
 st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
 if st.button("Open GPT-4o-Mini Text File Parser"):
     webbrowser.open_new_tab("https://bca-project.streamlit.app/")
-    st.success("Opened GPT-4o-Mini Text File Parser in a new browser tab.")
-
