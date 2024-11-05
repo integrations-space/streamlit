@@ -44,6 +44,17 @@ logging.info("Google Cloud Storage client initialized using credentials from Str
 LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
+# Sidebar content
+st.sidebar.title("Navigation")
+st.sidebar.markdown("Use the links below to navigate.")
+
+# Link to Google Docs
+st.sidebar.markdown("[Page 2 - Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
+
+# Main page content
+st.write("Prepared by")
+st.write("PONG Woon Wei")
+st.write("Unni KRISHNAN")
 # Function to download and save the Python scripts from GCS
 def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
     bucket = storage_client.bucket(bucket_name)
@@ -176,7 +187,7 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-# CSS styling to set link color to white with dark gray background and mild red on hover
+# CSS styling to set link color to white with dark gray background and mild red on hover, no underline on hover
 button_html = f"""
     <style>
         /* Button style */
@@ -197,6 +208,7 @@ button_html = f"""
         .button:hover {{
             color: #ff6b6b !important; /* Mild red color on hover, forced with !important */
             border-color: #ff6b6b; /* Mild red border on hover */
+            text-decoration: none; /* Ensures no underline on hover */
         }}
     </style>
 
