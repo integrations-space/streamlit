@@ -7,13 +7,16 @@ st.title('Regulatory check')
 
 # Function to run the entire Agent_for_noncompliance_checks.py file
 def run_agent_for_noncompliance_checks():
-    subprocess.run(["python", "Agent_for_noncompliance_checks.py"], check=True)
+    with open("Agent_for_noncompliance_checks.py") as file:
+        exec(file.read())
 
 def run_dual_agents_for_GCS():
-    subprocess.run(["python", "Dual_Agents_for_GCS.py"], check=True)
+    with open("Dual_Agents_for_GCS.py") as file:
+        exec(file.read())
 
 def run_dual_agents_for_requirements():
-    subprocess.run(["python", "Dual_Agents_for_Requirements.py"], check=True)
+    with open("Dual_Agents_for_Requirements.py") as file:
+        exec(file.read())
 
 # Use the on_click parameter to link the function to the button
 st.button("Parse project data", on_click=run_agent_for_noncompliance_checks)
