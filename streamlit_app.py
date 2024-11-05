@@ -176,5 +176,12 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-<a href="https://bca-project.streamlit.app/" target="_blank">Open GPT-4o-Mini Text File Parser</a>
+# Use markdown to inject JavaScript for a clickable button link
+button_html = f"""
+    <a href="https://bca-project.streamlit.app/" target="_blank">
+        <button style="padding:10px 20px; font-size:16px;">Open GPT-4o-Mini Text File Parser</button>
+    </a>
+"""
+# Display the HTML button
+st.markdown(button_html, unsafe_allow_html=True)
 
