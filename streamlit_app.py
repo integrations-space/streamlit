@@ -44,21 +44,21 @@ It organizes user-provided project data and requirements into an accessible tabu
 """)
 
 # Define paths to the parser scripts
-path_to_gcs_parsing_script = "parsers/Dual_Agents_for_GCS.py"
-path_to_requirements_parsing_script = "parsers/Dual_Agents_for_Requirements.py"
-path_to_non_compliance_script = "parsers/Agent_for_noncompliances_Checks.py"
+path_to_gcs_parsing_script = "Dual_Agents_for_GCS.py"
+path_to_requirements_parsing_script = "Dual_Agents_for_Requirements.py"
+path_to_non_compliance_script = "Agent_for_noncompliances_Checks.py"
 
 # Button to run the GCS parsing script
 st.header("Design Intent - Parse, Calculate & Tabulate")
 st.write("""
 Click the button to allow:
-AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
-AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.
+1. AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
+2. AI Agent 2 to clean, tabulate and saved as excel output for the next AI Agent to check.
 """)
 
 if st.button("Run GCS Parsing Script"):
     with st.spinner("Running GCS Parsing..."):
-        result = subprocess.run(["python", path_to_gcs_parsing_script], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, path_to_gcs_parsing_script], capture_output=True, text=True)
     st.write("Output from GCS Parsing Script:")
     st.text(result.stdout)
     if result.stderr:
@@ -66,7 +66,7 @@ if st.button("Run GCS Parsing Script"):
 
     # Input for GCS bucket name and file name
     bucket_name = "data_parsing"
-    file_name = "parsed_output/window_schedue.xls"
+    file_name = "parsed_output/window_schedule.xls"
     df = read_excel_from_gcs(bucket_name, file_name)
     st.write("Content of the Excel file:")
     st.dataframe(df)  # Displaying the DataFrame in the app
@@ -75,12 +75,13 @@ if st.button("Run GCS Parsing Script"):
 st.header("Requirements - Parse & Compare")
 st.write("""
 Click the button to allow:
-Agent 3 to analyze compliance-related requirements with the provided pdf documents from Google Buckets.
-Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
+1. Agent 3 to analyze compliance-related requirements with the provided pdf documents from Google Buckets.
+2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
 """)
+
 if st.button("Run Requirements Parsing Script"):
     with st.spinner("Running Requirements Parsing..."):
-        result = subprocess.run(["python", path_to_requirements_parsing_script], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, path_to_requirements_parsing_script], capture_output=True, text=True)
     st.write("Output from Requirements Parsing Script:")
     st.text(result.stdout)
     if result.stderr:
@@ -97,12 +98,13 @@ if st.button("Run Requirements Parsing Script"):
 st.header("Output - Checks and Recommend")
 st.write("""
 Click the button to allow:
-Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
-BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations
+1. Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliances needs.
+2. BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations
 """)
+
 if st.button("Run Compliance Check Script"):
     with st.spinner("Running Compliance Check..."):
-        result = subprocess.run(["python", path_to_non_compliance_script], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, path_to_non_compliance_script], capture_output=True, text=True)
     st.write("Output from Compliance Check Script:")
     st.text(result.stdout)
     if result.stderr:
@@ -115,23 +117,10 @@ if st.button("Run Compliance Check Script"):
     st.write("Content of the Excel file:")
     st.dataframe(df)  # Displaying the DataFrame in the app
 
-
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
 if st.button("Open GPT-4o-Mini Text File Parser"):
     webbrowser.open_new_tab("https://bca-project.streamlit.app/")
     st.success("Opened GPT-4o-Mini Text File Parser in a new browser tab.")
-
-# Additional Information Section
-st.header("Additional Resources for BIM and IFC Development")
-
-st.write("""
-Here are some useful resources for working with BIM, IFC, and Python development tools:
-- [Programming with GitHub](https://github.com)
-- [IFC File Manipulation with Python](http://blog.ifcopenshell.org/)
-- [Blender for IFC](https://blenderbim.org/docs-python/ifcopenshell/installation.html)
-- [Visual Studio Code for Python](https://code.visualstudio.com/docs/python/python-tutorial)
-- [Dynamo Resources](https://www.youtube.com/watch?v=lvO2_0IQ8vQ)
-""")
 
