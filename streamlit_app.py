@@ -176,7 +176,5 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-<a href="URL_to_GPT-4o-Mini_Parser" target="_blank">
-  <img src="icon.png" alt="Parser Icon" style="vertical-align: middle;"> Open GPT-4o-Mini Text File Parser
-</a>
+<a href="https://bca-project.streamlit.app/" target="_blank">Open GPT-4o-Mini Text File Parser</a>
 
