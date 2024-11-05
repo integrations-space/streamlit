@@ -17,9 +17,15 @@ if st.button("Run Compliance Check Script"):
         with open("Agent_for_noncompliance_checks.py") as file:
             result = exec(file.read())
     st.write("Output from Compliance Check Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    uploaded_file = "check_1.xlsx"
+
+    if uploaded_file is not None:
+        # Read the Excel file
+        df = (uploaded_file)
+
+        # Display the dataframe in the app
+        st.write("Data from Excel:")
+        st.dataframe(df)
 
 # def run_dual_agents_for_GCS():
 #     with open("Dual_Agents_for_GCS.py") as file:
@@ -31,9 +37,15 @@ if st.button("Run GCS Parsing Script"):
         with open("Dual_Agents_for_GCS.py") as file:
             result = exec(file.read())
     st.write("Output from GCS Parsing Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    uploaded_file = "window_schedule.xls"
+
+    if uploaded_file is not None:
+        # Read the Excel file
+        df = pd.read_excel(uploaded_file)
+
+        # Display the dataframe in the app
+        st.write("Data from Excel:")
+        st.dataframe(df)
 
 # def run_dual_agents_for_requirements():
 #     with open("Dual_Agents_for_Requirements.py") as file:
@@ -45,9 +57,16 @@ if st.button("Run Requirements Parsing Script"):
         with open("Dual_Agents_for_Requirements.py") as file:
             result = exec(file.read())
     st.write("Output from Requirements Parsing Script:")
-    st.text(result.stdout)
-    if result.stderr:
-        st.error(result.stderr)
+    uploaded_file = "Requirements.txt"
+
+    if uploaded_file is not None:
+        # Read the text file
+        content = uploaded_file.read().decode("utf-8")  # Decode the bytes to a string
+
+        # Display the content in the app
+        st.write("Content of the file:")
+        st.text_area("File Content", content, height=300)  # Displaying with a text area
+    
 
 # # Use the on_click parameter to link the function to the button
 # st.button("Parse project data", on_click=run_agent_for_noncompliance_checks)
