@@ -185,10 +185,10 @@ st.write("Validation - explore the use of GPT-4o-Mini Text File Parsing for topi
 button_html = f"""
     <style>
         .button {{
-            background-color: #333333;
+            background-color: #2b2b2b;
             color: white;
             border: 1px solid #444444;
-            padding: 10px 20px;
+            padding: 10px 10px;
             font-size: 16px;
             border-radius: 8px; /* Rounded corners */
             text-align: center;
