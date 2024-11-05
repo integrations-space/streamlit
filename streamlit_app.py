@@ -7,6 +7,7 @@ import sys
 import logging
 import os
 import importlib.util
+import time
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s', encoding='utf-8')
@@ -91,6 +92,7 @@ if st.button("Run GCS Parsing Script"):
             st.success("GCS Parsing Script Completed Successfully")
         except Exception as e:
             st.error(f"Error while running GCS Parsing Script: {str(e)}")
+        time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/window_schedule.xls"
@@ -117,6 +119,7 @@ if st.button("Run Requirements Parsing Script"):
             st.success("Requirements Parsing Script Completed Successfully")
         except Exception as e:
             st.error(f"Error while running Requirements Parsing Script: {str(e)}")
+        time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/Requirements.txt"
@@ -143,6 +146,7 @@ if st.button("Run Compliance Check Script"):
             st.success("Compliance Check Script Completed Successfully")
         except Exception as e:
             st.error(f"Error while running Compliance Check Script: {str(e)}")
+        time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/check_1.xlsx"
