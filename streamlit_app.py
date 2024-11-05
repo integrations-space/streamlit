@@ -183,4 +183,7 @@ if st.button("Run Compliance Check Script"):
 # New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
 st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-st.markdown("[Open GPT-4o-Mini Text File Parser](https://bca-project.streamlit.app/)", unsafe_allow_html=True)
+
+if st.button("Open GPT-4o-Mini Text File Parser"):
+    js = "window.open('https://bca-project.streamlit.app/')"
+    st.components.v1.html(f"<script>{js}</script>", height=0)
