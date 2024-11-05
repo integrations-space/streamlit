@@ -49,10 +49,7 @@ st.sidebar.title("[Documentation](https://docs.google.com/document/d/1WM_VcDOJFL
 # Sidebar content
 st.sidebar.markdown("Prepared by")
 st.sidebar.markdown("PONG Woon Wei (Lead)")
-st.sidebar.markdown("Unni Krishnan AMBADY")
 
-
-# Main page content
 
 # Function to download and save the Python scripts from GCS
 def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
