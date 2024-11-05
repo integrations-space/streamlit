@@ -2,7 +2,6 @@ import streamlit as st
 import subprocess
 import pandas as pd
 import numpy as np
-import ifcopenshell
 import webbrowser
 from google.cloud import storage
 import sys
@@ -132,35 +131,3 @@ Here are some useful resources for working with BIM, IFC, and Python development
 - [Dynamo Resources](https://www.youtube.com/watch?v=lvO2_0IQ8vQ)
 """)
 
-# IFC File Parsing Section
-st.header("IFC File Data Parsing")
-
-# Button to run the IFC parsing script (inline script for consistency)
-ifc_file_path = st.text_input("Enter the file path for the IFC file:")
-
-if st.button("Run IFC Parsing Script"):
-    if ifc_file_path:
-        try:
-            # Load the IFC file
-            ifc_file = ifcopenshell.open(ifc_file_path)
-            st.success("IFC file loaded successfully!")
-
-            # Parse IFC file properties
-            psets = ifc_file.by_type("IfcPropertySet")
-            df = pd.DataFrame(columns=["Pset", "Property", "Value"])
-
-            for pset in psets:
-                for prop in pset.HasProperties:
-                    value = prop.NominalValue.wrappedValue if hasattr(prop.NominalValue, 'wrappedValue') else str(prop.NominalValue)
-                    df = pd.concat([df, pd.DataFrame({"Pset": [pset.Name], "Property": [prop.Name], "Value": [value]})], ignore_index=True)
-
-            # Show the DataFrame in a table using Streamlit
-            st.write("Parsed IFC Properties:")
-            st.write(df)
-
-        except FileNotFoundError:
-            st.error("The file could not be found. Please check the file path and try again.")
-        except Exception as e:
-            st.error(f"An error occurred while parsing the IFC file: {e}")
-    else:
-        st.warning("Please enter a file path for the IFC file before running the parser.")
