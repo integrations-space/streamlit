@@ -1,7 +1,6 @@
 import streamlit as st
 import subprocess
 import pandas as pd
-import numpy as np
 import webbrowser
 from google.cloud import storage
 import sys
