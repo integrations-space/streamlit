@@ -188,7 +188,7 @@ button_html = f"""
             background-color: #2b2b2b;
             color: white;
             border: 1px solid #444444;
-            padding: 10px 10px;
+            padding: 10px 5px;
             font-size: 16px;
             border-radius: 8px; /* Rounded corners */
             text-align: center;
@@ -198,7 +198,7 @@ button_html = f"""
             transition: color 0.3s ease, border-color 0.3s ease;
         }}
         .button:hover {{
-            color: #ff6b6b; /* Mild red color on hover */
+            color: white; /* Mild red color on hover */
             border-color: #ff6b6b; /* Mild red border on hover */
         }}
     </style>
