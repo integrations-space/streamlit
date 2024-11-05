@@ -21,7 +21,6 @@ LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
 # Function to download and save the Python scripts from GCS
-
 def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(gcs_path)
@@ -31,7 +30,6 @@ def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
     return local_path
 
 # Function to load and run a Python script from the given path
-
 def load_and_run_script(script_path):
     spec = importlib.util.spec_from_file_location("script_module", script_path)
     module = importlib.util.module_from_spec(spec)
@@ -77,12 +75,12 @@ It organizes user-provided project data and requirements into an accessible tabu
 # Define GCS bucket and paths to the parser scripts
 bucket_name = "data_parsing"
 gcs_scripts = {
-    "GCS Parsing": "agents/Dual_Agents_for_GCS.py",
+    "Design Intent Parsing": "agents/Dual_Agents_for_GCS.py",
     "Requirements Parsing": "agents/Dual_Agents_for_Requirements.py",
     "Non-Compliance Checks": "agents/Agent_for_non-compliances_Checks.py"
 }
 
-# Button to run the GCS parsing script
+# Button to run the Design Intent parsing script
 st.header("Design Intent - Parse, Calculate & Tabulate")
 st.write("""
 Click the button to allow:
@@ -90,9 +88,9 @@ Click the button to allow:
 2. AI Agent 2 to clean, tabulate and save as Excel output for the next AI Agent to check.
 """)
 
-if st.button("Run GCS Parsing Script"):
-    with st.spinner("Downloading and Running GCS Parsing Script..."):
-        local_path = download_script_from_gcs(bucket_name, gcs_scripts["GCS Parsing"], "Dual_Agents_for_GCS.py")
+if st.button("Run Design Intent Parsing Script"):
+    with st.spinner("Downloading and Running Design Intent Parsing Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Design Intent Parsing"], "Dual_Agents_for_GCS.py")
         run_script_in_thread(load_and_run_script, local_path)
     time.sleep(2)
 
@@ -109,7 +107,7 @@ if st.button("Run GCS Parsing Script"):
 st.header("Requirements - Parse & Compare")
 st.write("""
 Click the button to allow:
-1. Agent 3 to analyze compliance-related requirements with the provided pdf documents from Google Buckets.
+1. Agent 3 to analyze compliance-related requirements with the provided PDF documents from Google Cloud Storage.
 2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
 """)
 
@@ -132,8 +130,8 @@ if st.button("Run Requirements Parsing Script"):
 st.header("Output - Checks and Recommend")
 st.write("""
 Click the button to allow:
-1. Agent 5 to use the provided window schedule as design requirements to check against design requirements, and recommendations for compliance needs.
-2. BCA Approved Doc & SCDF Chapter 4 were provided as default requirements for the checks and recommendations.
+1. Agent 5 to use the provided window schedule as design requirements to check against regulatory requirements and provide recommendations for compliance.
+2. BCA Approved Doc & SCDF Chapter 4 are provided as default requirements for the checks and recommendations.
 """)
 
 if st.button("Run Compliance Check Script"):
