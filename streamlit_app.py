@@ -45,7 +45,6 @@ LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
 # Sidebar content
-st.sidebar.title("Navigation")
 st.sidebar.markdown("Prepared by")
 st.sidebar.markdown("PONG Woon Wei (Lead)")
 st.sidebar.markdown("Unni KRISHNAN")
