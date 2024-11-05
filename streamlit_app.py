@@ -1,8 +1,8 @@
 import streamlit as st
-import subprocess
 import pandas as pd
 import webbrowser
 from google.cloud import storage
+from google.oauth2 import service_account
 import sys
 import logging
 import os
@@ -13,38 +13,32 @@ import threading
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s', encoding='utf-8')
 
-# Request user to upload credentials JSON file
-uploaded_file = st.file_uploader("Please upload your Google Cloud credentials JSON file:", type="json")
+# Simple authentication mechanism
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
 
-# Explanation for new users on providing their credentials file
-st.write("""
-**Instructions for Providing Credentials File**:
+def authenticate():
+    # Using secrets for authentication credentials
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if (username == st.secrets["auth"]["username"] and 
+            password == st.secrets["auth"]["password"]):
+            st.session_state.authenticated = True
+        else:
+            st.error("Invalid credentials")
 
-To access Google Cloud Storage and other Google Cloud services, you need to provide a JSON credentials file.
-1. **Service Account**: Make sure you have a Google Cloud **Service Account** created with appropriate permissions.
-2. **Download Credentials**: Download the JSON key file for your service account from the Google Cloud Console. This file contains the credentials required to authenticate with Google Cloud.
-3. **Upload File**: Use the file uploader above to upload the JSON key file.
-   - The file should have a `.json` extension.
-4. **Security Tip**: Do not share your credentials file with anyone, and make sure it is stored securely.
-""")
+if not st.session_state.authenticated:
+    st.sidebar.header('Authentication Required')
+    authenticate()
+    if not st.session_state.authenticated:
+        st.stop()
 
-if not uploaded_file:
-    st.warning("Please upload the credentials file to continue.")
-    st.stop()
-
-# Save the uploaded credentials JSON to a local temporary file
-CREDENTIALS_PATH = '/tmp/credentials.json'
-with open(CREDENTIALS_PATH, 'wb') as f:
-    f.write(uploaded_file.getbuffer())
-
-# Initialize Google Cloud Storage client with user-provided credentials
-try:
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = CREDENTIALS_PATH
-    storage_client = storage.Client()
-    logging.info("Google Cloud Storage client initialized using user-provided credentials.")
-except Exception as e:
-    st.error(f"Failed to initialize Google Cloud clients: {e}")
-    st.stop()
+# Set up Google Cloud credentials using secrets
+credentials_info = st.secrets["gcp_service_account"]
+credentials = service_account.Credentials.from_service_account_info(credentials_info)
+storage_client = storage.Client(credentials=credentials)
+logging.info("Google Cloud Storage client initialized using credentials from Streamlit secrets.")
 
 # Directory to save downloaded scripts locally
 LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
@@ -180,9 +174,8 @@ if st.button("Run Compliance Check Script"):
         st.error(f"Error reading Excel file from GCS: {str(e)}")
 
 # New Section: GPT-4o-Mini Text File Parsing
-# New Section: GPT-4o-Mini Text File Parsing
 st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
-st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
+st.write("Click the button below to open the GPT-4o-Mini application for text file parsing in a new tab.")
 
 if st.button("Open GPT-4o-Mini Text File Parser"):
     st.write("Click [here](https://bca-project.streamlit.app/) to open GPT-4o-Mini Text File Parser in a new tab.")
