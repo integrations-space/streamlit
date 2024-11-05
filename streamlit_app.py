@@ -45,9 +45,9 @@ It organizes user-provided project data and requirements into an accessible tabu
 """)
 
 # Define paths to the parser scripts
-path_to_non_compliance_script = r"C:\2024_ABC\ants_streamlit\parsers\Agent_for_non-compliances_Checks.py"
-path_to_gcs_parsing_script = r"C:\2024_ABC\ants_streamlit\parsers\Dual_Agents_for_GCS.py"
-path_to_requirements_parsing_script = r"C:\2024_ABC\ants_streamlit\parsers\Dual_Agents_for_Requirements.py"
+path_to_gcs_parsing_script = "parsers/Dual_Agents_for_GCS.py"
+path_to_requirements_parsing_script = "parsers/Dual_Agents_for_Requirements.py"
+path_to_non_compliance_script = "parsers/Agent_for_noncompliances_Checks.py"
 
 # Button to run the GCS parsing script
 st.header("Design Intent - Parse, Calculate & Tabulate")
