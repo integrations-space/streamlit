@@ -8,6 +8,7 @@ import logging
 import os
 import importlib.util
 import time
+import threading
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s', encoding='utf-8')
@@ -53,6 +54,11 @@ def read_excel_from_gcs(bucket_name, file_name):
     # Use pandas to read the Excel file from the BytesIO object
     return pd.read_excel(pd.io.common.BytesIO(excel_data))
 
+# Function to run a script in a separate thread to prevent UI hang
+def run_script_in_thread(target, *args):
+    thread = threading.Thread(target=target, args=args)
+    thread.start()
+
 # Set the title for the application
 st.title('Agent-based Analyser for Technical and Regulatory Requirements Checks')
 
@@ -87,12 +93,8 @@ Click the button to allow:
 if st.button("Run GCS Parsing Script"):
     with st.spinner("Downloading and Running GCS Parsing Script..."):
         local_path = download_script_from_gcs(bucket_name, gcs_scripts["GCS Parsing"], "Dual_Agents_for_GCS.py")
-        try:
-            load_and_run_script(local_path)
-            st.success("GCS Parsing Script Completed Successfully")
-        except Exception as e:
-            st.error(f"Error while running GCS Parsing Script: {str(e)}")
-        time.sleep(2)
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/window_schedule.xls"
@@ -114,12 +116,8 @@ Click the button to allow:
 if st.button("Run Requirements Parsing Script"):
     with st.spinner("Downloading and Running Requirements Parsing Script..."):
         local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")
-        try:
-            load_and_run_script(local_path)
-            st.success("Requirements Parsing Script Completed Successfully")
-        except Exception as e:
-            st.error(f"Error while running Requirements Parsing Script: {str(e)}")
-        time.sleep(2)
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/Requirements.txt"
@@ -141,12 +139,8 @@ Click the button to allow:
 if st.button("Run Compliance Check Script"):
     with st.spinner("Downloading and Running Compliance Check Script..."):
         local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")
-        try:
-            load_and_run_script(local_path)
-            st.success("Compliance Check Script Completed Successfully")
-        except Exception as e:
-            st.error(f"Error while running Compliance Check Script: {str(e)}")
-        time.sleep(2)
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
     # Input for GCS bucket name and file name
     file_name = "parsed_output/check_1.xlsx"
