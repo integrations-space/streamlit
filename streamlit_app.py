@@ -46,15 +46,14 @@ os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
 # Sidebar content
 st.sidebar.title("Navigation")
-st.sidebar.markdown("Use the links below to navigate.")
-
+st.sidebar.markdown("Prepared by")
+st.sidebar.markdown("PONG Woon Wei (Lead)")
+st.sidebar.markdown("Unni KRISHNAN")
 # Link to Google Docs
 st.sidebar.markdown("[Page 2 - Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
 
 # Main page content
-st.write("Prepared by")
-st.write("PONG Woon Wei")
-st.write("Unni KRISHNAN")
+
 # Function to download and save the Python scripts from GCS
 def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
     bucket = storage_client.bucket(bucket_name)
