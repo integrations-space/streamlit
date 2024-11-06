@@ -4,20 +4,14 @@ import streamlit as st
 def app():
     st.title("[ Documentation ]")
     
-    st.write("""
-  Agent-Based Analyzer for Technical and Regulatory Requirements Checks
-    """)
-
+    st.write("Agent-Based Analyzer for Technical and Regulatory Requirements Checks")
+    st.write("for AI BootCamp 2024 by GovTech")
+    
     st.header("Overview")
     st.write("""
     This documentation provides a comprehensive guide to building an Agent-Based Analyzer using Google Cloud's Vertex AI for parsing project data, analyzing it, and performing calculations and requirement checks.
     """)
 
-    st.subheader("for:")
-    st.write("**AI BootCamp by GovTech**")
-
-    st.subheader("prepared By:")
-    st.write("PONG Woon Wei, BCA (Lead) & Uni Krishnan Ambady, BCA (Member)")
 
     st.header("Table of Contents")
     st.write("""
