@@ -3,25 +3,23 @@ import pandas as pd
 
 # Define the Streamlit app
 def app():
-    st.header("[ About Us ]")
-
-    st.title("**Who are we**")
-    st.write("""
-    Mr. PONG Woon Wei, Senior Manager @ Digitalisation, CPQ, BCA (Lead)
-
-    Mr. Unni Krishnan AMBADY, Senior Lecturer @ BCA ACADEMY (Member)
-    """)
+    st.title("[ About Us ]")
+    st.header("**Who are we**")
     
     col1, col2 = st.columns(2)
     
     # Use markdown for links since link_button is not a valid function
     with col1:
-        st.markdown("[Mr. PONG Woon Wei's LinkedIn](https://www.linkedin.com/in/woonwei/)")
+        st.write("Mr. PONG Woon Wei")
+        st.write("Senior Manager @ Digitalisation, CPQ, BCA (Lead)")
+        st.markdown("[LinkedIn](https://www.linkedin.com/in/woonwei/)")
     
     with col2:
+        st.write("Mr. Unni Krishnan AMBADY")
+        st.write("Senior Lecturer @ BCA ACADEMY (Member)")
         st.markdown("[Mr Unni Krishnan AMBADY's LinkedIn](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
     
-    st.title("**What about the Project**")
+    st.header("**What about the Project**")
     st.write("""
     This project aims to provide a structured approach to analyzing technical and regulatory requirements in the building and construction industry. 
     Our key objectives include improving compliance checks, automating document parsing, and providing AI-driven recommendations to streamline the design and approval process.
