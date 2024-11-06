@@ -1,5 +1,7 @@
 import streamlit as st
+import pandas as pd
 
+# Define the Streamlit app
 def app():
     st.header("[ About Us ]")
 
@@ -11,11 +13,12 @@ def app():
     
     col1, col2 = st.columns(2)
     
+    # Use markdown for links since link_button is not a valid function
     with col1:
-        st.link_button("Mr. PONG Woon Wei's LinkedIn", "https://www.linkedin.com/in/woonwei/")
+        st.markdown("[Mr. PONG Woon Wei's LinkedIn](https://www.linkedin.com/in/woonwei/)")
     
     with col2:
-        st.link_button("Mr Unni Krishnan AMBADY's LinkedIn", "https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164")
+        st.markdown("[Mr Unni Krishnan AMBADY's LinkedIn](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
     
     st.title("**What about the Project**")
     st.write("""
@@ -31,3 +34,9 @@ def app():
     - Compliance analysis and non-compliance recommendation generation.
     - Interactive interface for regulatory requirement checks and validations.
     """)
+
+# Run the app if the script is executed directly
+if __name__ == "__main__":
+    # Use st.experimental_set_page_config to ensure page is properly configured
+    st.set_page_config(page_title="About Us", page_icon="📋", layout="wide")
+    app()
