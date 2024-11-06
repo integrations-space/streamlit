@@ -206,12 +206,12 @@ if page == "[ AI Solutions ]":
 
 elif page == "[ About Us ]":
     # [ About Us ] Page Content
-    about.app()  # Calling the function 'app()' from about.py
+    about.about()  # Calling the function 'app()' from about.py
 
 elif page == "[ Methodology ]":
     # [ Methodology ] Page Content
-    methodology.app()  # Calling the function 'app()' from methodology.py
+    methodology.methodology()  # Calling the function 'app()' from methodology.py
 
 elif page == "[ Documentation ]":
     # [ Documentation ] Page Content
-    documentation.app()  # Calling the function 'app()' from documentation.py
+    documentation.documentation()  # Calling the function 'app()' from documentation.py
