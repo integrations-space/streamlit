@@ -87,7 +87,7 @@ Team ANTS:
 1. PONG Woon Wei (Lead)
 2. Unni Krishnan AMBADY                    
 
-Solutions developed assisted by: 
+Development assisted by: 
 1. openAI 
 2. PerplexityAI
 
