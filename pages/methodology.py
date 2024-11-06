@@ -1,5 +1,6 @@
 import streamlit as st
 
+# Define the Streamlit app
 def app():
     st.header("[ Methodology ]")
     st.write("""
@@ -19,3 +20,8 @@ def app():
     ![Flowchart Image](https://link.to.flowchart.image)  # Replace with actual link to the flowchart image
     """)
 
+# Run the app if the script is executed directly
+if __name__ == "__main__":
+    # Use st.set_page_config to ensure page is properly configured
+    st.set_page_config(page_title="Methodology", page_icon="📋", layout="wide")
+    app()
