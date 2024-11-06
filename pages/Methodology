@@ -1,6 +1,6 @@
 import streamlit as st
 
-def app():
+def methodology():
     st.header("[ Methodology ]")
     st.write("""
     This page provides a comprehensive overview of the data flows and implementation details used in the application.
