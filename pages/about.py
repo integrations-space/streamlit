@@ -10,11 +10,15 @@ def app():
     
     # Use markdown for links since link_button is not a valid function
     with col1:
-        st.write("Mr. PONG Woon Wei")
-        st.write("Senior Manager @ Digitalisation, CPQ, BCA (Lead)")
-        st.markdown("[LinkedIn](https://www.linkedin.com/in/woonwei/)")
-    
+  
+    # Adding LinkedIn pictures into the columns
+    with col1:
+        st.image("https://media-exp1.licdn.com/dms/image/C5603AQGz4lKnnkWl7w/profile-displayphoto-shrink_200_200/0/1606899456207?e=1697068800&v=beta&t=someHashedLink", width=100)  # Replace with actual image link
+        st.markdown("Mr. PONG Woon Wei")
+        st.markdown("Senior Manager @ Digitalisation, CPQ, BCA (Lead)")
+        st.markdown("[Mr. PONG Woon Wei's LinkedIn](https://www.linkedin.com/in/woonwei/)")  
     with col2:
+        st.image("https://media-exp1.licdn.com/dms/image/C5603AQEwxGfjfsu34g/profile-displayphoto-shrink_200_200/0/1608769099898?e=1697068800&v=beta&t=anotherHashedLink", width=100)  # Replace with actual image link
         st.write("Mr. Unni Krishnan AMBADY")
         st.write("Senior Lecturer @ BCA ACADEMY (Member)")
         st.markdown("[Mr Unni Krishnan AMBADY's LinkedIn](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
