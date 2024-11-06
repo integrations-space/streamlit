@@ -9,16 +9,16 @@ def app():
     col1, col2 = st.columns(2)
         # Use markdown for links since link_button is not a valid function
     with col1:
-        st.image("https://media.licdn.com/dms/image/v2/C5603AQF9uiymtkinnQ/profile-displayphoto-shrink_400_400/0/1660842569216?e=1736380800&v=beta&t=uV8R0JAi_YUkU5Z6CkRjxC3ZcZGkx_d1JqUVBnXXHWo", width=100)  # Replace with actual image link
+        st.image("https://github.com/integrations-space/streamlit/blob/main/pictures/ww.jpg", width=100, use_column_width=False, output_format='JPEG', channels='RGB', clamp=True, caption="", alt_text="Image of Mr. PONG Woon Wei", mask='circle')  # Replace with actual image link
         st.write("Mr. PONG Woon Wei")
         st.write("Senior Manager @ Digitalisation, CPQ, BCA (Lead)")
         st.markdown("[Mr. PONG Woon Wei's LinkedIn](https://www.linkedin.com/in/woonwei/)")  
     with col2:
-        st.image("https://media.licdn.com/dms/image/v2/C5103AQG47jI9hZNuVA/profile-displayphoto-shrink_400_400/0/1526737347181?e=1736380800&v=beta&t=gNo582zdRyYVjjc3cv_1AoYjA4UKqeHGl9MZz_sTO94", width=100)  # Replace with actual image link
+        st.image("https://github.com/integrations-space/streamlit/blob/main/pictures/unni.jpg", width=100, use_column_width=False)  # Replace with actual image link
         st.write("Mr. Unni Krishnan AMBADY")
         st.write("Senior Lecturer @ BCA ACADEMY (Member)")
         st.markdown("[Mr Unni Krishnan AMBADY's LinkedIn](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
-    
+     
     st.header("**What about the Project**")
     st.write("""
     This project aims to provide a structured approach to analyzing technical and regulatory requirements in the building and construction industry. 
