@@ -1,5 +1,7 @@
 import streamlit as st
+import pandas as pd
 
+# Define the Streamlit app
 def app():
     st.title("[ Documentation ]")
     
@@ -51,15 +53,15 @@ def app():
     2. Set up authentication and service accounts for using Google services such as Vertex AI and Cloud Storage.
     """)
 
-    st.header("Running the Application")
-    st.write("""Developing the Data Parsing and Analysis Script)
+    st.header("Developing the Data Parsing and Analysis Script")
     st.write("""
     This script demonstrates:
     1. Reading jpeg drawings and pdf data (use case as window/door schedule)
     2. Parsing it into a structured format
     3. Converting to a pandas DataFrame for analysis
     4. Performing basic calculations as analysis and recommendation
-    5. Exporting the outputs into a Excel files
+    5. Exporting the outputs into Excel files
+    """)
 
     st.header("Running the Application")
     st.write("""
@@ -79,8 +81,8 @@ def app():
     This documentation aims to serve as a reference for users and developers looking to set up, use, and extend this application.
     """)
 
-    # Run the app if the script is executed directly
+# Run the app if the script is executed directly
 if __name__ == "__main__":
-    # Use st.experimental_set_page_config to ensure page is properly configured
+    # Use st.set_page_config to ensure page is properly configured
     st.set_page_config(page_title="Documentation", page_icon="📋", layout="wide")
     app()
