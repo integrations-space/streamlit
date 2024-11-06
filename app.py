@@ -203,6 +203,35 @@ button_html = f"""
     </style>
     <a href="https://bca-project.streamlit.app/" target="_blank" class="button">Open GPT-4o-Mini Text File Parser</a>
 """
+# Display the styled button
+st.markdown(button_html, unsafe_allow_html=True)
 
+# Section: Presentation Link
+st.header("Presentation Slides")
+st.write("Click the link below to view the presentation slides for the project:")
+# CSS styling to set link color to white with dark gray background and mild red on hover, no underline on hover
+button_html = f"""
+    <style>
+        .button {{
+            background-color: #1a1a1a;
+            color: white !important;
+            border: 1px solid #444444;
+            padding: 5px 7px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }}
+        .button:hover {{
+            color: #ff6b6b !important;
+            border-color: #ff6b6b;
+            text-decoration: none;
+        }}
+    </style>
+    <a href="https://github.com/integrations-space/streamlit/blob/main/ants_abc2024.pdf" target="_blank" class="button">Presentation Slides</a>
+"""
 # Display the styled button
 st.markdown(button_html, unsafe_allow_html=True)
