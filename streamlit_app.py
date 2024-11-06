@@ -11,7 +11,7 @@ import time
 import threading
 
 # Import the new pages
-from pages import about us, documentation, methodology  # Assuming the folder name is "pages" and you have "about.py" and "methodology.py"
+from pages import about, documentation, methodology  # Assuming the folder name is "pages" and you have "about.py" and "methodology.py"
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s', encoding='utf-8')
