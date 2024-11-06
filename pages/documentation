@@ -1,1 +1,58 @@
+import streamlit as st
+def documentation():
 
+st.title("Documentation")
+st.write("""
+# Agent-Based Analyzer for Technical and Regulatory Requirements Checks
+
+## Overview
+This documentation provides a comprehensive guide to building an Agent-Based Analyzer using Google Cloud's Vertex AI for parsing project data, analyzing it, and performing calculations and requirement checks.
+
+### Project Prepared For:
+**AI BootCamp by GovTech**
+
+**Prepared By**: PONG Woon Wei, BCA (Lead) & Uni Krishnan Ambady, BCA (Member)
+
+## Table of Contents
+1. Introduction
+2. Overview of the Solution
+3. Setting Up Google Cloud and Vertex AI
+4. Developing the Data Parsing and Analysis Script
+5. Running the AI Agent for User Interaction
+6. Streamlit Integration
+7. Challenges and Best Practices
+8. Conclusion
+
+### Problem Statement
+The construction industry still relies on manual checks to verify design intent against building specifications and regulations. This process is time-consuming and introduces compliance risks.
+
+### Proposed Solution
+The proposed solution automates checks using Vertex AI agents to parse project data, extract relevant information, and perform compliance checks.
+
+### Users & Impact
+Industry practitioners, contractors, suppliers, and public officers benefit from automated analysis and improved efficiency in verifying design and compliance.
+
+## Setting Up Google Cloud and Vertex AI
+1. Create a Google Cloud Project and enable necessary APIs.
+2. Set up authentication and service accounts for using Google services such as Vertex AI and Cloud Storage.
+
+## Streamlit Integration
+This application includes multiple pages:
+- **Home**: Overview of the application.
+- **Documentation**: Comprehensive guide and reference material.
+- **JPG Parsing**: Upload and parse JPG files to extract window schedule data.
+- **PDF Parsing**: Upload and parse PDFs for extracting information related to regulatory compliance.
+- **Compliance Check**: Perform compliance checks on uploaded files.
+
+## Running the Application
+- Use the navigation bar on the left to switch between different pages.
+- Upload the respective files to perform parsing and compliance checks.
+
+## Challenges and Best Practices
+- **Functionality & User Experience**: Ensure the app meets all specified requirements.
+- **Technical Implementation**: Proper use of Vertex AI tools and prompt engineering techniques.
+- **Innovation**: Implement unique features to enhance user interaction.
+
+## Conclusion
+This documentation aims to serve as a complete reference for users and developers looking to set up, use, and extend this application.
+""")
