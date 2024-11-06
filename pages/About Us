@@ -1,1 +1,18 @@
+import streamlit as st
+
+def app():
+    st.header("About Us")
+    st.write("""
+    This project aims to provide a structured approach to analyzing technical and regulatory requirements in the building and construction industry. 
+    Our key objectives include improving compliance checks, automating document parsing, and providing AI-driven recommendations to streamline the design and approval process.
+    
+    **Project Scope**: Covers regulatory requirements parsing, compliance checks, and validation using modern AI tools such as OpenAI and Vertex AI.
+    
+    **Data Sources**: Utilizes technical drawings, PDF specifications, and relevant regulatory documents hosted in Google Cloud Storage (GCS).
+    
+    **Features**:
+    - AI-driven parsing and tabulation of design requirements.
+    - Compliance analysis and non-compliance recommendation generation.
+    - Interactive interface for regulatory requirement checks and validations.
+    """)
 
