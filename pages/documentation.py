@@ -17,7 +17,7 @@ def app():
     st.write("""
     1. Introduction
     2. Setting Up Google Cloud and Vertex AI 
-    3. Developing the Data Parsing and Analysis Script
+    3. Developing the Data Parsing, Analysis, and Processing Script
     4. Running the AI Agent for User Interaction
     5. Streamlit Integration and Streamlit Login
     6. Challenges and Best Practices
@@ -46,7 +46,7 @@ def app():
     2. Set up authentication and service accounts for using Google services such as Vertex AI and Cloud Storage.
     """)
 
-    st.header("Developing the Data Parsing and Analysis Script")
+    st.header("Developing the Data Parsing, Analysis and Processing Script")
     st.write("""
     This script demonstrates:
     1. Reading jpeg drawings and pdf data (use case as window/door schedule)
