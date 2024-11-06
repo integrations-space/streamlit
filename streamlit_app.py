@@ -47,8 +47,6 @@ logging.info("Google Cloud Storage client initialized using credentials from Str
 LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
-# Link to Google Docs
-st.sidebar.title("[Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
 # Sidebar content
 st.sidebar.markdown("Prepared by")
 st.sidebar.markdown("PONG Woon Wei (Lead)")
@@ -93,125 +91,110 @@ def run_script_in_thread(target, *args):
     thread = threading.Thread(target=target, args=args)
     thread.start()
 
-# Sidebar Navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["About", "AI Solutions", "Methodology", "Documentation"])
 
-if page == "AI Solutions":
-    # [ About Us ] Page Content
-    st.header("Home - Agent-based Analyser for Technical and Regulatory Requirements Checks")
-    # Button to run the Design Intent parsing script
-    st.header("Design Intent - Parse, Calculate & Tabulate")
-    st.write("""
-    Click the button to allow:
-    1. AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
-    2. AI Agent 2 to clean, tabulate and save as Excel output for the next AI Agent to check.
-    """)
+# [ About Us ] Page Content
+st.header("Agent-based Analyser for Technical and Regulatory Requirements Checks")
+# Button to run the Design Intent parsing script
+st.header("Design Intent - Parse, Calculate & Tabulate")
+st.write("""
+Click the button to allow:
+1. AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
+2. AI Agent 2 to clean, tabulate and save as Excel output for the next AI Agent to check.
+""")
 
-    if st.button("Run Design Intent Parsing Script"):
-        with st.spinner("Downloading and Running Design Intent Parsing Script..."):
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Design Intent Parsing"], "Dual_Agents_for_GCS.py")
-            run_script_in_thread(load_and_run_script, local_path)
-        time.sleep(2)
+if st.button("Run Design Intent Parsing Script"):
+    with st.spinner("Downloading and Running Design Intent Parsing Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Design Intent Parsing"], "Dual_Agents_for_GCS.py")
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
-        # Input for GCS bucket name and file name
-        file_name = "parsed_output/window_schedule.xls"
-        try:
-            df = read_excel_from_gcs(bucket_name, file_name)
-            st.write("Content of the Excel file:")
-            st.dataframe(df)  # Displaying the DataFrame in the app
-        except Exception as e:
-            st.error(f"Error reading Excel file from GCS: {str(e)}")
+    # Input for GCS bucket name and file name
+    file_name = "parsed_output/window_schedule.xls"
+    try:
+        df = read_excel_from_gcs(bucket_name, file_name)
+        st.write("Content of the Excel file:")
+        st.dataframe(df)  # Displaying the DataFrame in the app
+    except Exception as e:
+        st.error(f"Error reading Excel file from GCS: {str(e)}")
 
-    # Button to run the requirements parsing script
-    st.header("Requirements - Parse & Compare")
-    st.write("""
-    Click the button to allow:
-    1. Agent 3 to analyze compliance-related requirements with the provided PDF documents from Google Cloud Storage.
-    2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
-    """)
+# Button to run the requirements parsing script
+st.header("Requirements - Parse & Compare")
+st.write("""
+Click the button to allow:
+1. Agent 3 to analyze compliance-related requirements with the provided PDF documents from Google Cloud Storage.
+2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
+""")
 
-    if st.button("Run Requirements Parsing Script"):
-        with st.spinner("Downloading and Running Requirements Parsing Script..."):
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")
-            run_script_in_thread(load_and_run_script, local_path)
-        time.sleep(2)
+if st.button("Run Requirements Parsing Script"):
+    with st.spinner("Downloading and Running Requirements Parsing Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
-        # Input for GCS bucket name and file name
-        file_name = "parsed_output/Requirements.txt"
-        try:
-            content = read_file_from_gcs(bucket_name, file_name)
-            st.write("Content of the file:")
-            st.text_area("File Content", content, height=300)
-        except Exception as e:
-            st.error(f"Error reading text file from GCS: {str(e)}")
+    # Input for GCS bucket name and file name
+    file_name = "parsed_output/Requirements.txt"
+    try:
+        content = read_file_from_gcs(bucket_name, file_name)
+        st.write("Content of the file:")
+        st.text_area("File Content", content, height=300)
+    except Exception as e:
+        st.error(f"Error reading text file from GCS: {str(e)}")
 
-    # Button to run the non-compliance checks script
-    st.header("Output - Checks and Recommend")
-    st.write("""
-    Click the button to allow:
-    1. Agent 5 to use the provided window schedule as design requirements to check against regulatory requirements and provide recommendations for compliance.
-    2. BCA Approved Doc & SCDF Chapter 4 are provided as default requirements for the checks and recommendations.
-    """)
+# Button to run the non-compliance checks script
+st.header("Output - Checks and Recommend")
+st.write("""
+Click the button to allow:
+1. Agent 5 to use the provided window schedule as design requirements to check against regulatory requirements and provide recommendations for compliance.
+2. BCA Approved Doc & SCDF Chapter 4 are provided as default requirements for the checks and recommendations.
+""")
 
-    if st.button("Run Compliance Check Script"):
-        with st.spinner("Downloading and Running Compliance Check Script..."):
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")
-            run_script_in_thread(load_and_run_script, local_path)
-        time.sleep(2)
+if st.button("Run Compliance Check Script"):
+    with st.spinner("Downloading and Running Compliance Check Script..."):
+        local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")
+        run_script_in_thread(load_and_run_script, local_path)
+    time.sleep(2)
 
-        # Input for GCS bucket name and file name
-        file_name = "parsed_output/check_1.xlsx"
-        try:
-            df = read_excel_from_gcs(bucket_name, file_name)
-            st.write("Content of the Excel file:")
-            st.dataframe(df)  # Displaying the DataFrame in the app
-        except Exception as e:
-            st.error(f"Error reading Excel file from GCS: {str(e)}")
+    # Input for GCS bucket name and file name
+    file_name = "parsed_output/check_1.xlsx"
+    try:
+        df = read_excel_from_gcs(bucket_name, file_name)
+        st.write("Content of the Excel file:")
+        st.dataframe(df)  # Displaying the DataFrame in the app
+    except Exception as e:
+        st.error(f"Error reading Excel file from GCS: {str(e)}")
 
-    # New Section: GPT-4o-Mini Text File Parsing
-    st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
-    st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
-    # CSS styling to set link color to white with dark gray background and mild red on hover, no underline on hover
-    button_html = f"""
-        <style>
-            /* Button style */
-            .button {{
-                background-color: #1a1a1a; /* Dark gray background */
-                color: white !important; /* White text, forced with !important */
-                border: 1px solid #444444; /* Dark gray border */
-                padding: 5px 7px; /* Padding for spacing */
-                font-size: 16px; /* Font size */
-                border-radius: 8px; /* Rounded corners */
-                text-align: center;
-                cursor: pointer; /* Pointer cursor on hover */
-                display: inline-block; /* Inline-block for styling as button */
-                text-decoration: none; /* No underline */
-                transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
-            }}
-            /* Hover effect */
-            .button:hover {{
-                color: #ff6b6b !important; /* Mild red color on hover, forced with !important */
-                border-color: #ff6b6b; /* Mild red border on hover */
-                text-decoration: none; /* Ensures no underline on hover */
-            }}
-        </style>
+# New Section: GPT-4o-Mini Text File Parsing
+st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")
+st.write("Click the link below to open the GPT-4o-Mini application for text file parsing in a new tab.")
+# CSS styling to set link color to white with dark gray background and mild red on hover, no underline on hover
+button_html = f"""
+    <style>
+        /* Button style */
+        .button {{
+            background-color: #1a1a1a; /* Dark gray background */
+            color: white !important; /* White text, forced with !important */
+            border: 1px solid #444444; /* Dark gray border */
+            padding: 5px 7px; /* Padding for spacing */
+            font-size: 16px; /* Font size */
+            border-radius: 8px; /* Rounded corners */
+            text-align: center;
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-block; /* Inline-block for styling as button */
+            text-decoration: none; /* No underline */
+            transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+        }}
+        /* Hover effect */
+        .button:hover {{
+            color: #ff6b6b !important; /* Mild red color on hover, forced with !important */
+            border-color: #ff6b6b; /* Mild red border on hover */
+            text-decoration: none; /* Ensures no underline on hover */
+        }}
+    </style>
 
-        <!-- Button HTML as a link -->
-        <a href="https://bca-project.streamlit.app/" target="_blank" class="button">Open GPT-4o-Mini Text File Parser</a>
-    """
+    <!-- Button HTML as a link -->
+    <a href="https://bca-project.streamlit.app/" target="_blank" class="button">Open GPT-4o-Mini Text File Parser</a>
+"""
 
-    # Display the styled button
-    st.markdown(button_html, unsafe_allow_html=True)
+# Display the styled button
+st.markdown(button_html, unsafe_allow_html=True)
 
-elif page == "About":
-    # [ About Us ] Page Content
-    about.about()  # Calling the function 'app()' from about.py
-
-elif page == "Methodology":
-    # [ Methodology ] Page Content
-    methodology.methodology()  # Calling the function 'app()' from methodology.py
-
-elif page == "Documentation":
-    # [ Documentation ] Page Content
-    documentation.documentation()  # Calling the function 'app()' from documentation.py
