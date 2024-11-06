@@ -44,13 +44,6 @@ logging.info("Google Cloud Storage client initialized using credentials from Str
 LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"
 os.makedirs(LOCAL_SCRIPT_PATH, exist_ok=True)
 
-# Link to Google Docs
-st.sidebar.title("[Documentation](https://docs.google.com/document/d/1WM_VcDOJFLNh7Mgytr2DAWONTII3NS-6Gi6kzUKtDfQ/edit?usp=sharing)")
-# Sidebar content
-st.sidebar.markdown("Prepared by")
-st.sidebar.markdown("PONG Woon Wei (Lead)")
-
-
 # Function to download and save the Python scripts from GCS
 def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
     bucket = storage_client.bucket(bucket_name)
@@ -87,6 +80,25 @@ def read_excel_from_gcs(bucket_name, file_name):
 def run_script_in_thread(target, *args):
     thread = threading.Thread(target=target, args=args)
     thread.start()
+
+# Sidebar content
+st.sidebar.markdown("""
+Team ANTS:
+1. PONG Woon Wei (Lead)
+2. Unni Krishnan AMBADY                    
+
+Solutions developed assisted by: 
+1. openAI 
+2. PerplexityAI
+
+Models applied in AI solutions:
+1. gemini-1.5-pro-002
+2. gpt-4o-mini                                                  
+""")
+
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["[ About Us ]", "[ Methodology ]", "[ AI Solutions ]", "[ Documentation ]"])
+
 
 # Set the title for the application
 st.title('Agent-based Analyser for Technical and Regulatory Requirements Checks')
@@ -214,4 +226,3 @@ button_html = f"""
 
 # Display the styled button
 st.markdown(button_html, unsafe_allow_html=True)
-
