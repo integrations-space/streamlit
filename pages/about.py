@@ -18,7 +18,7 @@ def app():
         st.write("Senior Lecturer @ BCA ACADEMY (Member)")
         st.markdown("[Mr Unni Krishnan AMBADY's LinkedIn](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
          
-    st.header("**What about the Project**")
+    st.header("**About the Project**")
     st.write("""
     This project aims to provide a structured approach to analyzing technical and regulatory requirements in the building and construction industry. 
     Our key objectives include improving compliance checks, automating document parsing, and providing AI-driven recommendations to streamline the design and approval process.
