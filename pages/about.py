@@ -1,6 +1,6 @@
 import streamlit as st
 
-def about():
+def app():
     st.header("[ About Us ]")
 
     st.title("**Who are we**")
