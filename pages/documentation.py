@@ -78,3 +78,9 @@ def app():
     st.write("""
     This documentation aims to serve as a reference for users and developers looking to set up, use, and extend this application.
     """)
+
+    # Run the app if the script is executed directly
+if __name__ == "__main__":
+    # Use st.experimental_set_page_config to ensure page is properly configured
+    st.set_page_config(page_title="Documentation", page_icon="📋", layout="wide")
+    app()
