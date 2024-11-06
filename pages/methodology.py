@@ -17,7 +17,7 @@ def app():
     1. **Chat with Information**: Represents the flow where users interact with the AI to gain insights from regulatory documents.
     2. **Intelligent Search**: Shows the process of extracting and searching for specific requirements or standards from the documents.
     
-    ![Flowchart Image](https://link.to.flowchart.image)  # Replace with actual link to the flowchart image
+    ![Flowchart Image](https://github.com/integrations-space/streamlit/blob/main/pictures/WorkflowDiagram.jpg)
     """)
 
 # Run the app if the script is executed directly
