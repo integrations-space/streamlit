@@ -7,8 +7,9 @@ def app():
 
     st.title("**Who are we**")
     st.write("""
-    Mr. PONG Woon Wei, Senior Manager @ Digitalisation, CPQ, BCA (Project Lead)
-    Mr. Unni Krishnan AMBADY, Senior Lecturer @ BCA ACADEMY
+    Mr. PONG Woon Wei, Senior Manager @ Digitalisation, CPQ, BCA (Lead)
+
+    Mr. Unni Krishnan AMBADY, Senior Lecturer @ BCA ACADEMY (Member)
     """)
     
     col1, col2 = st.columns(2)
