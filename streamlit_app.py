@@ -95,9 +95,9 @@ def run_script_in_thread(target, *args):
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["[ About Us ]", "[ AI Solutions ]", "[ Methodology ]", "[ Documentation ]"])
+page = st.sidebar.radio("Go to", ["About", "AI Solutions", "Methodology", "Documentation"])
 
-if page == "[ AI Solutions ]":
+if page == "AI Solutions":
     # [ About Us ] Page Content
     st.header("Home - Agent-based Analyser for Technical and Regulatory Requirements Checks")
     # Button to run the Design Intent parsing script
@@ -204,14 +204,14 @@ if page == "[ AI Solutions ]":
     # Display the styled button
     st.markdown(button_html, unsafe_allow_html=True)
 
-elif page == "[ About Us ]":
+elif page == "About":
     # [ About Us ] Page Content
     about.about()  # Calling the function 'app()' from about.py
 
-elif page == "[ Methodology ]":
+elif page == "Methodology":
     # [ Methodology ] Page Content
     methodology.methodology()  # Calling the function 'app()' from methodology.py
 
-elif page == "[ Documentation ]":
+elif page == "Documentation":
     # [ Documentation ] Page Content
     documentation.documentation()  # Calling the function 'app()' from documentation.py
