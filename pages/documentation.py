@@ -1,6 +1,6 @@
 import streamlit as st
 
-def documentation():
+def app():
     st.title("[ Documentation ]")
     
     st.write("""
