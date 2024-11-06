@@ -24,11 +24,9 @@ def app():
     This project aims to provide a structured approach to analyzing technical and regulatory requirements in the building and construction industry. 
     Our key objectives include improving compliance checks, automating document parsing, and providing AI-driven recommendations to streamline the design and approval process.
     
-    **Project Scope**: 
-    **Covers regulatory requirements parsing, compliance checks, and validation using modern AI tools such as OpenAI and Vertex AI.**
+    **Project Scope**: Covers regulatory requirements parsing, compliance checks, and validation using modern AI tools such as OpenAI and Vertex AI.
     
-    **Data Sources**: 
-    **Using technical drawings, PDF regulatory documents hosted in Google Cloud Storage (GCS).**
+    **Data Sources**: Using technical drawings (jpg), regulatory requirements (pdf) and documents (xls & txt) hosted in Google Cloud Storage (GCS).
     
     **Features**:
     - AI-driven parsing and tabulation of design requirements.
