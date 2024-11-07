@@ -12,18 +12,6 @@ def app():
     This documentation provides a comprehensive guide to building an Agent-Based Analyzer using Google Cloud's Vertex AI for parsing project data, analyzing it, and performing calculations and requirement checks.
     """)
 
-
-    st.header("Table of Contents")
-    st.write("""
-    1. Introduction
-    2. Setting Up Google Cloud and Vertex AI 
-    3. Developing the Data Parsing, Analysis, and Processing Script
-    4. Running the AI Agent for User Interaction
-    5. Streamlit Integration and Streamlit Login
-    6. Challenges and Best Practices
-    7. Conclusion
-    """)
-
     st.header("Introduction")
     st.subheader("Problem Statement")
     st.write("""
@@ -59,7 +47,8 @@ def app():
     st.header("Running the Application")
     st.write("""
     - Use the navigation bar on the left to switch between different pages.
-    - Upload the respective files to perform parsing and compliance checks.
+    - Upload the respective files to perform parsing and compliance checks 
+    [For this PoC, default datasets are provided and stored in Google Cloud Storage (GCS) for parsing. The generated output will also be stored in GCS and displayed upon task completion.]
     """)
 
     st.header("Challenges and Best Practices")
