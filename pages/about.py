@@ -19,23 +19,42 @@ def app():
          
     st.header("**About the Project**")
     st.write("""
-            **Background**: Developed as the final assignment for the AI Bootcamp under the Project B category, this project leverages AI, large language models (LLMs), and online tools to address key challenges in the building and construction industry.
-            
-            **Objective**: This project aims to enhance the analysis of technical and regulatory requirements in the building and construction industry by improving compliance checks, automating document parsing, and providing AI-driven recommendations.
-            
-            **Benefits**: This approach helps professionals save time and gain a quicker understanding of regulatory requirements, streamlining design checks. With up-to-date project and regulatory datasets, it offers real-time guidance, identifies potential compliance issues, and provides continuously updated recommendations, transforming manual tasks into efficient, AI-driven workflows.
-            
-            **Scope**: The project covers regulatory requirements parsing, compliance checks, and validation using a sample dataset, including a window schedule, BCA-approved documents, and a segment of SCDF requirements as default datasets.
-            
-            **Strategies**: The solution explores modern AI tools, such as OpenAI and Vertex AI, using AI agents and large language models (LLMs) to replace conventional functions where applicable.
-            
-            **Data**: The project uses technical drawings (JPEG format), regulatory requirements (PDF format), and documents (Excel and txt formats), all hosted in Google Cloud Storage (GCS).
-            
-            **Features**:
-            
-            - AI-driven parsing and tabulation of design requirements.
-            - Compliance analysis and generation of non-compliance recommendations.
-            - Interactive interface for regulatory requirement checks and validations.
+            The project was developed as the final assignment for the AI Bootcamp under the Project B category to address key challenges in the building and construction industry. 
+            With a focus on simplifying and automating repetitive checks, reducing non-compliance risks, and improving workflows to ease the burden on project stakeholders, we are building a use case that leverages AI-powered agents to augment manual processes, detailed below.
+
+            Objectives:
+
+            - Improve compliance checks through automation
+            - Streamline document parsing to reduce manual workload
+            - Deliver AI-driven recommendations to accelerate design and checking processes
+                        
+            Scope:
+
+            - Focus on window schedules, BCA-approved documents, and SCDF requirements and use these datasets as defaults for testing and refinement
+                        
+            Strategies:
+
+            - Employ AI agents, LLMs, and different AI models to enhance efficiency and accuracy
+            - Use non-sensitive data and host it on public cloud platforms, such as Google Cloud Storage (GCS) and GitHub
+            - Use Streamlit for rapid website development
+                        
+            Benefits:
+
+            - Saves time by simplifying the understanding of regulatory requirements
+            - Reduces manual work in design checks with real-time guidance
+            - Modular functions allow for continuous updates and further development
+                        
+            Data:
+
+            - Window Schedule (jpeg format)
+            - BCA Approved Documents, SCDF Fire Code 2023 Chapter 4 (pdf format)
+            - Documents from users or generated output (xls and/or txt formats)
+                        
+            Features:
+
+            - AI-driven parsing and tabulation of design requirements with Google AI model gemini-1.5-pro-002
+            - Automated data processing, analysis, and generation of recommendations for design compliance considerations with Google AI model gemini-1.5-pro-002
+            - Interactive interface for regulatory requirement checks and validations using OpenAI model gpt-4o-mini
     """)
 
 # Run the app if the script is executed directly
