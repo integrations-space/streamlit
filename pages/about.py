@@ -19,42 +19,41 @@ def app():
          
     st.header("**About the Project**")
     st.write("""
-            The project was developed as the final assignment for the AI Bootcamp under the Project B category to address key challenges in the building and construction industry. 
+            This project was developed for learning purposes as the final assignment for the AI Bootcamp under the Project B category, with an aim to address real challenges in the construction industry. 
+            Below are some of the considerations outlined for this project.
+            
             Key question: 
-            How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
 
-            Use Case:
-            - Develop a Proof of Concept (PoC) to demonstrate the solution’s feasibility by using a common component, such as windows or doors, and verifying its compliance with specified requirements, including BCA-approved documents and SCDF Fire Code 2023 regulations.
- 
+            - How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
+
             Objectives:
 
-            - Improve compliance checks through automation
-            - Streamline document parsing to reduce manual workload
-            - Deliver AI-driven recommendations to accelerate design and checking processes
-                        
-            Scope:
+            - Develop a Proof of Concept (PoC) to demonstrate the solution’s feasibility using a common building component, with a scalable method and approach
+            - Streamline manual workload and improve compliance checks through AI-powered solution
 
-            - Focus on window schedules, BCA-approved documents, and SCDF requirements and use these datasets as defaults for testing and refinement
-                        
-            Strategies:
+            PoC Scope:
 
-            - Employ AI agents, LLMs, and different AI models to enhance efficiency and accuracy
-            - Use non-sensitive data and host it on public cloud platforms, such as Google Cloud Storage (GCS) and GitHub
-            - Use Streamlit for rapid website development
-                        
-            Benefits:
+            - Use a window schedule as the design intent to check for compliance or non-compliance with relevant requirements.
+
+            PoC Benefits:
 
             - Saves time by simplifying the understanding of regulatory requirements
             - Reduces manual work in design checks with real-time guidance
             - Modular functions allow for continuous updates and further development
-                        
-            Data:
+
+            PoC Strategies:
+
+            - Employ AI agents, LLMs, and different AI models to enhance efficiency and accuracy
+            - Use non-sensitive data and host it on public cloud platforms, such as Google Cloud Storage (GCS) and GitHub
+            - Use Streamlit for rapid website development
+
+            PoC Data:
 
             - Window Schedule (jpeg format)
             - BCA Approved Documents, SCDF Fire Code 2023 Chapter 4 (pdf format)
             - Documents from users or generated output (xls and/or txt formats)
-                        
-            Features:
+ 
+            PoC Features:
 
             - AI-driven parsing and tabulation of design requirements with Google AI model gemini-1.5-pro-002
             - Automated data processing, analysis, and generation of recommendations for design compliance considerations with Google AI model gemini-1.5-pro-002
