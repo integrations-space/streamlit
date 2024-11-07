@@ -20,8 +20,12 @@ def app():
     st.header("**About the Project**")
     st.write("""
             The project was developed as the final assignment for the AI Bootcamp under the Project B category to address key challenges in the building and construction industry. 
-            With a focus on simplifying and automating repetitive checks, reducing non-compliance risks, and improving workflows to ease the burden on project stakeholders, we are building a use case that leverages AI-powered agents to augment manual processes, detailed below.
+            Key question: 
+            How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
 
+            Use Case:
+            - Develop a Proof of Concept (PoC) to demonstrate the solution’s feasibility by using a common component, such as windows or doors, and verifying its compliance with specified requirements, including BCA-approved documents and SCDF Fire Code 2023 regulations.
+ 
             Objectives:
 
             - Improve compliance checks through automation
