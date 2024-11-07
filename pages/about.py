@@ -11,12 +11,10 @@ def app():
     with col1:
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/ww.jpg", width=100, use_column_width=False) 
         st.write("Mr. PONG Woon Wei")
-        st.write("Senior Manager @ Digitalisation, CPQ, BCA (Lead)")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/woonwei/)")  
     with col2:
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/unni.jpg", width=100, use_column_width=False) 
         st.write("Mr. Unni Krishnan AMBADY")
-        st.write("Senior Lecturer @ BCA ACADEMY (Member)")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
          
     st.header("**About the Project**")
