@@ -10,7 +10,7 @@ def app():
         # Use markdown for links since link_button is not a valid function
     with col1:
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/ww.jpg", width=100, use_column_width=False) 
-        st.write("Mr. PONG Woon Wei")
+        st.write("Mr. PONG Woon Wei (Lead)")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/woonwei/)")  
     with col2:
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/unni.jpg", width=100, use_column_width=False) 
