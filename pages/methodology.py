@@ -4,7 +4,7 @@ import streamlit as st
 def app():
     st.header("[ Methodology ]")
     st.write("""
-    This page provides a comprehensive overview of the implementation details and workflow for the proof of concept. The methodology covers data extraction from the provided non-sensitive data, using different AI models for processing, analysis, and compliance checks through modular applications.  
+    This page provides a comprehensive overview of the implementation details and workflow for the proof of concept. The methodology covers data extraction from the provided non-sensitive data, stored at Google Cloud Storage, using different AI models for processing, analysis, and compliance checks through modular applications.  
 
     Data Input (stored in GCS):
     - A preliminary dataset, including window_schedule.jpg, approveddoc.pdf, and scdf_chapter_4.pdf, serves as the initial input.
