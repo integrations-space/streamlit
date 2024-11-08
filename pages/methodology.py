@@ -13,7 +13,7 @@ def app():
     
     **Flowchart of Data and Workflow**:
     - Parsing Design Intent and Requirements (using the Google Gemini-1.5-Pro-002 model): Extract, parse, clean, and tabulate into structured data for easier understanding and use.
-    - OpenAI-Powered Validation (using the OpenAI GPT-4O-Mini model): Validate information accuracy by allowing users to upload data and request specific checks.
+    - OpenAI-Powered Validation (using the OpenAI GPT-4o-mini model): Validate information accuracy by allowing users to upload data and request specific checks.
     ![Flowchart Image](https://raw.githubusercontent.com/integrations-space/streamlit/main/pictures/WorkflowDiagram.jpg)
     """)
 
