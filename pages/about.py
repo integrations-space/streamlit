@@ -22,7 +22,7 @@ def app():
             This project was developed for learning purposes as the final assignment for the GovTech AI Bootcamp under the Project B category, with an aim to address real challenges in the construction industry. 
             Below are some of the considerations outlined for this project.
             
-            Identified Industry issues / Key question: 
+            Key question: 
 
             - How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
             (from [AI Hackathon](https://www.aihackathon.pro/p/topics.html))
