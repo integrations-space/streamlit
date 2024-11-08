@@ -4,7 +4,8 @@ import streamlit as st
 def app():
     st.header("[ Methodology ]")
     st.write("""
-    This page provides a comprehensive overview of the implementation details and workflow for the proof of concept. The methodology covers data extraction from provided sources, utilizing different AI models for processing, analysis, and compliance checks through a modular and structured workflow.  
+    This page provides a comprehensive overview of the implementation details and workflow for the proof of concept. 
+    The methodology covers data extraction from provided sources, using different AI models for processing, analysis, and compliance checks through modular applications.  
 
     Data Input (stored in GCS):
     - A preliminary dataset, including window_schedule.jpg, approveddoc.pdf, and scdf_chapter_4.pdf, serves as the initial input.
