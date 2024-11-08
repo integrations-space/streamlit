@@ -8,14 +8,13 @@ def app():
     The methodology covers data extraction, AI model utilization, and compliance checks through a structured flow.
     
     **Data Flows and Implementation Details**:
-    - The project uses various Google Cloud services to store and manage the data (e.g., GCS for document storage).
-    - AI Agents are responsible for parsing, analyzing, and validating information extracted from input documents.
+    - The project is using Google Cloud Storage (GCS) for data storage and management.
+    - AI agents are assigned modular tasks such as data parsing, analysis, cleaning, exporting, and validating information extracted from input documents.
     
     **Flowchart**:
     Below are flowcharts illustrating the process flow for each use case in the application:
-    
-    1. **Chat with Information**: Represents the flow where users interact with the AI to gain insights from regulatory documents.
-    2. **Intelligent Search**: Shows the process of extracting and searching for specific requirements or standards from the documents.
+    - Parsing Design Intent and Requirements (using the Google Gemini-1.5-Pro-002 model): Extract, clean, and tabulate structured data for easier understanding and use.
+    - OpenAI-Powered Validation (using the OpenAI GPT-4O-Mini model): Validate information accuracy by allowing users to upload data and request checks for specific requirements.
     
     ![Flowchart Image](https://raw.githubusercontent.com/integrations-space/streamlit/main/pictures/WorkflowDiagram.jpg)
     """)
