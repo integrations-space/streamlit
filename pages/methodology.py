@@ -6,10 +6,10 @@ def app():
     st.write("""
     This page provides a comprehensive overview of the implementation details and workflow for the proof of concept. The methodology covers data extraction from the provided non-sensitive data, stored at Google Cloud Storage (GCS), using different AI models for processing, analysis, and compliance checks through modular applications.  
 
-    Data Input (stored in GCS):
-    - A preliminary dataset, including window_schedule.jpg, approveddoc.pdf, and scdf_chapter_4.pdf, serves as the initial input.
+    Data Input:
+    - A preliminary dataset, consisting of window_schedule.jpg, approveddoc.pdf, and scdf_chapter_4.pdf, serves as the initial input for the applications.
     
-    Implementation Details and Outputs (stored in GCS):
+    Implementation using AI agents, with outputs stored in GCS:
     - Agents 1 & 2 produce structured data in Excel format (window_schedule.xls).
     - Agents 2 & 4 translate the PDF documents into text format, saved as Requirements.txt.
     - Agent 5 generates a structured output named check01.xls based on window_schedule.xls and Requirements.txt.
