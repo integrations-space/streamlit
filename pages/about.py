@@ -19,7 +19,7 @@ def app():
          
     st.header("**About the Project**")
     st.write("""
-            This project was developed for learning purposes as the final assignment for the AI Bootcamp under the Project B category, with an aim to address real challenges in the construction industry. 
+            This project was developed for learning purposes as the final assignment for the GovTech AI Bootcamp under the Project B category, with an aim to address real challenges in the construction industry. 
             Below are some of the considerations outlined for this project.
             
             Identified Industry issues / Key question: 
