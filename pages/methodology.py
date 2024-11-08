@@ -15,7 +15,7 @@ def app():
     - Agent 5 generates a structured output named check01.xls based on window_schedule.xls and Requirements.txt.
     - An independent UI, based on the OpenAI model, was developed to validate uploaded text files according to users' specific queries.   
     
-    AI Models:
+    AI Models used for different purposes:
     - Parsing Design Intent and Requirements (using the Google Gemini-1.5-Pro-002 model): Extract, parse, clean, and tabulate data into structured formats for easier understanding and usage.
     - OpenAI-Powered Validation (using the OpenAI GPT-4o-mini model): Validate information accuracy by allowing users to upload data and request specific checks.
 
