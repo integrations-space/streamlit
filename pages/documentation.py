@@ -9,7 +9,7 @@ def app():
     
     st.header("Overview")
     st.write("""
-    This page documents the process of building an Agent-Based Analyser using Vertex AI to parse, clean, analyse, and export project data to Excel for stakeholder review.    
+    This page documents the process of building an Agent-Based Analyser using Vertex AI to parse, clean, analyse, and export project data to Excel for stakeholder review.
     """)
     
     st.header("Introduction")
@@ -37,25 +37,26 @@ def app():
     st.header("Developing the Data Parsing, Analysis and Processing Script")
     st.write("""
     This script demonstrates:
-    1. Reading jpeg drawings and pdf data (use case as window/door schedule)
+    1. Reading JPEG drawings and PDF data (use case as window/door schedule)
     2. Parsing it into a structured format
-    3. Converting to a pandas DataFrame for analysis
+    3. Converting to a Pandas DataFrame for analysis
     4. Performing basic calculations as analysis and recommendation
     5. Exporting the outputs into Excel files
+    6. Running the Application
     """)
 
     st.header("Running the Application")
     st.write("""
     - Use the navigation bar on the left to switch between different pages.
-    - Upload the respective files to perform parsing and compliance checks 
+    - Upload the respective files to perform parsing and compliance checks. 
     [For this PoC, default datasets are provided and stored in Google Cloud Storage (GCS) for parsing. The generated output will also be stored in GCS and displayed upon task completion.]
     """)
 
     st.header("Challenges and Best Practices")
     st.write("""
-    - **Functionality & User Experience**: Engaging different models to replace parsing functions, Limited time for quick learning while doing approach, Engage Govtech provided guides and advice.
-    - **Technical Implementation**: Proper use of Vertex AI tools, Comparisons of different tools, Prompt Engineering techniques for effective outcomes.
-    - **Innovation**: Implement AI Agentic workflow to streamline programming processes and automating actual practice processes using LLM with user interactive approach.
+    - Functionality & User Experience: Engaging different models to replace parsing functions, limited time for a quick learning-while-doing approach, engaging GovTech provided guides and advice.
+    - Technical Implementation: Proper use of Vertex AI tools, comparisons of different tools, prompt engineering techniques for effective outcomes.
+    - Innovation: Implement AI Agentic workflow to streamline programming processes and automate actual practice processes using LLM with a user-interactive approach.
     """)
 
     st.header("Conclusion")
