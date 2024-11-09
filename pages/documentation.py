@@ -9,9 +9,9 @@ def app():
     
     st.header("Overview")
     st.write("""
-    This documentation provides a comprehensive guide to building an Agent-Based Analyzer using Google Cloud's Vertex AI for parsing project data, analyzing it, and performing calculations and requirement checks.
+    This page documents the process of building an Agent-Based Analyser using Vertex AI to parse, clean, analyse, and export project data to Excel for stakeholder review.    
     """)
-
+    
     st.header("Introduction")
     st.subheader("Problem Statement")
     st.write("""
