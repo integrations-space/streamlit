@@ -55,9 +55,9 @@ def app():
  
             PoC Features:
 
-            - AI-driven parsing and tabulation of design requirements with Google AI model gemini-1.5-pro-002
-            - Automated data processing, analysis, and generation of recommendations for design compliance considerations with Google AI model gemini-1.5-pro-002
-            - Interactive interface for regulatory requirement checks and validations using OpenAI model gpt-4o-mini
+            - AI-Driven Parsing: Automated extraction and tabulation of design requirements using Google AI model Gemini-1.5-Pro-002
+            - Data Analysis & Recommendations: AI-powered data processing to analyze compliance and generate design recommendations
+            - Interactive Validation Interface: Real-time regulatory checks using OpenAI’s GPT-4o-Mini model for enhanced user interaction
     """)
 
 # Run the app if the script is executed directly
