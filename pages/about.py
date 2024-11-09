@@ -33,7 +33,7 @@ def app():
             
             PoC Scope:
 
-            - Use a window schedule as the design intent to check for compliance or non-compliance with relevant requirements.
+            - Use a window schedule as the design intent to check for compliance with relevant BCA-approved documents and SCDF Chapter 4 requirements.
 
             PoC Benefits:
 
