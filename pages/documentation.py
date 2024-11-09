@@ -4,7 +4,7 @@ import streamlit as st
 def app():
     st.title("[ Documentation ]")
     
-    st.header("Agent-Based Analyzer for Technical and Regulatory Requirements Checks")
+    st.header("Agent-Based Analyser for Technical and Regulatory Requirements Checks")
     st.subheader("for AI BootCamp 2024 by GovTech")
     
     st.header("Overview")
