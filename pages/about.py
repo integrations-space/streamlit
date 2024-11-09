@@ -25,13 +25,12 @@ def app():
             Key question: 
 
             - How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
-            (from [AI Hackathon](https://www.aihackathon.pro/p/topics.html) topic 1)
+            (referencing [AI Hackathon](https://www.aihackathon.pro/p/topics.html) topic 1)
 
             Objectives:
 
-            - Develop a Proof of Concept (PoC) to demonstrate the solution’s feasibility using a common building component, with a scalable method and approach
-            - Streamline manual workload and improve compliance checks through AI-powered solution
-
+            - Develop a scalable Proof of Concept (PoC) using a common building component to demonstrate how an AI-powered solution can automate repetitive checks, reduce non-compliance risks and manual workloads.
+            
             PoC Scope:
 
             - Use a window schedule as the design intent to check for compliance or non-compliance with relevant requirements.
