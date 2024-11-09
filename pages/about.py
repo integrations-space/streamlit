@@ -37,9 +37,9 @@ def app():
 
             PoC Benefits:
 
-            - Saves time by simplifying the understanding of regulatory requirements
-            - Reduces manual work in design checks with real-time guidance
-            - Modular functions allow for continuous updates and further development
+            - Work Efficiency: Simplifies understanding of regulatory requirements, speeding up design processes.
+            - Reduced Manual Effort: Automates design checks, providing real-time guidance and feedback.
+            - Scalability: Modular functions allow for continuous updates and further development.
 
             PoC Strategies:
 
