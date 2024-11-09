@@ -19,7 +19,7 @@ def app():
          
     st.header("**About the Project**")
     st.write("""
-            This project was developed for learning purposes as the final assignment for the GovTech AI Bootcamp under the Project B category, with an aim to address real challenges in the construction industry. 
+            This project was developed for learning purposes as the final assignment for the GovTech AI Bootcamp under the Project B category, with the aim of addressing real challenges in the construction industry. 
             Below are some of the considerations outlined for this project.
             
             Key question: 
@@ -29,7 +29,7 @@ def app():
 
             Objective:
 
-            - Develop a scalable Proof of Concept (PoC) using a common building component to demonstrate how an AI-powered solution can automate repetitive checks, reduce non-compliance risks and manual workloads.
+            - Develop a scalable Proof of Concept (PoC) using a common building component to demonstrate how an AI-powered solution can automate repetitive checks, reduce non-compliance risks, and minimise manual workloads.
             
             PoC Scope:
 
@@ -54,9 +54,9 @@ def app():
  
             PoC Features:
 
-            - AI-Driven Parsing: Automated extraction and tabulation of design requirements using Google AI model Gemini-1.5-Pro-002
-            - Data Analysis & Recommendations: AI-powered data processing to analyze compliance and generate design recommendations
-            - Interactive Validation Interface: Real-time regulatory checks using OpenAI’s GPT-4o-Mini model for enhanced user interaction
+            - AI-Driven Parsing: Automated extraction and tabulation of design requirements using Google AI model Gemini-1.5-Pro-002.
+            - Data Analysis & Recommendations: AI-powered data processing to analyze compliance and generate design recommendations.
+            - Interactive Validation Interface: Real-time regulatory checks using OpenAI’s GPT-4o-Mini model for enhanced user interaction.
     """)
 
 # Run the app if the script is executed directly
