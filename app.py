@@ -13,11 +13,11 @@ import threading
 # Import the new pages
 from pages import about, methodology  # Assuming the folder name is "pages" and you have "about.py" and "methodology.py"
 
-# Display the disclaimer using st.expander
-with st.expander("⚠️ IMPORTANT NOTICE", expanded=False):
+# Display the disclaimer using st.sidebar.expander
+with st.expander("⚠️ Disclaimer and Important Notice", expanded=False):
     st.write("""
     **This web application / Proof of Concept is a prototype developed for learning purposes only.** 
-    The information provided here is NOT fully ready to be relied upon for making any decisions, especially those related to financial, legal, construction related matters or any other actual real-life applications.
+    The information provided here is NOT fully ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
     
     Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. 
     You assume full responsibility for how you use any generated output.
