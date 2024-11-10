@@ -2,7 +2,7 @@ import streamlit as st
 
 # Define the Streamlit app
 def app():
-    st.header("[ Methodology ]")
+    st.title("[ Methodology ]")
     st.write("""
     This page provides a comprehensive overview of the proof-of-concept's implementation details and workflow, including data extraction from non-sensitive data on Google Cloud Storage (GCS), AI-powered processing, analysis, and compliance checks through modular applications.
     Data Input:
