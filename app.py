@@ -14,13 +14,13 @@ import threading
 from pages import about, methodology  # Assuming the folder name is "pages" and you have "about.py" and "methodology.py"
 
 # Display the disclaimer using st.sidebar.expander
-with st.expander("⚠️ Disclaimer and Important Notice", expanded=False):
+with st.expander("⚠️ **Disclaimer and Important Notice**", expanded=False):
     st.write("""
-    **This web application is a proof of concept developed for learning purposes only.** 
-    - The information provided here is NOT fully ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
+    - This web application is a proof of concept developed for learning purposes only. 
+    - Information provided here is NOT ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
     - LLM may generate inaccurate or incorrect information. 
     - Take full responsibility for how you use any generated output.
-    - **Consult qualified professionals for accurate and personalised advice.**
+    - Consult qualified professionals for accurate and personalised advice.
     """)
 
 # Setting up logging to handle UnicodeEncodeError
