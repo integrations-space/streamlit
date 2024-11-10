@@ -19,10 +19,10 @@ with st.expander("⚠️ Disclaimer and Important Notice", expanded=False):
     **This web application is a proof of concept developed for learning purposes only.** 
     The information provided here is NOT fully ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
     
-    Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. 
-    You assume full responsibility for how you use any generated output.
+    Please be aware that the LLM may generate inaccurate or incorrect information. 
+    You should assume full responsibility for how you use any generated output.
     
-    **Always consult with qualified professionals for accurate and personalized advice.**
+    **Please consult with qualified professionals for accurate and personalized advice.**
     """)
 
 # Setting up logging to handle UnicodeEncodeError
