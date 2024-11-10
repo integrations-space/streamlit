@@ -18,9 +18,9 @@ with st.expander("⚠️ Disclaimer and Important Notice", expanded=False):
     st.write("""
     **This web application is a proof of concept developed for learning purposes only.** 
     - The information provided here is NOT fully ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
-    - Please be aware that the LLM may generate inaccurate or incorrect information. 
-    - You should assume full responsibility for how you use any generated output.
-    - **Please consult with qualified professionals for accurate and personalized advice.**
+    - LLM may generate inaccurate or incorrect information. 
+    - Take full responsibility for how you use any generated output.
+    - **Consult qualified professionals for accurate and personalised advice.**
     """)
 
 # Setting up logging to handle UnicodeEncodeError
