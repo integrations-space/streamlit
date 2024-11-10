@@ -13,6 +13,17 @@ import threading
 # Import the new pages
 from pages import about, methodology  # Assuming the folder name is "pages" and you have "about.py" and "methodology.py"
 
+# Display the disclaimer using st.expander
+with st.expander("⚠️ IMPORTANT NOTICE", expanded=False):
+    st.write("""
+    **This web application is a prototype developed for educational purposes only.** 
+    The information provided here is NOT intended for real-world usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
+    
+    Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. You assume full responsibility for how you use any generated output.
+    
+    **Always consult with qualified professionals for accurate and personalized advice.**
+    """)
+
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')
 
