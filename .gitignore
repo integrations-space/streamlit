@@ -2,3 +2,5 @@
 .env
 /__pycache__
 /compliance_analysis.log
+.streamlit/
+.streamlit/secrets.toml
