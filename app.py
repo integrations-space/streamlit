@@ -38,7 +38,7 @@ if not st.session_state.authenticated:
 
 # Navigation after successful authentication
 st.sidebar.title("Navigation")  # Sidebar title for navigation
-selected_page = st.sidebar.radio("Select a page:", ["About", "Methodology", "Proposed Solution / PoC", "Documentation", "Disclaimer"])  # Sidebar navigation options
+selected_page = st.sidebar.radio("Select a page:", ["About", "Methodology", "Proposed Solution / PoC", "Documentation", "Disclaimer", "Acknowledgement"])  # Sidebar navigation options
 
 # Function to dynamically load a module from the protected_pages directory
 def load_protected_page(page_name):
@@ -275,3 +275,5 @@ elif selected_page == "Documentation":
     load_protected_page("documentation")  # Load the documentation page
 elif selected_page == "Disclaimer":
     load_protected_page("disclaimer")  # Load the disclaimer page
+elif selected_page == "Acknowledgement":
+    load_protected_page("acknowledgement")  # Load the acknowledgement page
