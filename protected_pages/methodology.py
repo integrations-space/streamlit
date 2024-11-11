@@ -21,15 +21,7 @@ def app():
     ![Flowchart Image](https://raw.githubusercontent.com/integrations-space/streamlit/main/pictures/WorkflowDiagram.jpg)
     - 
     """)
-    # Display the disclaimer using st.sidebar.expander
-    with st.expander("⚠️ **Disclaimer and Important Notice**", expanded=False):
-        st.write("""
-        - This web application is a proof of concept developed for learning purposes only. 
-        - Information provided here is NOT ready to be relied upon for making any decisions, especially those related to financial, legal, construction-related matters, or any other actual real-life applications.
-        - LLM may generate inaccurate or incorrect information. 
-        - Take full responsibility for how you use any generated output.
-        - Consult qualified professionals for accurate and personalised advice.
-        """)
+
 # Run the app if the script is executed directly
 if __name__ == "__main__":
     # Use st.set_page_config to ensure page is properly configured
