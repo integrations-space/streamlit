@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8501
 
 # Define environment variable
-ENV NAME World
+ENV STREAMLIT_SERVER_PORT=8501
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+CMD ["streamlit", "run", "app.py"]
