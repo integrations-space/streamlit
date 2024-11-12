@@ -24,7 +24,7 @@ def app():
 
     st.subheader("**Important Support**")
     st.write("""   
-            - We believe it is a must to express our gratitude to our beloved families, forgiving bosses, and supportive friends involved.
+            - We believe it is a must to express our gratitude to our beloved family, forgiving bosses, supportive colleagues, friends and classmates.
     """)
        
     st.subheader("**Tools Used**")
