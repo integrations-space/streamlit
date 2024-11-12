@@ -6,11 +6,11 @@ def app():
  
     # Define the data for the AI models
     ai_models_data = {
-        "Model": ["Gemini 1.5 Pro-002", "GPT-4 Mini", "GPT-4", "Llama 2", "Claude 3"],
+        "Model": ["Gemini 1.5 Pro-002", "GPT-4o Mini", "GPT-4o", "Llama 2", "Claude 3"],
         "Provider": ["Google DeepMind", "OpenAI", "OpenAI", "Meta AI", "Anthropic"],
         "Parameter Count": ["~600B+", "~80B", "~175B", "70B", "~100B"],
         "Capabilities & Unique Features": [
-            "- Advanced multimodal capabilities. High degree of context-awareness, integrates text and visual inputs.\n- Conversational AI, Image Processing, Data Analysis",
+            "- Advanced multimodal capabilities.\n- High degree of context-awareness, integrates text and visual inputs.\n- Conversational AI, Image Processing, Data Analysis",
             "- General conversational, creative tasks.\n- Light-weight, optimized for low-resource environments.\n- Chatbots, content generation, summaries",
             "- Advanced text generation, reasoning.\n- Strong at complex problem-solving and nuanced text analysis.\n- Enterprise apps, customer support, education",
             "- General-purpose text processing.\n- Open-source friendly, customizable for research.\n- Open research, NLP tasks, conversational AI",
@@ -32,9 +32,9 @@ def app():
 
     st.header("Opted Models")
     st.write("""
-    As a quick start, we have opted the use of Gemini Vertex AI 1.5 Pro-002 and GPT-4o Mini.
-    Gemini Vertex AI 1.5 Pro-002 is suited for advanced multimodal tasks requiring deep contextual understanding.
-    GPT-4o Mini is an efficient, lightweight solution for simpler conversational and creative tasks, especially in resource-constrained environments.
+    As a quick start, we have opted the use of:
+    \n- Gemini Vertex AI 1.5 Pro-002, suited for its advanced multimodal tasks, supporting deep contextual understanding.
+    \n- GPT-4o Mini, an highly efficient and lightweight solution for simple conversational and creative tasks, especially in resource-constrained environments.
     """)
 
 # Run the app if the script is executed directly
