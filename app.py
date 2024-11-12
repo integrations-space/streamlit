@@ -174,6 +174,8 @@ elif selected_page == "Proposed Solution / PoC":
 
     # Button to run the requirements parsing script
     st.subheader("Requirements - Parse & Compare")  # Subheader for the requirements parsing section
+    st.markdown("[BCA Approvd Doc](https://drive.google.com/file/d/1avFLNumtOzi3mvDwA3aHBlsY2sJ_QxlD/view?usp=drive_link)")
+    st.markdown("[SCDF Chapter 4](https://drive.google.com/file/d/1aAfxhjrRiGutbrIuDIm1SSOk8KGeHCV3/view?usp=drive_link)")
     st.write("""
     Click the button to allow:
     1. Agent 3 to analyze compliance-related requirements with the provided PDF documents from Google Cloud Storage.
