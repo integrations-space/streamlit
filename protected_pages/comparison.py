@@ -23,7 +23,7 @@ def app():
 
 
     # Streamlit App
-    st.title("Comparison of AI Models")
+    st.title("[ AI Models' Comparison ]")
 
     # Display the DataFrame as a table in Streamlit with wider layout
     st.write("Below is the comparison of several AI models excluding Bard and Falcon:")
