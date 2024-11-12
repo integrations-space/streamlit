@@ -148,7 +148,7 @@ elif selected_page == "Proposed Solution / PoC":
     # Button to run the Design Intent parsing script
     st.subheader("Design Intent - Parse, Calculate & Tabulate")  # Subheader for the section
 
-    st.write("Window Schedule below is used as design intend to be parsed by AI Agent 1")
+    st.write("The window schedule below serves as the design intent to be parsed by AI Agent 1.")
     # Add the image with a limited width
     st.image("https://github.com/integrations-space/streamlit/raw/main/design_intent/Window%20Schedule.jpg", width=700)
 
