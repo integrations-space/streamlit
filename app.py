@@ -267,7 +267,7 @@ elif selected_page == "Proposed Solution / PoC":
                 text-decoration: none;
             }}
         </style>
-        <a href="https://github.com/integrations-space/streamlit/blob/main/ants_abc2024.pdf" target="_blank" class="button">Presentation Slides</a>
+        <a href="https://drive.google.com/file/d/1mEflC7czp3CMtGiBjS7GmphLBcTsNX4R/view?usp=drive_link" target="_blank" class="button">Presentation Slides</a>
     """
     # Display the styled button
     st.markdown(button_html, unsafe_allow_html=True)  # Render the button with specified styling
