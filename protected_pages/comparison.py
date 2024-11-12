@@ -10,11 +10,11 @@ def app():
         "Provider": ["Google DeepMind", "OpenAI", "OpenAI", "Meta AI", "Anthropic"],
         "Parameter Count": ["~600B+", "~80B", "~175B", "70B", "~100B"],
         "Capabilities & Unique Features": [
-            "Advanced multimodal capabilities. High degree of context-awareness, integrates text and visual inputs. Conversational AI, Image Processing, Data Analysis",
-            "General conversational, creative tasks. Light-weight, optimized for low-resource environments. Chatbots, content generation, summaries",
-            "Advanced text generation, reasoning. Strong at complex problem-solving and nuanced text analysis. Enterprise apps, customer support, education",
-            "General-purpose text processing. Open-source friendly, customizable for research. Open research, NLP tasks, conversational AI",
-            "Safety-oriented generative AI. Enhanced focus on safe and ethical AI behaviors. Assistant bots, safe generative output"
+            "- Advanced multimodal capabilities, high degree of context-awareness, integrates text and visual inputs. \n- Conversational AI, Image Processing, Data Analysis"
+            "- General conversational, creative tasks,light-weight, optimized for low-resource environments. \n- Chatbots, content generation, summaries"
+            "- Advanced text generation, reasoning, strong at complex problem-solving and nuanced text analysis. \n- Enterprise apps, customer support, education"
+            "- General-purpose text processing, open-source friendly, customizable for research.\n- Open research, NLP tasks, conversational AI"
+            "- Safety-oriented generative AI, enhanced focus on safe and ethical AI behaviors.\n- Assistant bots, safe generative output"
         ]
     }
 
