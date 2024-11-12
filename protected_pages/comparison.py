@@ -30,7 +30,7 @@ def app():
     st.table(ai_models_df.set_index('Model').style.set_properties(**{'white-space': 'pre-wrap', 'vertical-align': 'top', 'color': '#ffffff'}).set_table_styles([{'selector': 'th', 'props': [('vertical-align', 'top'), ('color', '#ffffff'), ('font-weight', 'bold')]}, {'selector': 'td', 'props': [('vertical-align', 'top'), ('color', '#ffffff')]}]))
 
 
-    st.header("Opted Models for a Start")
+    st.header("Opted Models")
     st.write("""
     As a quick start, we have opted the use of Gemini Vertex AI 1.5 Pro-002 and GPT-4o Mini.
     Gemini Vertex AI 1.5 Pro-002 is suited for advanced multimodal tasks requiring deep contextual understanding.
