@@ -147,6 +147,11 @@ elif selected_page == "Proposed Solution / PoC":
 
     # Button to run the Design Intent parsing script
     st.subheader("Design Intent - Parse, Calculate & Tabulate")  # Subheader for the section
+
+    st.write("Window Schedule below is used as design intend to be parsed by AI Agent 1")
+    # Add the image with a limited width
+    st.image("https://github.com/integrations-space/streamlit/raw/main/design_intent/Window%20Schedule.jpg", width=700)
+
     st.write("""
     Click the button to allow:
     1. AI Agent 1 to parse the provided window schedule drawing (in jpeg), and calculate the maximum room area using the predefined 10% ventilation requirement.
@@ -267,7 +272,7 @@ elif selected_page == "Proposed Solution / PoC":
                 text-decoration: none;
             }}
         </style>
-        <a href="https://github.com/integrations-space/streamlit/blob/main/ants_abc2024.pdf" target="_blank" class="button">Presentation Slides</a>
+        <a href="https://drive.google.com/file/d/1mEflC7czp3CMtGiBjS7GmphLBcTsNX4R/view?usp=drive_link" target="_blank" class="button">Presentation Slides</a>
     """
     # Display the styled button
     st.markdown(button_html, unsafe_allow_html=True)  # Render the button with specified styling
