@@ -11,6 +11,16 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
+# Hide the Streamlit header and menu icons
+hide_github_icon = """
+    <style>
+    [data-testid="stDecoration"] > a {
+        display: none;
+    }
+    </style>
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
 
