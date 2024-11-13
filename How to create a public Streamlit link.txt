@@ -1,5 +1,5 @@
 What:
-Deploy the streamlit_app.py script from GitHub and make it publicly accessible via Streamlit Cloud.
+Deploy the app.py script from GitHub and make it publicly accessible via Streamlit Cloud.
 
 Why:
 Streamlit Cloud is a simple and powerful way to deploy Python scripts (like the one using streamlit) as interactive web applications. 
