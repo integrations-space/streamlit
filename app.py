@@ -9,6 +9,7 @@ import os
 import importlib.util
 import time
 import threading
+from io import BytesIO  # Add missing import
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
@@ -87,7 +88,7 @@ elif selected_page == "Proposed Solution / PoC":
     gcs_scripts = {  # Dictionary with script names and their GCS paths
         "Design Intent Parsing": "agents/Dual_Agents_for_GCS.py",
         "Requirements Parsing": "agents/Dual_Agents_for_Requirements.py",
-        "Non-Compliance Checks": "agents/Agent_for_non-compliances_Checks.py"
+        "Non-Compliance Checks": "agents/Agent_for_non_compliances_Checks.py"  # Corrected file path
     }
 
     # Function to download and save the Python scripts from GCS
@@ -206,7 +207,7 @@ elif selected_page == "Proposed Solution / PoC":
 
     if st.button("Run Compliance Check Script"):  # Button to trigger script execution
         with st.spinner("Downloading and Running Compliance Check Script..."):  # Spinner to indicate processing
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")  # Download script
+            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")  # Corrected file path
             if local_path:
                 run_script_in_thread(load_and_run_script, local_path)  # Run script in a separate thread
         time.sleep(2)  # Pause to allow thread to start
@@ -283,6 +284,6 @@ elif selected_page == "Documentation":
 elif selected_page == "Disclaimer":
     load_protected_page("disclaimer")  # Load the disclaimer page
 elif selected_page == "Acknowledgement":
-    load_protected_page("acknowledgement")
+    load_protected_page("acknowledgement")  # Load the acknowledgement page
 elif selected_page == "AI Models' Comparison":
-    load_protected_page("comparison")
+    load_protected_page("comparison")  # Load the comparison page
