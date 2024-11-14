@@ -86,11 +86,9 @@ elif selected_page == "Proposed Solution / PoC":
 # Create an expander for the notice on errors
     with st.expander("⚠️ Important Notice for Errors ⚠️"):
         st.write("""
-        The PoC was completed and scored 45/45.
-        Therefore, the billing for Google Services (GCS, Vertex AI, etc.) is disabled to avoid further costs incurred. 
-        Errors will be shown for some buttons, as the functions were disabled. 
-        Some of past generated outcomes will be shown for your viewing.
-        Thank you for your understanding.
+        The Proof of Concept (PoC) was successfully completed with a perfect score of 45/45. As a result, billing for Google services (GCS, Vertex AI, etc.) has been disabled to prevent further costs. 
+        This may result in errors for certain buttons, as some functions have been deactivated. 
+        Previously generated outcomes will still be available for viewing. Thank you for your understanding.
         """)
     # Set up Google Cloud credentials using secrets
     credentials_info = st.secrets["gcp_service_account"]  # Get GCP service account credentials from Streamlit secrets
