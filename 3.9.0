@@ -1,0 +1,2 @@
+Requirement already satisfied: pypdf in c:\users\young\anaconda3\envs\lib\site-packages (5.1.0)
+Requirement already satisfied: typing_extensions>=4.0 in c:\users\young\anaconda3\envs\lib\site-packages (from pypdf) (4.12.2)
