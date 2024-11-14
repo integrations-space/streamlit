@@ -21,14 +21,6 @@ hide_github_icon = """
 """
 st.markdown(hide_github_icon, unsafe_allow_html=True)
 
-st.header("Important Notice")  # Subheader for the non-compliance checks section
-st.write("""
-I've disabled billing for Vertex AI as the project, as it incurred costs. 
-Therefore, errors will be shown as the functions were disabled. 
-I'll share some past generated outcomes for your viewing.
-FYIP: The PoC was completed and scored 45/45 on 13 Nov.
-""")  
-
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
 
@@ -91,6 +83,15 @@ if selected_page == "About":
 elif selected_page == "Methodology":
     load_protected_page("methodology")  # Load the methodology page
 elif selected_page == "Proposed Solution / PoC":
+# Create an expander for the notice on errors
+    with st.expander("⚠️ Important Notice for Errors ⚠️"):
+        st.write("""
+        I've disabled billing for Google Services (GCS, Vertex AI, etc.) as it incurred costs. 
+        Therefore, errors will be shown for some buttons, as the functions were disabled. 
+        I'll share some past generated outcomes for your viewing.
+        
+        **FYIP:** The PoC was completed and scored **45/45 on 13 Nov**.
+        """)
     # Set up Google Cloud credentials using secrets
     credentials_info = st.secrets["gcp_service_account"]  # Get GCP service account credentials from Streamlit secrets
     credentials = service_account.Credentials.from_service_account_info(credentials_info)  # Create credentials object
@@ -185,11 +186,20 @@ elif selected_page == "Proposed Solution / PoC":
         time.sleep(2)  # Pause to allow thread to start
 
         # Display the output
+        st.write("The current generated output.")
         file_name = "parsed_output/window_schedule.xls"  # File name of the output
         df = read_excel_from_gcs(bucket_name, file_name)  # Read Excel output from GCS
         if df is not None:
             st.write("Content of the Excel file:")  # Header to indicate content display
             st.dataframe(df)  # Display the DataFrame
+
+        # Embed the Google Sheet using iframe
+        st.write("The past successfully generated output.")
+        st.components.v1.iframe(
+            src="https://docs.google.com/spreadsheets/d/1bACiCjdRTD_eVxbgoeJPV0YjLFs_rth9/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",  # Preview link for the spreadsheet
+            width=700,  # Set width as per requirement
+            height=500  # Height can be adjusted as needed
+        )
 
     # Button to run the requirements parsing script
     st.subheader("Requirements - Parse & Compare")  # Subheader for the requirements parsing section
@@ -209,11 +219,20 @@ elif selected_page == "Proposed Solution / PoC":
         time.sleep(2)  # Pause to allow thread to start
 
         # Display the output
+        st.write("The current generated output.")
         file_name = "parsed_output/Requirements.txt"  # File name of the output
         content = read_file_from_gcs(bucket_name, file_name)  # Read text output from GCS
         if content:
             st.write("Content of the file:")  # Header to indicate content display
             st.text_area("File Content", content, height=300)  # Display content in a text area
+
+        # Embed the Google Sheet using iframe
+        st.write("The past successfully generated output.")
+        st.components.v1.iframe(
+            src="https://drive.google.com/file/d/1fXobXBEP9Nl0XdJQnL4E_tPBM8SGP2MN/preview",  # Preview link for the file
+            width=700,  # Set width as per requirement
+            height=500  # Height can be adjusted as needed
+        )
 
     # Button to run the non-compliance checks script
     st.subheader("Output - Checks and Recommend")  # Subheader for the non-compliance checks section
@@ -231,11 +250,21 @@ elif selected_page == "Proposed Solution / PoC":
         time.sleep(2)  # Pause to allow thread to start
 
         # Display the output
+        st.write("The current generated output.")
         file_name = "parsed_output/check_1.xlsx"  # File name of the output
         df = read_excel_from_gcs(bucket_name, file_name)  # Read Excel output from GCS
         if df is not None:
             st.write("Content of the Excel file:")  # Header to indicate content display
             st.dataframe(df)  # Display the DataFrame
+
+        # Embed the Google Sheet using iframe
+        st.write("The past successfully generated output.")
+        st.components.v1.iframe(
+            src="https://docs.google.com/spreadsheets/d/1p0ShM-unKG_FG-fr0bBnc6MB4OY7nG3V/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",  # Preview link for the spreadsheet
+            width=700,  # Set width as per requirement
+            height=500  # Height can be adjusted as needed
+        )
+
 
     # New Section: GPT-4o-Mini Text File Parsing
     st.header("Validation - explore the use of GPT-4o-Mini Text File Parsing for topic-focused requirements")  # Header for GPT-4o-Mini validation section
