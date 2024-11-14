@@ -11,11 +11,11 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
+# Set page configuration with correct favicon and title
 st.set_page_config(
-    page_title="AI_Analyser",  # Custom title for the browser tab
-    page_icon="https://drive.google.com/file/d/1qJquly4sTLizwCVcZV3GhJaz_i8vANI7/view?usp=drive_link", 
+    page_title="AI Analyser",  # Custom title for the browser tab
+    page_icon="https://drive.google.com/file/d/1qJquly4sTLizwCVcZV3GhJaz_i8vANI7/view?usp=drive_link",  # Replace with a direct link to your favicon
 )
-
 # CSS to hide Streamlit elements including "Manage app"
 hide_streamlit_style = """
 <style>
