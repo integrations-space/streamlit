@@ -99,7 +99,8 @@ elif selected_page == "Proposed Solution / PoC":
 # Create an expander for the notice on errors
     with st.expander("⚠️ Important Notice for Errors ⚠️"):
         st.write("""
-        The Proof of Concept (PoC) was successfully completed with a perfect score of 45/45. As a result, billing for Google services (GCS, Vertex AI, etc.) has been disabled to prevent further costs. 
+        The Proof of Concept (PoC) was successfully completed.
+        Therefore, the billing for Google services (GCS, Vertex AI, etc.) has been disabled to prevent further costs. 
         This may result in errors for certain buttons, as some functions have been deactivated. 
         Previously generated outcomes will still be available for viewing. Thank you for your understanding.
         """)
