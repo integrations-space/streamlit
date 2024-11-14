@@ -11,15 +11,22 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
-# Hide the Streamlit header and menu icons
-hide_github_icon = """
+# Enhanced CSS to hide GitHub icon and footer
+st.markdown(
+    """
     <style>
-    [data-testid="stDecoration"] > a {
-        display: none;
+    /* Hide GitHub links in the footer */
+    [data-testid="stDecoration"] a[href*="github.com"] {
+        display: none !important;
     }
+    /* Hide the entire footer section */
+    footer { visibility: hidden; height: 0px; }
+    /* Optionally hide the Streamlit menu */
+    #MainMenu { visibility: hidden; }
     </style>
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
