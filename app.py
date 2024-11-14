@@ -10,23 +10,19 @@ import importlib.util
 import time
 import threading
 from io import BytesIO  # Add missing import
+import streamlit.components.v1 as components
 
-# Enhanced CSS to hide GitHub icon and footer
-st.markdown(
-    """
-    <style>
-    /* Hide GitHub links in the footer */
-    [data-testid="stDecoration"] a[href*="github.com"] {
-        display: none !important;
-    }
-    /* Hide the entire footer section */
-    footer { visibility: hidden; height: 0px; }
-    /* Optionally hide the Streamlit menu */
-    #MainMenu { visibility: hidden; }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+custom_css = """
+<style>
+[data-testid="stDecoration"] a[href*="github.com"] {
+    display: none !important;
+}
+footer { visibility: hidden; height: 0px; }
+#MainMenu { visibility: hidden; }
+</style>
+"""
+
+components.html(custom_css, height=0)
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
