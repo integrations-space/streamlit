@@ -11,6 +11,11 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
+st.set_page_config(
+    page_title="AI_Analyser",  # Custom title for the browser tab
+    page_icon="https://drive.google.com/file/d/1qJquly4sTLizwCVcZV3GhJaz_i8vANI7/view?usp=drive_link", 
+)
+
 # CSS to hide Streamlit elements including "Manage app"
 hide_streamlit_style = """
 <style>
