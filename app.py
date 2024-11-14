@@ -11,20 +11,23 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
+# CSS to hide Streamlit elements including "Manage app"
 hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden !important;}
 footer {visibility: hidden !important;}
 header {visibility: hidden !important;}
 [data-testid="stToolbar"] {visibility: hidden !important;}
-[data-testid="stDecoration"] {display: none !important;}
+[data-testid="stDecoration"] {display: none !important;}  /* Hides "Manage app" */
 [data-testid="stStatusWidget"] {visibility: hidden !important;}
 [data-testid="stHeader"] {background-color: transparent !important;}
 [data-testid="stToolbar"] {right: 2rem !important;}
 </style>
 """
 
+# Inject the CSS into the Streamlit app
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
