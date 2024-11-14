@@ -21,6 +21,14 @@ hide_github_icon = """
 """
 st.markdown(hide_github_icon, unsafe_allow_html=True)
 
+st.header("Important Notice")  # Subheader for the non-compliance checks section
+st.write("""
+I've disabled billing for Vertex AI as the project, as it incurred costs. 
+Therefore, errors will be shown as the functions were disabled. 
+I'll share some past generated outcomes for your viewing.
+FYIP: The PoC was completed and scored 45/45 on 13 Nov.
+""")  
+
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
 
