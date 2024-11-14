@@ -11,20 +11,20 @@ import time
 import threading
 from io import BytesIO  # Add missing import
 
-custom_css = """
+hide_streamlit_style = """
 <style>
-/* Hide GitHub links in the footer */
-[data-testid="stDecoration"] > div:nth-child(1) a[href*="github.com"] {
-    display: none !important;
-}
-/* Hide the entire footer section */
-footer { visibility: hidden !important; height: 0px !important; }
-/* Optionally hide the Streamlit menu */
-#MainMenu { visibility: hidden !important; }
+#MainMenu {visibility: hidden !important;}
+footer {visibility: hidden !important;}
+header {visibility: hidden !important;}
+[data-testid="stToolbar"] {visibility: hidden !important;}
+[data-testid="stDecoration"] {display: none !important;}
+[data-testid="stStatusWidget"] {visibility: hidden !important;}
+[data-testid="stHeader"] {background-color: transparent !important;}
+[data-testid="stToolbar"] {right: 2rem !important;}
 </style>
 """
 
-st.markdown(custom_css, unsafe_allow_html=True)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Setting up logging to handle UnicodeEncodeError
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')  # Logging configuration to send logs to stdout
