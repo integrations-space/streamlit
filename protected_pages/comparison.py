@@ -44,7 +44,7 @@ def app():
 
     # Create a pandas DataFrame
     ai_models_df = pd.DataFrame(ai_models_data)
-
+  
     # Streamlit App
     st.title("[ AI Models' Comparison ]")
 
@@ -59,7 +59,30 @@ def app():
         ])
     )
 
-    st.header("Opted Models")
+    st.subheader("Parameter Count and Model Performance")
+    
+    st.write("""
+    ## Overview
+    The parameter count of an AI model directly influences its performance, capabilities, and resource requirements. A higher parameter count allows the model to capture more complex patterns and relationships in data, thereby improving its reasoning and accuracy. However, it also requires more computational power.
+    
+    ## Impact of Parameter Count
+    - **Performance & Capabilities**: A higher number of parameters typically means that the model can learn more complex relationships. For example, GPT-3, which has 175 billion parameters, outperforms earlier models like BERT (with 110 million parameters).
+    - **Computational Requirements**: Higher parameter counts come at a cost. These models require more computational power and memory to train and operate effectively.
+
+    ## Mixture-of-Experts (MoE) Architecture
+    Mixture-of-Experts (MoE) architectures are a method used to optimize resource efficiency. In these architectures, only a subset of the model's parameters ("experts") is activated for any given input. This allows for efficient use of the model's capacity without activating all parameters simultaneously, striking a balance between performance and resource requirements.
+    
+    ### Examples
+    - **Gemini 1.5 Pro and GPT-4o**: Both of these models use MoE architecture, allowing them to have very large numbers of parameters while optimizing which parts of the model are used for each task. This helps in achieving high scalability and efficient resource use.
+
+    ## Sources
+    - [DeepLearning.AI on Parameter Counts](https://www.deeplearning.ai/the-batch/trillions-of-parameters/)
+    - [Hugging Face Blog on Mixture-of-Experts](https://huggingface.co/blog/moe)
+    """)
+
+    st.info("The relationship between parameter count and model performance is crucial for understanding the trade-offs between accuracy and computational resource requirements.")
+
+    st.subheader("Opted Models")
     st.write("""
     As a quick start, we have opted the use of:
     \n- Gemini Vertex AI 1.5 Pro-002, suited for its advanced multimodal tasks, supporting deep contextual understanding.
