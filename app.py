@@ -97,7 +97,7 @@ elif selected_page == "Methodology":
     load_protected_page("methodology")  # Load the methodology page
 elif selected_page == "Proposed Solution / PoC":
 # Create an expander for the notice on errors
-    with st.expander("⚠️  Error Notice   ⚠️"):
+    with st.expander("⚠️   Error Notice    ⚠️"):
         st.write("""
         - We have completed this Proof of Concept (PoC) project. 
         - Billing for Google services such as Google Cloud Storage (GCS) and Vertex AI has been deactivated to prevent further costs. 
