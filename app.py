@@ -97,12 +97,13 @@ elif selected_page == "Methodology":
     load_protected_page("methodology")  # Load the methodology page
 elif selected_page == "Proposed Solution / PoC":
 # Create an expander for the notice on errors
-    with st.expander("⚠️ Important Notice for Errors ⚠️"):
+    with st.expander("⚠️ Notice ⚠️"):
         st.write("""
-        The Proof of Concept (PoC) was successfully completed.
-        Therefore, the billing for Google services (GCS, Vertex AI, etc.) has been disabled to prevent further costs. 
-        This may result in errors for certain buttons, as some functions have been deactivated. 
-        Previously generated outcomes will still be available for viewing. Thank you for your understanding.
+        We have completed this Proof of Concept (PoC) project. 
+        Billing for Google services such as Google Cloud Storage (GCS), Vertex AI, etc., has been deactivated to prevent further costs. 
+        As a result, the first three buttons will display two error messages when attempting to retrieve data from GCS and use Vertex AI. 
+        However, for reference and ease of understanding, we have included the previously generated outputs to demonstrate the outcomes. 
+        Thank you for your understanding.
         """)
     # Set up Google Cloud credentials using secrets
     credentials_info = st.secrets["gcp_service_account"]  # Get GCP service account credentials from Streamlit secrets
