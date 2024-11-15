@@ -49,7 +49,7 @@ def app():
     st.title("[ AI Models' Comparison ]")
 
     # Display the DataFrame as a table in Streamlit with wider layout
-    st.write("Below is the comparison of several AI models excluding Bard and Falcon:")
+    st.write("Below is the comparison of several AI models:")
     st.table(
         ai_models_df.set_index('Model')
         .style.set_properties(**{'white-space': 'pre-wrap', 'vertical-align': 'top', 'color': '#ffffff'})
