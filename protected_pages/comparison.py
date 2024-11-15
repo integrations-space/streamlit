@@ -62,22 +62,18 @@ def app():
     st.subheader("Parameter Count and Model Performance")
     
     st.write("""
-    ## Overview
+    #### Overview
     The parameter count of an AI model directly influences its performance, capabilities, and resource requirements. A higher parameter count allows the model to capture more complex patterns and relationships in data, thereby improving its reasoning and accuracy. However, it also requires more computational power.
     
-    ## Impact of Parameter Count
+    #### Impact of Parameter Count
     - **Performance & Capabilities**: A higher number of parameters typically means that the model can learn more complex relationships. For example, GPT-3, which has 175 billion parameters, outperforms earlier models like BERT (with 110 million parameters).
     - **Computational Requirements**: Higher parameter counts come at a cost. These models require more computational power and memory to train and operate effectively.
 
-    ## Mixture-of-Experts (MoE) Architecture
+    #### Mixture-of-Experts (MoE) Architecture
     Mixture-of-Experts (MoE) architectures are a method used to optimize resource efficiency. In these architectures, only a subset of the model's parameters ("experts") is activated for any given input. This allows for efficient use of the model's capacity without activating all parameters simultaneously, striking a balance between performance and resource requirements.
     
-    ### Examples
+    #### Examples
     - **Gemini 1.5 Pro and GPT-4o**: Both of these models use MoE architecture, allowing them to have very large numbers of parameters while optimizing which parts of the model are used for each task. This helps in achieving high scalability and efficient resource use.
-
-    ## Sources
-    - [DeepLearning.AI on Parameter Counts](https://www.deeplearning.ai/the-batch/trillions-of-parameters/)
-    - [Hugging Face Blog on Mixture-of-Experts](https://huggingface.co/blog/moe)
     """)
 
     st.info("The relationship between parameter count and model performance is crucial for understanding the trade-offs between accuracy and computational resource requirements.")
@@ -101,6 +97,8 @@ def app():
     - Meta AI (2023) 'Llama 2: Open Foundation and Fine-Tuned Chat Models'. Available at: https://arxiv.org/abs/2307.09288 (Accessed: 15 November 2024).
     - Meta AI (2023) 'Llama 2'. Available at: https://www.llama.com/llama2/ (Accessed: 15 November 2024).
     - Originality.AI (2024) 'Meta Llama 2: Statistics on Meta AI and Microsoft's Open Source LLM'. Available at: https://originality.ai/blog/meta-llama-2-statistics (Accessed: 15 November 2024).
+    - DeepLearning (2024) 'AI on Parameter Counts' Available at: https://www.deeplearning.ai/the-batch/trillions-of-parameters/ (Accessed: 15 Novemb 2024).
+    - Hugging Face Blog (2024) 'Mixture-of-Experts'  Available at: https://huggingface.co/blog/moe) (Accessed: 15 Novemb 2024).
     """)
 
 # Run the app if the script is executed directly
