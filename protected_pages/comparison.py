@@ -16,7 +16,7 @@ def app():
         ],
         "Capabilities & Unique Features": [
             "- Advanced multimodal capabilities across text, images, audio, and video\n"
-            "- Massive context window up to 10 million tokens\n"
+            "- Massive context window up to 2 million tokens\n"
             "- Efficient Mixture-of-Experts (MoE) architecture\n"
             "- High-performance reasoning and analysis",
 
