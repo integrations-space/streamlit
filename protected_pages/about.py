@@ -57,12 +57,17 @@ def app():
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/ww.jpg", width=100) 
         st.write("Mr. PONG Woon Wei (Lead)")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/woonwei/)")  
-    
+        st.write("Explore the use of AI agents for data parsing, analysis, and reporting [gemini-1.5-pro-002]")
+        st.markdown("[aianalyser.streamlit.app](https://aianalyser.streamlit.app/)")  
+
+
     with col2:
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/unni.jpg", width=100) 
         st.write("Mr. Unni Krishnan AMBADY")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
-
+        st.write("Explore the use of AI agent as interactive validator for generated outputs [gpt-4o-mini]")
+        st.markdown("[bca-project.streamlit.app](https://bca-project.streamlit.app/)") 
+        
 # Run the app if the script is executed directly
 if __name__ == "__main__":
     # Use st.set_page_config to ensure the page is properly configured
