@@ -4,19 +4,44 @@ import pandas as pd
 # Define the Streamlit app
 def app():
  
-    # Define the data for the AI models
-    ai_models_data = {
-        "Model": ["Gemini 1.5 Pro-002", "GPT-4o Mini", "GPT-4o", "Llama 2", "Claude 3"],
-        "Provider": ["Google DeepMind", "OpenAI", "OpenAI", "Meta AI", "Anthropic"],
-        "Parameter Count": ["~600B+", "~80B", "~175B", "70B", "~100B"],
-        "Capabilities & Unique Features": [
-            "- Advanced multimodal capabilities.\n- High degree of context-awareness, integrates text and visual inputs.\n- Conversational AI, Image Processing, Data Analysis",
-            "- General conversational, creative tasks.\n- Light-weight, optimized for low-resource environments.\n- Chatbots, content generation, summaries",
-            "- Advanced text generation, reasoning.\n- Strong at complex problem-solving and nuanced text analysis.\n- Enterprise apps, customer support, education",
-            "- General-purpose text processing.\n- Open-source friendly, customizable for research.\n- Open research, NLP tasks, conversational AI",
-            "- Safety-oriented generative AI.\n- Enhanced focus on safe and ethical AI behaviors.\n- Assistant bots, safe generative output"
-        ]
-    }
+# Define the data for the AI models
+ai_models_data = {
+    "Model": ["Gemini 1.5 Pro", "GPT-4o Mini", "GPT-4o", "Llama 2", "Claude 3 Opus"],
+    "Provider": ["Google DeepMind", "OpenAI", "OpenAI", "Meta AI", "Anthropic"],
+    "Parameter Count": [
+        "Not explicitly disclosed (Mixture-of-Experts architecture)",
+        "Estimated ~8B active parameters (MoE architecture)",
+        "Estimated 1.8 trillion parameters (MoE architecture)",
+        "70B",
+        "Not explicitly disclosed, estimated over 2 trillion"
+    ],
+    "Capabilities & Unique Features": [
+        "- Advanced multimodal capabilities across text, images, audio, and video\n"
+        "- Massive context window up to 10 million tokens\n"
+        "- Efficient Mixture-of-Experts (MoE) architecture\n"
+        "- High-performance reasoning and analysis",
+        
+        "- Lightweight, cost-efficient AI model\n"
+        "- Supports text and vision inputs\n"
+        "- Optimized for low-resource environments\n"
+        "- Strong performance in reasoning and coding tasks",
+        
+        "- Comprehensive multimodal capabilities\n"
+        "- Supports text, image, audio, and video inputs\n"
+        "- Advanced reasoning and complex problem-solving\n"
+        "- Enterprise-grade performance across multiple domains",
+        
+        "- Open-source large language model\n"
+        "- Customizable for research and specific applications\n"
+        "- Strong performance in natural language processing\n"
+        "- Versatile across various conversational and analytical tasks",
+        
+        "- Advanced multimodal AI with high accuracy\n"
+        "- Large context window (200K tokens)\n"
+        "- Strong emphasis on safety and ethical AI\n"
+        "- Multilingual and vision capabilities"
+    ]
+}
 
     # Create a pandas DataFrame
     ai_models_df = pd.DataFrame(ai_models_data)
@@ -37,17 +62,18 @@ def app():
     """)
 
 
-    st.subheader("Reference links")
-    st.write("""
-    - DeepMind (2024) Gemini 1.5 Pro Technical Report. Available at: https://arxiv.org/pdf/2403.05530v1 (Accessed: 12 November 2024).
-    - AI at Google (2024) Gemini AI Applications. Available at: https://ai.google.dev/gemini-api/docs/models/gemini (Accessed: 12 November 2024).
-    - OpenAI (2024) GPT-4o Mini: Advancing Cost-Efficient Intelligence. Available at: https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence (Accessed: 12 November 2024).
-    - Ultralytics (2024) A Deep Dive into GPT-4o Mini Capabilities. Available at: https://www.ultralytics.com/blog/a-deep-dive-into-the-capabilities-of-openais-gpt-4o-mini (Accessed: 12 November 2024).
-    - DataCamp (2024) Applications of GPT-4o Mini. Available at: https://www.datacamp.com/blog/gpt-4o-mini (Accessed: 12 November 2024).
-    - Meta AI (2023) Llama 2: Open Foundation and Fine-Tuned Chat Models. Available at: https://ai.facebook.com/blog/llama-2 (Accessed: 12 November 2024).
-    - Anthropic (2024) Claude 3: Next-Generation AI Assistant. Available at: https://www.anthropic.com/index/claude-3 (Accessed: 12 November 2024).
-    - Wikipedia (2024) Llama 2 and Claude 3 AI Models Overview. Available at: https://en.wikipedia.org/wiki/Gemini_%28language_model%29 (Accessed: 12 November 2024).
-    """)
+ st.subheader("References")
+ st.write("""
+ - Google DeepMind (2024) 'Gemini 1.5: Unlocking multimodal understanding across millions of tokens'. Available at: https://arxiv.org/abs/2403.05530 (Accessed: 15 November 2024).
+ - Google AI (2024) 'Gemini - Google DeepMind'. Available at: https://deepmind.google/technologies/gemini/ (Accessed: 15 November 2024).
+ - OpenAI (2024) 'GPT-4o'. Available at: https://en.wikipedia.org/wiki/GPT-4o (Accessed: 15 November 2024).
+ - Latenode (2024) 'AI Anthropic Claude 3 Detailed Overview'. Available at: https://latenode.com/blog/ai-anthropic-claude-3-overview (Accessed: 15 November 2024).
+ - Encord (2024) 'GPT-4o vs. Gemini 1.5 Pro vs. Claude 3 Opus: Multimodal AI Model Comparison'. Available at: https://encord.com/blog/gpt-4o-vs-gemini-vs-claude-3-opus/ (Accessed: 15 November 2024).
+ - Summa Linguae (2024) 'What is GPT-4o mini (and how does it compare to other LLMs?)'. Available at: https://summalinguae.com/language-technology/what-is-gpt-4o-mini-and-how-does-it-compare-to-other-llms/ (Accessed: 15 November 2024).
+ - Meta AI (2023) 'Llama 2: Open Foundation and Fine-Tuned Chat Models'. Available at: https://arxiv.org/abs/2307.09288 (Accessed: 15 November 2024).
+ - Meta AI (2023) 'Llama 2'. Available at: https://www.llama.com/llama2/ (Accessed: 15 November 2024).
+ - Originality.AI (2024) 'Meta Llama 2: Statistics on Meta AI and Microsoft's Open Source LLM'. Available at: https://originality.ai/blog/meta-llama-2-statistics (Accessed: 15 November 2024).
+ """)
 
 # Run the app if the script is executed directly
 if __name__ == "__main__":
