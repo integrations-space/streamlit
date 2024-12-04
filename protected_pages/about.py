@@ -57,7 +57,7 @@ def app():
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/ww.jpg", width=100) 
         st.write("Mr. PONG Woon Wei (Lead)")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/woonwei/)")  
-        st.write("Explore the use of AI agents for data parsing, analysis, and reporting [gemini-1.5-pro-002]")
+        st.write("Explore the use of AI agents for automatic data parsing, analysis, and reporting to improve and streamline checking processes [gemini-1.5-pro-002]")
         st.markdown("[aianalyser.streamlit.app](https://aianalyser.streamlit.app/)")  
 
 
