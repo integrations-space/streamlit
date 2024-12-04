@@ -65,7 +65,7 @@ def app():
         st.image("https://github.com/integrations-space/streamlit/raw/main/pictures/unni.jpg", width=100) 
         st.write("Mr. Unni Krishnan AMBADY")
         st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/unni-krishnan-ambady-0287a4164)")
-        st.write("Explore the use of AI agent as interactive validator for generated outputs [gpt-4o-mini]")
+        st.write("Explore the use of the OpenAI model as an independent interactive validator to verify generated outputs [gpt-4o-mini]")
         st.markdown("[bca-project.streamlit.app](https://bca-project.streamlit.app/)") 
         
 # Run the app if the script is executed directly
