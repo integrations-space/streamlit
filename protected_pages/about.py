@@ -14,7 +14,7 @@ def app():
         **Key Question**: 
 
         - How can we simplify and automate repetitive checks, reduce non-compliance risks, and improve workflows to ease the work burden on project stakeholders?
-          (referencing [AI Hackathon](https://www.aihackathon.pro/p/topics.html) topic 1)
+          (referencing [AI Hackathon](https://www.aihackathon.pro/p/2024-topics-and-submissions.html) topic 1)
 
         **Objective**:
 
