@@ -97,13 +97,13 @@ elif selected_page == "Methodology":
     load_protected_page("methodology")  # Load the methodology page
 elif selected_page == "Proposed Solution / PoC":
 # Create an expander for the notice on errors
-    with st.expander("⚠️   Error Notice    ⚠️"):
+    with st.expander("📢   Notice    📢"):
         st.write("""
-        - We have completed this Proof of Concept (PoC) project. 
-        - Billing for Google services such as Google Cloud Storage (GCS) and Vertex AI has been deactivated to prevent further charges. 
-        - As a result, the first three buttons will display two error messages when attempting to retrieve data from GCS for real-time generated outputs. 
-        - However, for reference and ease of understanding, we have included previously generated outputs for demonstration.
-        - We are exploring available FoC AI models and will update the code once ready.
+        - This Proof of Concept (PoC) project has been completed.
+        - Billing for Google services (Cloud Storage and Vertex AI) has been deactivated to avoid further charges, so the **⚙️ Run live (requires active GCS)** option will no longer work.
+        - For reference, previously generated outputs are embedded under each section so you can still see what the pipeline produces.
+        - **🔑 New — Bring your own API key:** the Design Intent section now supports live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
+        - We will roll the same BYO-key flow out to the Requirements and Compliance Checks sections in the next iteration.
         - Thank you for your understanding.
         """)
     # Set up Google Cloud credentials using secrets
@@ -229,26 +229,66 @@ elif selected_page == "Proposed Solution / PoC":
             if df is not None:
                 st.dataframe(df)
 
-    # BYO API key: run live against the bundled window schedule using the visitor's own Gemini key
-    with st.expander("🔑 Run with your own Gemini API key (free tier available)"):
+    # BYO API key: run live against the bundled window schedule using the visitor's own LLM key
+    PROVIDERS = {
+        "Gemini (free tier available)": {
+            "models": ["gemini/gemini-2.5-flash", "gemini/gemini-2.5-pro", "gemini/gemini-1.5-pro"],
+            "key_url": "https://aistudio.google.com/apikey",
+            "vendor": "Google",
+        },
+        "OpenAI": {
+            "models": ["openai/gpt-4o-mini", "openai/gpt-4o", "openai/gpt-5"],
+            "key_url": "https://platform.openai.com/api-keys",
+            "vendor": "OpenAI",
+        },
+        "Groq (free tier available)": {
+            "models": [
+                "groq/meta-llama/llama-4-scout-17b-16e-instruct",
+                "groq/meta-llama/llama-4-maverick-17b-128e-instruct",
+                "groq/llama-3.2-90b-vision-preview",
+            ],
+            "key_url": "https://console.groq.com/keys",
+            "vendor": "Groq",
+        },
+        "Mistral": {
+            "models": ["mistral/pixtral-large-latest", "mistral/pixtral-12b-2409"],
+            "key_url": "https://console.mistral.ai/api-keys/",
+            "vendor": "Mistral",
+        },
+    }
+
+    with st.expander("🔑 Run with your own API key — Gemini / OpenAI / Groq / Mistral"):
         st.markdown(
-            "Get a free key at [Google AI Studio](https://aistudio.google.com/apikey). "
-            "Your key is sent only to Google and is **not stored or logged** by this app."
+            "Bring your own API key — your key is sent **only** to the provider you choose "
+            "and is **not stored or logged** by this app."
         )
+        provider_name = st.radio(
+            "Provider",
+            list(PROVIDERS.keys()),
+            horizontal=True,
+            key="byo_provider",
+        )
+        provider = PROVIDERS[provider_name]
+        st.markdown(f"Get a key from **{provider['vendor']}**: [{provider['key_url']}]({provider['key_url']})")
+
         col1, col2 = st.columns([3, 2])
         with col1:
-            user_api_key = st.text_input("Gemini API key", type="password", key="byo_gemini_key")
+            user_api_key = st.text_input(
+                f"{provider['vendor']} API key",
+                type="password",
+                key=f"byo_key_{provider_name}",
+            )
         with col2:
             user_model = st.selectbox(
-                "Model",
-                ["gemini/gemini-2.5-flash", "gemini/gemini-2.5-pro", "gemini/gemini-1.5-pro"],
+                "Model (vision-capable)",
+                provider["models"],
                 index=0,
-                key="byo_gemini_model",
+                key=f"byo_model_{provider_name}",
             )
 
         if st.button("Run with my key", key="byo_run_design_intent"):
             if not user_api_key:
-                st.error("Please paste your Gemini API key first.")
+                st.error(f"Please paste your {provider['vendor']} API key first.")
             else:
                 from parsers.byo_agent import (
                     parse_schedule_image,
@@ -260,12 +300,12 @@ elif selected_page == "Proposed Solution / PoC":
                 try:
                     with open(image_path, "rb") as f:
                         image_bytes = f.read()
-                    with st.spinner("Agent 1: extracting schedule from image..."):
+                    with st.spinner(f"Agent 1 ({user_model}): extracting schedule from image..."):
                         raw_table = parse_schedule_image(image_bytes, user_api_key, user_model)
-                    with st.spinner("Agent 2: cleaning and formatting..."):
+                    with st.spinner(f"Agent 2 ({user_model}): cleaning and formatting..."):
                         formatted = format_table(raw_table, user_api_key, user_model)
                     df, schedule_type = table_text_to_dataframe(formatted)
-                    st.success(f"Done — parsed as a {schedule_type} schedule.")
+                    st.success(f"Done — parsed as a {schedule_type} schedule using {user_model}.")
                     st.dataframe(df)
                     st.download_button(
                         "Download as Excel",
