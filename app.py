@@ -95,8 +95,8 @@ elif selected_page == "Proposed Solution / PoC":
     with st.expander("📢   Notice    📢"):
         st.write("""
         - This Proof of Concept (PoC) project has been completed.
-        - **🔑 Bring your own API key:** the Design Intent section supports live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
-        - We will roll the same BYO-key flow out to the Requirements and Compliance Checks sections in the next iteration.
+        - **🔑 Bring your own API key:** the Design Intent and Requirements sections support live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
+        - The Compliance Checks section will get the same BYO-key flow in the next iteration.
         """)
     # Main Page Content
     st.title("[ Proposed Solution / PoC]")  # Main header of the page
@@ -210,14 +210,14 @@ elif selected_page == "Proposed Solution / PoC":
                 except Exception as e:
                     st.error(f"Run failed: {e}")
 
-    # Button to run the requirements parsing script
+    # Requirements - Parse & Compare (Agents 3 & 4)
     st.subheader("Requirements - Parse & Compare")  # Subheader for the requirements parsing section
     st.markdown("[BCA Approvd Doc](https://drive.google.com/file/d/1avFLNumtOzi3mvDwA3aHBlsY2sJ_QxlD/view?usp=drive_link)")
     st.markdown("[SCDF Chapter 4](https://drive.google.com/file/d/1aAfxhjrRiGutbrIuDIm1SSOk8KGeHCV3/view?usp=drive_link)")
     st.write("""
-    Click the button to allow:
-    1. Agent 3 to analyze compliance-related requirements with the provided PDF documents from Google Cloud Storage.
-    2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
+    With your own API key, this section will:
+    1. **Agent 3** — analyse compliance-related requirements in each of the bundled regulatory PDF documents (BCA Approved Doc & SCDF Chapter 4).
+    2. **Agent 4** — extract and summarise the most stringent requirements, potential non-compliances, and recommendations.
     """)  # Description of the process
 
     # Always display the previously generated demo output
@@ -227,6 +227,100 @@ elif selected_page == "Proposed Solution / PoC":
         width=700,
         height=500
     )
+
+    # BYO API key flow for Requirements parsing (Agents 3 & 4)
+    with st.expander("🔑 Run with your own API key — Gemini / OpenAI / Groq / Mistral"):
+        st.markdown(
+            "Bring your own API key — your key is sent **only** to the provider you choose "
+            "and is **not stored or logged** by this app."
+        )
+        req_provider_name = st.radio(
+            "Provider",
+            list(PROVIDERS.keys()),
+            horizontal=True,
+            key="byo_provider_req",
+        )
+        req_provider = PROVIDERS[req_provider_name]
+        st.markdown(f"Get a key from **{req_provider['vendor']}**: [{req_provider['key_url']}]({req_provider['key_url']})")
+
+        rc1, rc2 = st.columns([3, 2])
+        with rc1:
+            req_api_key = st.text_input(
+                f"{req_provider['vendor']} API key",
+                type="password",
+                key=f"byo_key_req_{req_provider_name}",
+            )
+        with rc2:
+            req_model = st.selectbox(
+                "Model",
+                req_provider["models"],
+                index=0,
+                key=f"byo_model_req_{req_provider_name}",
+            )
+
+        schedule_type = st.radio(
+            "Schedule type to analyse",
+            ["Window", "Door"],
+            horizontal=True,
+            key="byo_req_schedule_type",
+        )
+
+        if st.button("Run Agents 3 & 4 with my key", key="byo_run_requirements"):
+            if not req_api_key:
+                st.error(f"Please paste your {req_provider['vendor']} API key first.")
+            else:
+                from parsers.byo_agent import (
+                    extract_pdf_text,
+                    run_text_prompt,
+                    REQUIREMENTS_EXTRACT_PROMPT_TEMPLATE,
+                    REQUIREMENTS_SUMMARY_PROMPT_TEMPLATE,
+                    MAX_PDF_CHARS,
+                )
+                regulatory_dir = os.path.join(os.path.dirname(__file__), "regulatory_requirements")
+                pdf_files = [
+                    ("BCA Approved Doc", os.path.join(regulatory_dir, "approveddoc.pdf")),
+                    ("SCDF Chapter 4", os.path.join(regulatory_dir, "scdf chapter 4.pdf")),
+                ]
+                try:
+                    extracted_sections = []
+                    for doc_name, pdf_path in pdf_files:
+                        with st.spinner(f"Reading {doc_name}..."):
+                            with open(pdf_path, "rb") as f:
+                                pdf_bytes = f.read()
+                            doc_text = extract_pdf_text(pdf_bytes)
+                            if len(doc_text) > MAX_PDF_CHARS:
+                                st.warning(f"{doc_name}: truncating from {len(doc_text):,} to {MAX_PDF_CHARS:,} chars to fit model context.")
+                                doc_text = doc_text[:MAX_PDF_CHARS]
+                        with st.spinner(f"Agent 3 ({req_model}): extracting requirements from {doc_name}..."):
+                            prompt = REQUIREMENTS_EXTRACT_PROMPT_TEMPLATE.format(
+                                schedule_type=schedule_type,
+                                doc_name=doc_name,
+                                content=doc_text,
+                            )
+                            extracted = run_text_prompt(prompt, req_api_key, req_model)
+                        extracted_sections.append(f"## From {doc_name}\n\n{extracted}")
+
+                    combined = "\n\n---\n\n".join(extracted_sections)
+                    with st.spinner(f"Agent 4 ({req_model}): synthesising final summary..."):
+                        summary_prompt = REQUIREMENTS_SUMMARY_PROMPT_TEMPLATE.format(
+                            schedule_type=schedule_type,
+                            combined_extracted=combined,
+                        )
+                        final_summary = run_text_prompt(summary_prompt, req_api_key, req_model)
+
+                    st.success(f"Done — analysed {len(pdf_files)} regulatory document(s) for {schedule_type} requirements.")
+                    st.markdown("### Final Summary (Agent 4)")
+                    st.markdown(final_summary)
+                    with st.expander("Show per-document extractions (Agent 3)"):
+                        st.markdown(combined)
+                    st.download_button(
+                        "Download summary as Markdown",
+                        data=final_summary.encode("utf-8"),
+                        file_name=f"requirements_summary_{schedule_type.lower()}.md",
+                        mime="text/markdown",
+                    )
+                except Exception as e:
+                    st.error(f"Run failed: {e}")
 
     # Button to run the non-compliance checks script
     st.subheader("Output - Checks and Recommend")  # Subheader for the non-compliance checks section

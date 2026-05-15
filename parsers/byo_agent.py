@@ -6,6 +6,7 @@ import io
 import logging
 
 import pandas as pd
+import PyPDF2
 from litellm import completion
 
 logger = logging.getLogger(__name__)
@@ -121,3 +122,64 @@ def dataframe_to_excel_bytes(df: pd.DataFrame) -> bytes:
     df.to_excel(buf, index=False)
     buf.seek(0)
     return buf.read()
+
+
+def extract_pdf_text(pdf_bytes: bytes) -> str:
+    """Extract all text content from a PDF file (bytes)."""
+    reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
+    return "\n".join((page.extract_text() or "") for page in reader.pages)
+
+
+def run_text_prompt(prompt: str, api_key: str, model: str) -> str:
+    """Generic single-turn text completion — no image input."""
+    response = completion(
+        model=model,
+        api_key=api_key,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return response.choices[0].message.content
+
+
+REQUIREMENTS_EXTRACT_PROMPT_TEMPLATE = """
+Extract and summarize the key requirements for {schedule_type} from the following regulatory document ({doc_name}).
+
+For each requirement, provide:
+1. Requirement description
+2. Source document and specific clause/section
+3. Applicable measurements or specifications
+4. Any exceptions or special conditions
+
+Organize the information under the following categories:
+a) Ventilation requirements
+b) Opening sizes and dimensions
+c) Positioning and placement
+d) Area calculations and requirements
+e) Safety and security features
+f) Accessibility considerations
+g) Energy efficiency standards
+h) Other relevant specifications
+
+Present the information in a structured format using markdown, with clear headings and bullet points for easy readability. Highlight any stringent requirements or potential non-compliances.
+
+Document content:
+{content}
+""".strip()
+
+
+REQUIREMENTS_SUMMARY_PROMPT_TEMPLATE = """
+Summarize the most stringent {schedule_type} requirements based on the extracted information below.
+Highlight any non-compliances or regulatory concerns.
+Provide the summary in a structured format using markdown, with clear headings and bullet points for quick understanding.
+
+Include sections on:
+1. Most Stringent Requirements
+2. Potential Non-Compliances
+3. Areas Requiring Further Investigation
+4. Recommendations for Compliance
+
+Extracted information from regulatory documents:
+{combined_extracted}
+""".strip()
+
+
+MAX_PDF_CHARS = 200_000  # ~50k tokens — safe for modern 128k-context models
