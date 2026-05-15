@@ -80,21 +80,36 @@ def app():
     )
 
     st.subheader("Parameter Count and Model Performance")
-    
-    st.write("""
-    #### Overview
-    The parameter count of an AI model directly influences its performance, capabilities, and resource requirements. A higher parameter count allows the model to capture more complex patterns and relationships in data, thereby improving its reasoning and accuracy. However, it also requires more computational power.
-    
-    #### Impact of Parameter Count
-    - **Performance & Capabilities**: A higher number of parameters typically means that the model can learn more complex relationships. For example, GPT-3, which has 175 billion parameters, outperforms earlier models like BERT (with 110 million parameters).
-    - **Computational Requirements**: Higher parameter counts come at a cost. These models require more computational power and memory to train and operate effectively.
 
-    #### Mixture-of-Experts (MoE) Architecture
-    Mixture-of-Experts (MoE) architectures are a method used to optimize resource efficiency. In these architectures, only a subset of the model's parameters ("experts") is activated for any given input. This allows for efficient use of the model's capacity without activating all parameters simultaneously, striking a balance between performance and resource requirements.
-    
-    #### Examples
-    - **Gemini 1.5 Pro and GPT-4o**: Both of these models use MoE architecture, allowing them to have very large numbers of parameters while optimizing which parts of the model are used for each task. This helps in achieving high scalability and efficient resource use.
-    """)
+    st.markdown("""
+#### Overview
+The parameter count of an AI model directly influences its performance, capabilities, and resource requirements. A higher parameter count allows the model to capture more complex patterns and relationships in data, thereby improving its reasoning and accuracy. However, it also requires more computational power.
+
+<div style="color:#4FC3F7;">
+<strong>2026 nuance:</strong> raw parameter count is no longer the dominant driver of capability. Training-data quality, post-training (RLHF / DPO), tool use, and architecture choices now contribute as much or more. Small well-trained models — Gemini 2.5 Flash, gpt-4o-mini, Pixtral-12B, Llama 3.2 Vision — often match or beat older models several times their size. This is what makes the free-tier BYOK PoC practical: the cheap models are now genuinely capable.
+</div>
+
+#### Impact of Parameter Count
+- <strong>Performance & Capabilities</strong>: A higher number of parameters typically means that the model can learn more complex relationships. <s style="color:#888">For example, GPT-3, which has 175 billion parameters, outperforms earlier models like BERT (with 110 million parameters).</s> <span style="color:#4FC3F7">For a 2026-relevant example: Llama 4 Maverick (~400B total / ~17B active params via MoE) competes with dense models several times its active size, while Gemini 2.5 Flash matches earlier Pro-tier performance at a fraction of the cost and latency.</span>
+- <strong>Computational Requirements</strong>: Higher parameter counts come at a cost. These models require more computational power and memory to train and operate effectively. <span style="color:#4FC3F7">Sparse / MoE designs and aggressive quantisation (INT8, INT4) have softened this trade-off considerably since 2024.</span>
+
+#### Mixture-of-Experts (MoE) Architecture
+Mixture-of-Experts (MoE) architectures are a method used to optimize resource efficiency. In these architectures, only a subset of the model's parameters ("experts") is activated for any given input. This allows for efficient use of the model's capacity without activating all parameters simultaneously, striking a balance between performance and resource requirements.
+
+#### Examples
+- <s style="color:#888"><strong>Gemini 1.5 Pro and GPT-4o</strong>: Both of these models use MoE architecture, allowing them to have very large numbers of parameters while optimizing which parts of the model are used for each task. This helps in achieving high scalability and efficient resource use.</s>
+
+<div style="color:#4FC3F7;">
+<strong>2026 MoE landscape:</strong>
+<ul>
+<li><strong>Meta — Llama 4 Scout</strong> (~109B total / ~17B active) and <strong>Llama 4 Maverick</strong> (~400B total / ~17B active): both explicit MoE, available on Groq's free tier and used in this PoC.</li>
+<li><strong>DeepSeek-V3</strong> (671B total / 37B active): one of the largest publicly disclosed MoE models.</li>
+<li><strong>Mistral — Mixtral 8x7B / 8x22B</strong>: classic 8-expert MoE; Mistral's flagship dense models (Mistral Large, Pixtral) are <em>not</em> MoE.</li>
+<li><strong>Google — Gemini 1.5 / 2.5 series</strong>: confirmed MoE; the free-tier <code>gemini-2.5-flash</code> in this PoC is a smaller MoE variant tuned for low-latency inference.</li>
+<li><strong>OpenAI — GPT-4o / GPT-5</strong>: architecture not officially disclosed; widely believed to be MoE but not confirmed.</li>
+</ul>
+</div>
+    """, unsafe_allow_html=True)
 
     st.info("The relationship between parameter count and model performance is crucial for understanding the trade-offs between accuracy and computational resource requirements.")
 
