@@ -62,7 +62,7 @@ if not st.session_state.authenticated:
 
 # Navigation after successful authentication
 st.sidebar.title("Navigation")  # Sidebar title for navigation
-selected_page = st.sidebar.radio("Select a page:", ["About", "Methodology", "Proposed Solution / PoC", "Documentation", "AI Models' Comparison", "Disclaimer", "Acknowledgement"])  # Sidebar navigation options
+selected_page = st.sidebar.radio("Select a page:", ["About", "Methodology", "Proposed Solution / PoC", "Documentation", "AI Models' Comparison", "Disclaimer"])  # Sidebar navigation options
 
 # Function to dynamically load a module from the protected_pages directory
 def load_protected_page(page_name):
@@ -107,10 +107,16 @@ elif selected_page == "Proposed Solution / PoC":
         - Thank you for your understanding.
         """)
     # Set up Google Cloud credentials using secrets
-    credentials_info = st.secrets["gcp_service_account"]  # Get GCP service account credentials from Streamlit secrets
-    credentials = service_account.Credentials.from_service_account_info(credentials_info)  # Create credentials object
-    storage_client = storage.Client(credentials=credentials)  # Initialize the storage client with credentials
-    logging.info("Google Cloud Storage client initialized using credentials from Streamlit secrets.")  # Log successful initialization
+    storage_client = None
+    try:
+        credentials_info = st.secrets["gcp_service_account"]  # Get GCP service account credentials from Streamlit secrets
+        credentials = service_account.Credentials.from_service_account_info(credentials_info)  # Create credentials object
+        storage_client = storage.Client(credentials=credentials)  # Initialize the storage client with credentials
+        logging.info("Google Cloud Storage client initialized using credentials from Streamlit secrets.")  # Log successful initialization
+    except KeyError:
+        logging.warning("GCP service account credentials not found in secrets. GCS features are unavailable.")
+    except Exception as e:
+        logging.warning(f"Failed to initialize GCS client: {e}")
 
     # Directory to save downloaded scripts locally
     LOCAL_SCRIPT_PATH = "/tmp/gcs_agents"  # Define local path to save scripts
@@ -126,6 +132,9 @@ elif selected_page == "Proposed Solution / PoC":
 
     # Function to download and save the Python scripts from GCS
     def download_script_from_gcs(bucket_name, gcs_path, local_script_name):
+        if storage_client is None:
+            st.error("GCS is unavailable: Google Cloud credentials are not configured.")
+            return None
         try:
             bucket = storage_client.bucket(bucket_name)  # Get the bucket from storage client
             blob = bucket.blob(gcs_path)  # Get the blob object representing the file
@@ -151,6 +160,9 @@ elif selected_page == "Proposed Solution / PoC":
 
     # Function to read a file from GCS
     def read_file_from_gcs(bucket_name, file_name):
+        if storage_client is None:
+            st.error("GCS is unavailable: Google Cloud credentials are not configured.")
+            return None
         try:
             bucket = storage_client.bucket(bucket_name)  # Get the bucket from storage client
             blob = bucket.blob(file_name)  # Get the blob object representing the file
@@ -161,6 +173,9 @@ elif selected_page == "Proposed Solution / PoC":
 
     # Function to read an Excel file from GCS
     def read_excel_from_gcs(bucket_name, file_name):
+        if storage_client is None:
+            st.error("GCS is unavailable: Google Cloud credentials are not configured.")
+            return None
         try:
             bucket = storage_client.bucket(bucket_name)  # Get the bucket from storage client
             blob = bucket.blob(file_name)  # Get the blob object representing the file
@@ -192,28 +207,27 @@ elif selected_page == "Proposed Solution / PoC":
     2. AI Agent 2 to clean, tabulate and save as Excel output for the next AI Agent to check.
     """)  # Description of the process
 
-    if st.button("Run Design Intent Parsing Script"):  # Button to trigger script execution
-        with st.spinner("Downloading and Running Design Intent Parsing Script..."):  # Spinner to indicate processing
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Design Intent Parsing"], "Dual_Agents_for_GCS.py")  # Download script
-            if local_path:
-                run_script_in_thread(load_and_run_script, local_path)  # Run script in a separate thread
-        time.sleep(2)  # Pause to allow thread to start
+    # Always display the previously generated demo output
+    st.write("Previously generated output (for demonstration):")
+    st.components.v1.iframe(
+        src="https://docs.google.com/spreadsheets/d/1bACiCjdRTD_eVxbgoeJPV0YjLFs_rth9/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",
+        width=700,
+        height=500
+    )
 
-        # Display the output
-        st.write("The current generated output.")
-        file_name = "parsed_output/window_schedule.xls"  # File name of the output
-        df = read_excel_from_gcs(bucket_name, file_name)  # Read Excel output from GCS
-        if df is not None:
-            st.write("Content of the Excel file:")  # Header to indicate content display
-            st.dataframe(df)  # Display the DataFrame
-
-        # Embed the Google Sheet using iframe
-        st.write("The past successfully generated output.")
-        st.components.v1.iframe(
-            src="https://docs.google.com/spreadsheets/d/1bACiCjdRTD_eVxbgoeJPV0YjLFs_rth9/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",  # Preview link for the spreadsheet
-            width=700,  # Set width as per requirement
-            height=500  # Height can be adjusted as needed
-        )
+    # Optional: run live via GCS
+    with st.expander("⚙️ Run live (requires active GCS)"):
+        if st.button("Run Design Intent Parsing Script"):
+            with st.spinner("Downloading and Running Design Intent Parsing Script..."):
+                local_path = download_script_from_gcs(bucket_name, gcs_scripts["Design Intent Parsing"], "Dual_Agents_for_GCS.py")
+                if local_path:
+                    run_script_in_thread(load_and_run_script, local_path)
+            time.sleep(2)
+            st.write("Current generated output:")
+            file_name = "parsed_output/window_schedule.xls"
+            df = read_excel_from_gcs(bucket_name, file_name)
+            if df is not None:
+                st.dataframe(df)
 
     # Button to run the requirements parsing script
     st.subheader("Requirements - Parse & Compare")  # Subheader for the requirements parsing section
@@ -225,28 +239,27 @@ elif selected_page == "Proposed Solution / PoC":
     2. Agent 4 to extract and summarize key information from regulatory documents, providing structured analysis on specific requirements.
     """)  # Description of the process
 
-    if st.button("Run Requirements Parsing Script"):  # Button to trigger script execution
-        with st.spinner("Downloading and Running Requirements Parsing Script..."):  # Spinner to indicate processing
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")  # Download script
-            if local_path:
-                run_script_in_thread(load_and_run_script, local_path)  # Run script in a separate thread
-        time.sleep(2)  # Pause to allow thread to start
+    # Always display the previously generated demo output
+    st.write("Previously generated output (for demonstration):")
+    st.components.v1.iframe(
+        src="https://drive.google.com/file/d/1fXobXBEP9Nl0XdJQnL4E_tPBM8SGP2MN/preview",
+        width=700,
+        height=500
+    )
 
-        # Display the output
-        st.write("The current generated output.")
-        file_name = "parsed_output/Requirements.txt"  # File name of the output
-        content = read_file_from_gcs(bucket_name, file_name)  # Read text output from GCS
-        if content:
-            st.write("Content of the file:")  # Header to indicate content display
-            st.text_area("File Content", content, height=300)  # Display content in a text area
-
-        # Embed the Google Sheet using iframe
-        st.write("The past successfully generated output.")
-        st.components.v1.iframe(
-            src="https://drive.google.com/file/d/1fXobXBEP9Nl0XdJQnL4E_tPBM8SGP2MN/preview",  # Preview link for the file
-            width=700,  # Set width as per requirement
-            height=500  # Height can be adjusted as needed
-        )
+    # Optional: run live via GCS
+    with st.expander("⚙️ Run live (requires active GCS)"):
+        if st.button("Run Requirements Parsing Script"):
+            with st.spinner("Downloading and Running Requirements Parsing Script..."):
+                local_path = download_script_from_gcs(bucket_name, gcs_scripts["Requirements Parsing"], "Dual_Agents_for_Requirements.py")
+                if local_path:
+                    run_script_in_thread(load_and_run_script, local_path)
+            time.sleep(2)
+            st.write("Current generated output:")
+            file_name = "parsed_output/Requirements.txt"
+            content = read_file_from_gcs(bucket_name, file_name)
+            if content:
+                st.text_area("File Content", content, height=300)
 
     # Button to run the non-compliance checks script
     st.subheader("Output - Checks and Recommend")  # Subheader for the non-compliance checks section
@@ -256,28 +269,27 @@ elif selected_page == "Proposed Solution / PoC":
     2. BCA Approved Doc & SCDF Chapter 4 are provided as default requirements for the checks and recommendations.
     """)  # Description of the process
 
-    if st.button("Run Compliance Check Script"):  # Button to trigger script execution
-        with st.spinner("Downloading and Running Compliance Check Script..."):  # Spinner to indicate processing
-            local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")  # Corrected file path
-            if local_path:
-                run_script_in_thread(load_and_run_script, local_path)  # Run script in a separate thread
-        time.sleep(2)  # Pause to allow thread to start
+    # Always display the previously generated demo output
+    st.write("Previously generated output (for demonstration):")
+    st.components.v1.iframe(
+        src="https://docs.google.com/spreadsheets/d/1p0ShM-unKG_FG-fr0bBnc6MB4OY7nG3V/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",
+        width=700,
+        height=500
+    )
 
-        # Display the output
-        st.write("The current generated output.")
-        file_name = "parsed_output/check_1.xlsx"  # File name of the output
-        df = read_excel_from_gcs(bucket_name, file_name)  # Read Excel output from GCS
-        if df is not None:
-            st.write("Content of the Excel file:")  # Header to indicate content display
-            st.dataframe(df)  # Display the DataFrame
-
-        # Embed the Google Sheet using iframe
-        st.write("The past successfully generated output.")
-        st.components.v1.iframe(
-            src="https://docs.google.com/spreadsheets/d/1p0ShM-unKG_FG-fr0bBnc6MB4OY7nG3V/edit?usp=sharing&ouid=111462678514080289565&rtpof=true&sd=true",  # Preview link for the spreadsheet
-            width=700,  # Set width as per requirement
-            height=500  # Height can be adjusted as needed
-        )
+    # Optional: run live via GCS
+    with st.expander("⚙️ Run live (requires active GCS)"):
+        if st.button("Run Compliance Check Script"):
+            with st.spinner("Downloading and Running Compliance Check Script..."):
+                local_path = download_script_from_gcs(bucket_name, gcs_scripts["Non-Compliance Checks"], "Agent_for_non_compliances_Checks.py")
+                if local_path:
+                    run_script_in_thread(load_and_run_script, local_path)
+            time.sleep(2)
+            st.write("Current generated output:")
+            file_name = "parsed_output/check_1.xlsx"
+            df = read_excel_from_gcs(bucket_name, file_name)
+            if df is not None:
+                st.dataframe(df)
 
 
     # New Section: GPT-4o-Mini Text File Parsing
