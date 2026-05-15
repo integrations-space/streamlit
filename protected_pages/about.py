@@ -6,9 +6,14 @@ def app():
 
     # About the Project Section
     st.header("**The Project**")
+    st.info("📝 Originally developed in **2024** for the GovTech AI Bootcamp on Google Vertex AI; **revised in 2026** to use a vendor-neutral Bring Your Own Key (BYOK) architecture.")
     st.markdown("""
 This project was developed for learning purposes as the final assignment for the GovTech AI Bootcamp under the Project B category, with the aim of addressing real challenges in the construction industry.
 Below are some of the considerations outlined for this project.
+
+<div style="color:#4FC3F7;">
+<strong>2026 update:</strong> the problem framing, target users, and outputs are unchanged — the bootcamp's learning goals remain the founding context. What changed is the implementation: the original Vertex AI + Google Cloud Storage pipeline has been migrated to a provider-neutral BYOK architecture via LiteLLM (<code>parsers/byo_agent.py</code>). Visitors now run the agents on their own free-tier or paid key from Gemini, OpenAI, Groq, or Mistral — no GCP project, billing, or service account required.
+</div>
 
 **Key Question**:
 
@@ -18,6 +23,7 @@ Below are some of the considerations outlined for this project.
 **Objective**:
 
 - Develop a scalable Proof of Concept (PoC) using a common building component to demonstrate how an AI-powered solution can automate repetitive checks, reduce non-compliance risks, and minimize manual workloads.
+- <span style="color:#4FC3F7"><strong>2026 extension:</strong> "scalable" now also means scalable across <strong>inference providers</strong>. The same agent code runs unchanged on any LiteLLM-supported model, so the PoC can scale outward to new models as they emerge without re-platforming.</span>
 
 **Scope**:
 
@@ -28,6 +34,7 @@ Below are some of the considerations outlined for this project.
 - **Work Efficiency**: Simplifies understanding of regulatory requirements, speeding up design processes.
 - **Reduced Manual Effort**: Automates design checks, providing real-time guidance and feedback.
 - **Scalability**: Modular functions allow for continuous updates and further development.
+- <span style="color:#4FC3F7"><strong>Vendor Neutrality (2026 revision):</strong> visitors run live inference with their own free-tier or paid API key from Gemini, OpenAI, Groq, or Mistral. No vendor lock-in, no project billing exposure, no service-account distribution — and the choice of provider lives in the user's hands.</span>
 
 **Strategies**:
 
