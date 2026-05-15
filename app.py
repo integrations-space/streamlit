@@ -100,11 +100,8 @@ elif selected_page == "Proposed Solution / PoC":
     with st.expander("📢   Notice    📢"):
         st.write("""
         - This Proof of Concept (PoC) project has been completed.
-        - Billing for Google services (Cloud Storage and Vertex AI) has been deactivated to avoid further charges, so the **⚙️ Run live (requires active GCS)** option will no longer work.
-        - For reference, previously generated outputs are embedded under each section so you can still see what the pipeline produces.
-        - **🔑 New — Bring your own API key:** the Design Intent section now supports live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
+        - **🔑 Bring your own API key:** the Design Intent section supports live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
         - We will roll the same BYO-key flow out to the Requirements and Compliance Checks sections in the next iteration.
-        - Thank you for your understanding.
         """)
     # Set up Google Cloud credentials using secrets
     storage_client = None
