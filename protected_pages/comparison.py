@@ -81,19 +81,25 @@ def app():
 
     st.subheader("Opted Models")
     st.markdown("""
-<s style="color:#888">As a quick start, we have opted the use of:
+<div style="color:#888">
+<s>As a quick start, we have opted the use of:
+<ul>
+<li>Gemini Vertex AI 1.5 Pro-002, suited for its advanced multimodal tasks, supporting deep contextual understanding.</li>
+<li>GPT-4o Mini, a highly efficient and lightweight solution for simple conversational and creative tasks, especially in resource-constrained environments.</li>
+</ul>
+</s>
+</div>
 
-- Gemini Vertex AI 1.5 Pro-002, suited for its advanced multimodal tasks, supporting deep contextual understanding.
-- GPT-4o Mini, a highly efficient and lightweight solution for simple conversational and creative tasks, especially in resource-constrained environments.</s>
-
-<span style="color:#4FC3F7">As of the 2026 revision, the PoC no longer pins a single model. With the <strong>Bring Your Own Key (BYOK)</strong> approach (via LiteLLM in <code>parsers/byo_agent.py</code>), visitors choose any vision-capable model from four providers:
-
-- <strong>Gemini</strong> (free tier): gemini-2.5-flash, gemini-2.5-pro, gemini-1.5-pro
-- <strong>OpenAI</strong> (paid): gpt-4o-mini, gpt-4o, gpt-5
-- <strong>Groq</strong> (free tier): llama-4-scout, llama-4-maverick, llama-3.2-90b-vision-preview
-- <strong>Mistral</strong> (limited free trial): pixtral-large-latest, pixtral-12b-2409
-
-The same prompts and pipeline run unchanged on whichever model the visitor selects.</span>
+<div style="color:#4FC3F7">
+As of the 2026 revision, the PoC no longer pins a single model. With the <strong>Bring Your Own Key (BYOK)</strong> approach (via LiteLLM in <code>parsers/byo_agent.py</code>), visitors choose any vision-capable model from four providers:
+<ul>
+<li><strong>Gemini</strong> (free tier): gemini-2.5-flash, gemini-2.5-pro, gemini-1.5-pro</li>
+<li><strong>OpenAI</strong> (paid): gpt-4o-mini, gpt-4o, gpt-5</li>
+<li><strong>Groq</strong> (free tier): llama-4-scout, llama-4-maverick, llama-3.2-90b-vision-preview</li>
+<li><strong>Mistral</strong> (limited free trial): pixtral-large-latest, pixtral-12b-2409</li>
+</ul>
+The same prompts and pipeline run unchanged on whichever model the visitor selects.
+</div>
     """, unsafe_allow_html=True)
 
     # References Section

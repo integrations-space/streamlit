@@ -30,19 +30,28 @@ def app():
     """)
 
     st.markdown("""
-<s style="color:#888"><h2>Setting Up Google Cloud and Vertex AI</h2>
-1. Create a Google Cloud Project and enable necessary APIs.<br>
-2. Set up authentication and service accounts for using Google services such as Vertex AI and Cloud Storage.</s>
-    """, unsafe_allow_html=True)
+<div style="color:#888; text-decoration:line-through;">
+<h2 style="color:#888;">Setting Up Google Cloud and Vertex AI</h2>
+<ol>
+<li>Create a Google Cloud Project and enable necessary APIs.</li>
+<li>Set up authentication and service accounts for using Google services such as Vertex AI and Cloud Storage.</li>
+</ol>
+</div>
 
-    st.markdown("""
-<span style="color:#4FC3F7"><h2>Setting Up BYOK Access</h2>
-1. Get a free API key from any supported provider:<br>
-&nbsp;&nbsp;&nbsp;• <strong>Gemini</strong> (free tier): <a href="https://aistudio.google.com/apikey">aistudio.google.com/apikey</a><br>
-&nbsp;&nbsp;&nbsp;• <strong>Groq</strong> (free tier): <a href="https://console.groq.com/keys">console.groq.com/keys</a><br>
-&nbsp;&nbsp;&nbsp;• <strong>OpenAI</strong> (paid): <a href="https://platform.openai.com/api-keys">platform.openai.com/api-keys</a><br>
-&nbsp;&nbsp;&nbsp;• <strong>Mistral</strong> (limited free trial): <a href="https://console.mistral.ai/api-keys/">console.mistral.ai/api-keys</a><br>
-2. Open the "Proposed Solution / PoC" page, expand the 🔑 panel under each section, paste the key, and run. Your key is sent only to the chosen provider and is never stored or logged by this app.</span>
+<div style="color:#4FC3F7;">
+<h2 style="color:#4FC3F7;">Setting Up BYOK Access</h2>
+<ol>
+<li>Get a free API key from any supported provider:
+<ul>
+<li><strong>Gemini</strong> (free tier): <a href="https://aistudio.google.com/apikey" style="color:#4FC3F7;">aistudio.google.com/apikey</a></li>
+<li><strong>Groq</strong> (free tier): <a href="https://console.groq.com/keys" style="color:#4FC3F7;">console.groq.com/keys</a></li>
+<li><strong>OpenAI</strong> (paid): <a href="https://platform.openai.com/api-keys" style="color:#4FC3F7;">platform.openai.com/api-keys</a></li>
+<li><strong>Mistral</strong> (limited free trial): <a href="https://console.mistral.ai/api-keys/" style="color:#4FC3F7;">console.mistral.ai/api-keys</a></li>
+</ul>
+</li>
+<li>Open the "Proposed Solution / PoC" page, expand the 🔑 panel under each section, paste the key, and run. Your key is sent only to the chosen provider and is never stored or logged by this app.</li>
+</ol>
+</div>
     """, unsafe_allow_html=True)
 
     st.header("Developing the Data Parsing, Analysis and Processing Script")
