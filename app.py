@@ -229,6 +229,53 @@ elif selected_page == "Proposed Solution / PoC":
             if df is not None:
                 st.dataframe(df)
 
+    # BYO API key: run live against the bundled window schedule using the visitor's own Gemini key
+    with st.expander("🔑 Run with your own Gemini API key (free tier available)"):
+        st.markdown(
+            "Get a free key at [Google AI Studio](https://aistudio.google.com/apikey). "
+            "Your key is sent only to Google and is **not stored or logged** by this app."
+        )
+        col1, col2 = st.columns([3, 2])
+        with col1:
+            user_api_key = st.text_input("Gemini API key", type="password", key="byo_gemini_key")
+        with col2:
+            user_model = st.selectbox(
+                "Model",
+                ["gemini/gemini-2.5-flash", "gemini/gemini-2.5-pro", "gemini/gemini-1.5-pro"],
+                index=0,
+                key="byo_gemini_model",
+            )
+
+        if st.button("Run with my key", key="byo_run_design_intent"):
+            if not user_api_key:
+                st.error("Please paste your Gemini API key first.")
+            else:
+                from parsers.byo_agent import (
+                    parse_schedule_image,
+                    format_table,
+                    table_text_to_dataframe,
+                    dataframe_to_excel_bytes,
+                )
+                image_path = os.path.join(os.path.dirname(__file__), "design_intent", "Window Schedule.jpg")
+                try:
+                    with open(image_path, "rb") as f:
+                        image_bytes = f.read()
+                    with st.spinner("Agent 1: extracting schedule from image..."):
+                        raw_table = parse_schedule_image(image_bytes, user_api_key, user_model)
+                    with st.spinner("Agent 2: cleaning and formatting..."):
+                        formatted = format_table(raw_table, user_api_key, user_model)
+                    df, schedule_type = table_text_to_dataframe(formatted)
+                    st.success(f"Done — parsed as a {schedule_type} schedule.")
+                    st.dataframe(df)
+                    st.download_button(
+                        "Download as Excel",
+                        data=dataframe_to_excel_bytes(df),
+                        file_name=f"{schedule_type}_schedule.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    )
+                except Exception as e:
+                    st.error(f"Run failed: {e}")
+
     # Button to run the requirements parsing script
     st.subheader("Requirements - Parse & Compare")  # Subheader for the requirements parsing section
     st.markdown("[BCA Approvd Doc](https://drive.google.com/file/d/1avFLNumtOzi3mvDwA3aHBlsY2sJ_QxlD/view?usp=drive_link)")
