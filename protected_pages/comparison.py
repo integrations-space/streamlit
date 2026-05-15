@@ -49,14 +49,33 @@ def app():
     st.title("[ AI Models' Comparison ]")
     st.info("📝 Revised 2024 Google Vertex AI with 2026 BYOK Free Tier AI Tokens use")
 
-    # Display the DataFrame as a table in Streamlit with wider layout
-    st.write("Below is the comparison of several AI models (snapshot from the 2024 PoC):")
+    # Display the DataFrame as a table — struck through as a 2024 snapshot;
+    # the active BYOK model list is in the "Opted Models" section below.
+    st.markdown(
+        '<s style="color:#888">Below is the comparison of several AI models (snapshot from the 2024 PoC):</s>'
+        '<br><span style="color:#4FC3F7">See <strong>Opted Models</strong> below for the 2026 BYOK provider/model picker that the live PoC actually uses.</span>',
+        unsafe_allow_html=True,
+    )
     st.table(
         ai_models_df.set_index('Model')
-        .style.set_properties(**{'white-space': 'pre-wrap', 'vertical-align': 'top', 'color': '#ffffff'})
+        .style.set_properties(**{
+            'white-space': 'pre-wrap',
+            'vertical-align': 'top',
+            'color': '#888888',
+            'text-decoration': 'line-through',
+        })
         .set_table_styles([
-            {'selector': 'th', 'props': [('vertical-align', 'top'), ('color', '#ffffff'), ('font-weight', 'bold')]},
-            {'selector': 'td', 'props': [('vertical-align', 'top'), ('color', '#ffffff')]}
+            {'selector': 'th', 'props': [
+                ('vertical-align', 'top'),
+                ('color', '#888888'),
+                ('font-weight', 'bold'),
+                ('text-decoration', 'line-through'),
+            ]},
+            {'selector': 'td', 'props': [
+                ('vertical-align', 'top'),
+                ('color', '#888888'),
+                ('text-decoration', 'line-through'),
+            ]},
         ])
     )
 
