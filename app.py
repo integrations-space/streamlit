@@ -11,9 +11,14 @@ st.set_page_config(
     page_title="AI Analyser",  # Custom title for the browser tab
     page_icon="https://drive.google.com/file/d/1wk6jJDuOEoMbicSc_o5UuCjhfVe1XZq5/view?usp=sharing",  # Replace with a direct link to your favicon
 )
-# CSS to hide Streamlit elements including "Manage app", plus mobile-friendly tweaks
-hide_streamlit_style = """
-<style>
+# CSS to hide Streamlit elements including "Manage app", plus mobile-friendly tweaks.
+# The mobile rules apply automatically via @media breakpoint, OR can be forced ON by
+# a user-facing toggle in the sidebar (useful when a phone sends a desktop user-agent
+# and the @media query doesn't trigger). The choice persists via ?mobile=1 in the URL.
+if "mobile_view" not in st.session_state:
+    st.session_state.mobile_view = st.query_params.get("mobile", "0") == "1"
+
+_base_css = """
 #MainMenu {visibility: hidden !important;}
 footer {visibility: hidden !important;}
 header {visibility: hidden !important;}
@@ -23,12 +28,12 @@ header {visibility: hidden !important;}
 [data-testid="stHeader"] {background-color: transparent !important;}
 [data-testid="stToolbar"] {right: 2rem !important;}
 
-/* --- Responsive: keep images and embedded iframes inside the viewport on every screen --- */
+/* Responsive: keep images and embedded iframes inside the viewport on every screen */
 img, iframe { max-width: 100% !important; height: auto; }
 [data-testid="stIFrame"], [data-testid="stIFrame"] iframe { max-width: 100% !important; }
+"""
 
-/* --- Mobile layout tweaks (phones / narrow tablets) --- */
-@media (max-width: 768px) {
+_mobile_rules = """
     /* Tighter side padding so content uses the full screen width */
     .main .block-container,
     [data-testid="stAppViewContainer"] .block-container {
@@ -36,15 +41,12 @@ img, iframe { max-width: 100% !important; height: auto; }
         padding-right: 0.75rem !important;
         padding-top: 1rem !important;
     }
-
     /* Smaller headings — desktop sizes look oversized on a phone */
     h1 { font-size: 1.6rem !important; line-height: 1.25 !important; }
     h2 { font-size: 1.3rem !important; line-height: 1.3 !important; }
     h3 { font-size: 1.1rem !important; line-height: 1.3 !important; }
-
-    /* Iframes set to fixed pixel heights look cramped on mobile — give them more vertical room */
+    /* Iframes with fixed pixel heights look cramped on mobile — give them more vertical room */
     [data-testid="stIFrame"] iframe { min-height: 360px !important; }
-
     /* Make text inputs and buttons full-width with comfortable tap targets (~44px) */
     .stTextInput input,
     .stSelectbox div[data-baseweb="select"],
@@ -54,7 +56,6 @@ img, iframe { max-width: 100% !important; height: auto; }
         min-height: 44px !important;
         font-size: 1rem !important;
     }
-
     /* Custom HTML buttons (.button class used for external links) — full-width tappable */
     a.button {
         display: block !important;
@@ -64,30 +65,47 @@ img, iframe { max-width: 100% !important; height: auto; }
         margin: 6px 0 !important;
         font-size: 1rem !important;
     }
-
-    /* Stack st.columns vertically on narrow screens (Streamlit keeps them side-by-side
-       down to fairly small widths, which crushes inputs and labels) */
+    /* Stack st.columns vertically (Streamlit keeps them side-by-side until very cramped) */
     [data-testid="stHorizontalBlock"] { flex-direction: column !important; gap: 0.5rem !important; }
     [data-testid="stHorizontalBlock"] > [data-testid="column"] {
         width: 100% !important;
         flex: 1 1 100% !important;
         min-width: 0 !important;
     }
-
     /* Radio groups marked horizontal=True wrap onto multiple lines instead of overflowing */
     [data-testid="stRadio"] > div { flex-wrap: wrap !important; }
-
-    /* Dataframes scroll horizontally inside their own container instead of breaking layout */
+    /* Dataframes scroll horizontally inside their own container */
     [data-testid="stDataFrame"] { overflow-x: auto !important; }
-
     /* Sidebar: a touch narrower when expanded so the close handle stays reachable */
     [data-testid="stSidebar"] { min-width: 80vw !important; max-width: 85vw !important; }
-}
-</style>
 """
 
+# Toggle OFF → mobile rules apply only on narrow viewports (@media).
+# Toggle ON  → mobile rules apply unconditionally (forced regardless of viewport).
+if st.session_state.mobile_view:
+    _view_css = _mobile_rules
+else:
+    _view_css = f"@media (max-width: 768px) {{\n{_mobile_rules}\n}}"
+
 # Inject the CSS into the Streamlit app
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(f"<style>\n{_base_css}\n{_view_css}\n</style>", unsafe_allow_html=True)
+
+# Sidebar Mobile-view toggle — rendered before the auth form so it shows on the login
+# screen too, letting users react if auto-detection didn't catch their device.
+def _persist_mobile_view():
+    if st.session_state.mobile_view:
+        st.query_params["mobile"] = "1"
+    elif "mobile" in st.query_params:
+        del st.query_params["mobile"]
+
+with st.sidebar:
+    st.toggle(
+        "📱 Mobile view",
+        key="mobile_view",
+        help="Force the phone-friendly layout (bigger tap targets, stacked columns, smaller headings). Leave off to auto-adapt to your screen width.",
+        on_change=_persist_mobile_view,
+    )
+    st.markdown("---")
 
 
 # Setting up logging to handle UnicodeEncodeError
