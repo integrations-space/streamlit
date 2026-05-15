@@ -95,6 +95,7 @@ elif selected_page == "Proposed Solution / PoC":
     with st.expander("📢   Notice    📢"):
         st.write("""
         - This Proof of Concept (PoC) project has been completed.
+        - **📝 Revised 2024 Google Vertex AI with 2026 BYOK Free Tier AI Tokens use** — the original pipeline ran on Vertex AI and Google Cloud Storage; the 2026 revision replaces that with a vendor-neutral **Bring Your Own Key (BYOK)** architecture via LiteLLM (`parsers/byo_agent.py`), so no GCP project, billing, or service account is required.
         - **🔑 Bring your own API key:** the Design Intent and Requirements sections support live runs with your own **Gemini, OpenAI, Groq, or Mistral** key. Gemini and Groq both offer free tiers. Your key is sent only to the provider you choose and is never stored or logged by this app.
         - The Compliance Checks section will get the same BYO-key flow in the next iteration.
         """)
