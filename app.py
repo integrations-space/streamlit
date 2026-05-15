@@ -11,7 +11,7 @@ st.set_page_config(
     page_title="AI Analyser",  # Custom title for the browser tab
     page_icon="https://drive.google.com/file/d/1wk6jJDuOEoMbicSc_o5UuCjhfVe1XZq5/view?usp=sharing",  # Replace with a direct link to your favicon
 )
-# CSS to hide Streamlit elements including "Manage app"
+# CSS to hide Streamlit elements including "Manage app", plus mobile-friendly tweaks
 hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden !important;}
@@ -22,6 +22,67 @@ header {visibility: hidden !important;}
 [data-testid="stStatusWidget"] {visibility: hidden !important;}
 [data-testid="stHeader"] {background-color: transparent !important;}
 [data-testid="stToolbar"] {right: 2rem !important;}
+
+/* --- Responsive: keep images and embedded iframes inside the viewport on every screen --- */
+img, iframe { max-width: 100% !important; height: auto; }
+[data-testid="stIFrame"], [data-testid="stIFrame"] iframe { max-width: 100% !important; }
+
+/* --- Mobile layout tweaks (phones / narrow tablets) --- */
+@media (max-width: 768px) {
+    /* Tighter side padding so content uses the full screen width */
+    .main .block-container,
+    [data-testid="stAppViewContainer"] .block-container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-top: 1rem !important;
+    }
+
+    /* Smaller headings — desktop sizes look oversized on a phone */
+    h1 { font-size: 1.6rem !important; line-height: 1.25 !important; }
+    h2 { font-size: 1.3rem !important; line-height: 1.3 !important; }
+    h3 { font-size: 1.1rem !important; line-height: 1.3 !important; }
+
+    /* Iframes set to fixed pixel heights look cramped on mobile — give them more vertical room */
+    [data-testid="stIFrame"] iframe { min-height: 360px !important; }
+
+    /* Make text inputs and buttons full-width with comfortable tap targets (~44px) */
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stButton button,
+    .stDownloadButton button {
+        width: 100% !important;
+        min-height: 44px !important;
+        font-size: 1rem !important;
+    }
+
+    /* Custom HTML buttons (.button class used for external links) — full-width tappable */
+    a.button {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px 14px !important;
+        margin: 6px 0 !important;
+        font-size: 1rem !important;
+    }
+
+    /* Stack st.columns vertically on narrow screens (Streamlit keeps them side-by-side
+       down to fairly small widths, which crushes inputs and labels) */
+    [data-testid="stHorizontalBlock"] { flex-direction: column !important; gap: 0.5rem !important; }
+    [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Radio groups marked horizontal=True wrap onto multiple lines instead of overflowing */
+    [data-testid="stRadio"] > div { flex-wrap: wrap !important; }
+
+    /* Dataframes scroll horizontally inside their own container instead of breaking layout */
+    [data-testid="stDataFrame"] { overflow-x: auto !important; }
+
+    /* Sidebar: a touch narrower when expanded so the close handle stays reachable */
+    [data-testid="stSidebar"] { min-width: 80vw !important; max-width: 85vw !important; }
+}
 </style>
 """
 
